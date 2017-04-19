@@ -22,6 +22,8 @@
 
 # List of of additional inspector processing plugins.
 #inspector_processing_hooks_extra:
+inspector_processing_hooks_extra:
+  - system_name_llc
 
 # List of of additional inspector processing plugins.
 #inspector_processing_hooks:
@@ -48,6 +50,7 @@
 # Ironic inspector network interface name on which to check for an LLDP switch
 # port description to use as the node's name.
 #inspector_lldp_switch_port_interface:
+inspector_lldp_switch_port_interface: eno1
 
 ###############################################################################
 # Ironic inspector introspection rules configuration.
@@ -104,6 +107,7 @@
 # Ansible group containing switch hosts to which the workaround should be
 # applied.
 #inspector_dell_switch_lldp_workaround_group:
+inspector_dell_switch_lldp_workaround_group: "ctl-switches"
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

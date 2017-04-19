@@ -5,6 +5,7 @@
 # User with which to access the controllers via SSH during bootstrap, in order
 # to setup the Kayobe user account.
 #controller_bootstrap_user:
+controller_bootstrap_user: root
 
 ###############################################################################
 # Network interface attachments.
@@ -14,6 +15,10 @@
 
 # List of extra networks to which controller nodes are attached.
 #controller_extra_network_interfaces:
+controller_extra_network_interfaces:
+  - alaska_mgmt
+  # Tagged traffic on control and provisioning network.
+  - alaska_cp
 
 ###############################################################################
 # Controller node BIOS configuration.
@@ -25,6 +30,11 @@
 # Dict of default controller BIOS options. Format is same as that used by
 # stackhpc.drac role.
 #controller_bios_config_default:
+controller_bios_config_default:
+  # Use the performance-optimized system profile.
+  SysProfile: 'PerfOptimized'
+  # Disable HyperThreading.
+  LogicalProc: 'Disabled'
 
 # Dict of additional controller BIOS options. Format is same as that used by
 # stackhpc.drac role.
@@ -40,6 +50,25 @@
 # List of default controller RAID volumes. Format is same as that used by
 # stackhpc.drac role.
 #controller_raid_config_default:
+controller_raid_config_default:
+  - name: Root
+    raid_level: "1"
+    span_length: 2
+    span_depth: 1
+    pdisks:
+      - "Disk.Bay.0:Enclosure.Internal.0-1:RAID.Integrated.1-1"
+      - "Disk.Bay.1:Enclosure.Internal.0-1:RAID.Integrated.1-1"
+  - name: Data
+    raid_level: "1+0"
+    span_length: 2
+    span_depth: 3
+    pdisks:
+      - "Disk.Bay.2:Enclosure.Internal.0-1:RAID.Integrated.1-1"
+      - "Disk.Bay.3:Enclosure.Internal.0-1:RAID.Integrated.1-1"
+      - "Disk.Bay.4:Enclosure.Internal.0-1:RAID.Integrated.1-1"
+      - "Disk.Bay.5:Enclosure.Internal.0-1:RAID.Integrated.1-1"
+      - "Disk.Bay.6:Enclosure.Internal.0-1:RAID.Integrated.1-1"
+      - "Disk.Bay.7:Enclosure.Internal.0-1:RAID.Integrated.1-1"
 
 # List of additional controller RAID volumes. Format is same as that used by
 # stackhpc.drac role.
@@ -67,6 +96,8 @@
 # List of disks for use by controller LVM data volume group. Default to an
 # invalid value to require configuration.
 #controller_lvm_group_data_disks:
+controller_lvm_group_data_disks:
+  - /dev/sdb
 
 # List of LVM logical volumes for the data volume group.
 #controller_lvm_group_data_lvs:

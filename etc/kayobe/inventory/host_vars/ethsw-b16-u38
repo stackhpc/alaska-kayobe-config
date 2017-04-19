@@ -1,0 +1,137 @@
+---
+# Switch configuration for ethsw-b16-u38.
+
+# This switch is a 10/40G Dell S6010-ON, and provides the control and
+# provisioning network.
+
+###############################################################################
+# Switch credentials.
+
+# Host/IP on which to access the switch via SSH.
+ansible_host: 10.41.253.132
+
+# The type of switch used for the control and provisioning network.
+switch_type: dellos9
+
+###############################################################################
+# Global configuration.
+
+# Global configuration. List of global configuration lines.
+switch_config: "{{ switch_config_all + switch_config_quad }}"
+
+# Global configuration for quad mode (4x10G) ports.
+switch_config_quad:
+  # Configure the set of ports that can be used in 'quad' (4x10G) mode.
+  # NOTE: This requires a restart to take effect.
+  - "stack-unit 1 quad-port-profile 1,2,3,4,5,6,7,8,9,10,11,12,17,18,19,20,21,22,23,24,26,28,30,32"
+  # Place required ports into quad mode.
+  - "stack-unit 1 port 1 portmode quad"
+  - "stack-unit 1 port 2 portmode quad"
+  - "stack-unit 1 port 3 portmode quad"
+  - "stack-unit 1 port 4 portmode quad"
+  - "stack-unit 1 port 5 portmode quad"
+  - "stack-unit 1 port 6 portmode quad"
+  - "stack-unit 1 port 7 portmode quad"
+
+###############################################################################
+# Interface configuration.
+
+# Interface configuration. Dict mapping switch interface names to configuration
+# dicts. Each dict contains a description item and a 'config' item which should
+# contain a list of per-interface configuration.
+switch_interface_config:
+  Ma1/1:
+    config: "{{ switch_interface_config_mgmt }}"
+  Te1/1/1:
+    description: sv-b16-u6
+    config: "{{ switch_interface_config_all }}"
+  Te1/1/2:
+    description: sv-b16-u4
+    config: "{{ switch_interface_config_all }}"
+  Te1/1/3:
+    description: sv-b16-u5
+    config: "{{ switch_interface_config_all }}"
+  Te1/1/4:
+    description: sv-b16-u3
+    config: "{{ switch_interface_config_all }}"
+  Te1/2/1:
+    description: sv-b16-u8
+    config: "{{ switch_interface_config_all }}"
+  Te1/2/2:
+    description: sv-b16-u7
+    config: "{{ switch_interface_config_all }}"
+  Te1/2/3:
+    description: sv-b16-u10
+    config: "{{ switch_interface_config_all }}"
+  Te1/2/4:
+    description: sv-b16-u9
+    config: "{{ switch_interface_config_all }}"
+  Te1/3/1:
+    description: sv-b16-u14
+    config: "{{ switch_interface_config_all }}"
+  Te1/3/2:
+    description: sv-b16-u13
+    config: "{{ switch_interface_config_all }}"
+  Te1/3/3:
+    description: sv-b16-u11
+    config: "{{ switch_interface_config_all }}"
+  Te1/3/4:
+    description: sv-b16-u12
+    config: "{{ switch_interface_config_all }}"
+  Te1/4/1:
+    description: sv-b16-u15
+    config: "{{ switch_interface_config_all }}"
+  Te1/4/2:
+    description: sv-b16-u18
+    config: "{{ switch_interface_config_all }}"
+  Te1/4/3:
+    description: sv-b16-u16
+    config: "{{ switch_interface_config_all }}"
+  Te1/4/4:
+    description: sv-b16-u17
+    config: "{{ switch_interface_config_all }}"
+  Te1/5/2:
+    description: sv-b16-u21
+    config: "{{ switch_interface_config_all }}"
+  # LAG member links between control/provisioning network switches.
+  Fo1/31:
+    description: ethsw-b17-u42-trunk1
+    config: >
+      {{ switch_interface_config_lag_member +
+         ['port-channel-protocol lacp',
+          ' port-channel 1 mode active',
+          ' exit'] }}
+  Fo1/32:
+    description: ethsw-b17-u42-trunk2
+    config: >
+      {{ switch_interface_config_lag_member +
+         ['port-channel-protocol lacp',
+          ' port-channel 1 mode active',
+          ' exit'] }}
+  # LAG between control/provisioning network switches.
+  Po1:
+    description: ethsw-b17-u42-trunk
+    config: "{{ switch_interface_config_lag }}"
+  vlan 7:
+    description: provisioning
+    config:
+      - "no shutdown"
+      # Controllers.
+      - "tagged Te 1/5/2"
+  vlan 60:
+    description: ilab
+    config:
+      - "no shutdown"
+      # Controllers.
+      - "tagged Te 1/5/2"
+
+# Interface configuration for hardware discovery. After discovery Neutron owns
+# the configuration of these ports. Has the same format as
+# switch_interface_config.
+switch_interface_config_discovery:
+  vlan 7:
+    description: provisioning
+    # Compute nodes.
+    config: >
+      {{ switch_interface_config['vlan 7'].config +
+         ['untagged Te 1/1/1-1/4/4'] }}

@@ -1,0 +1,113 @@
+---
+# Switch configuration for ethsw-b16-u40-41.
+
+# This switch is a 25/100G Dell S6100-ON, and provides the bulk data network.
+
+###############################################################################
+# Switch credentials.
+
+# Host/IP on which to access the switch via SSH.
+ansible_host: 10.41.253.130
+
+# The type of switch used for the control and provisioning network.
+switch_type: dellos9
+
+###############################################################################
+# Global configuration.
+
+# Global configuration. List of global configuration lines.
+switch_config: "{{ switch_config_all + switch_config_quad }}"
+
+# Global configuration for quad mode (4x25G) ports.
+switch_config_quad:
+  # Place required ports into quad mode.
+  - "stack-unit 1 module 1 port 1 portmode quad speed 25G"
+  - "stack-unit 1 module 1 port 2 portmode quad speed 25G"
+  - "stack-unit 1 module 1 port 3 portmode quad speed 25G"
+  - "stack-unit 1 module 1 port 4 portmode quad speed 25G"
+  - "stack-unit 1 module 1 port 5 portmode quad speed 25G"
+  - "stack-unit 1 module 1 port 6 portmode quad speed 25G"
+  - "stack-unit 1 module 1 port 7 portmode quad speed 25G"
+
+###############################################################################
+# Interface configuration.
+
+# Interface configuration. Dict mapping switch interface names to configuration
+# dicts. Each dict contains a description item and a 'config' item which should
+# contain a list of per-interface configuration.
+switch_interface_config:
+  Ma1/1:
+    config: "{{ switch_interface_config_mgmt }}"
+  Tw1/1/1/1:
+    config: "{{ switch_interface_config_all }}"
+  Tw1/1/1/2:
+    config: "{{ switch_interface_config_all }}"
+  Tw1/1/1/3:
+    config: "{{ switch_interface_config_all }}"
+  Tw1/1/1/4:
+    config: "{{ switch_interface_config_all }}"
+  Tw1/1/2/1:
+    config: "{{ switch_interface_config_all }}"
+  Tw1/1/2/2:
+    config: "{{ switch_interface_config_all }}"
+  Tw1/1/2/3:
+    config: "{{ switch_interface_config_all }}"
+  Tw1/1/2/4:
+    config: "{{ switch_interface_config_all }}"
+  Tw1/1/3/1:
+    config: "{{ switch_interface_config_all }}"
+  Tw1/1/3/2:
+    config: "{{ switch_interface_config_all }}"
+  Tw1/1/3/3:
+    config: "{{ switch_interface_config_all }}"
+  Tw1/1/3/4:
+    config: "{{ switch_interface_config_all }}"
+  Tw1/1/4/1:
+    config: "{{ switch_interface_config_all }}"
+  Tw1/1/4/2:
+    config: "{{ switch_interface_config_all }}"
+  Tw1/1/4/3:
+    config: "{{ switch_interface_config_all }}"
+  Tw1/1/4/4:
+    config: "{{ switch_interface_config_all }}"
+  Tw1/1/5/1:
+    config: "{{ switch_interface_config_all }}"
+  Tw1/1/5/2:
+    config: "{{ switch_interface_config_all }}"
+  Tw1/1/5/3:
+    config: "{{ switch_interface_config_all }}"
+  Tw1/1/5/4:
+    config: "{{ switch_interface_config_all }}"
+  Tw1/1/6/1:
+    config: "{{ switch_interface_config_all }}"
+  Tw1/1/6/2:
+    config: "{{ switch_interface_config_all }}"
+  Tw1/1/6/3:
+    config: "{{ switch_interface_config_all }}"
+  Tw1/1/6/4:
+    config: "{{ switch_interface_config_all }}"
+  Tw1/1/7/1:
+    config: "{{ switch_interface_config_all }}"
+  Tw1/1/7/2:
+    config: "{{ switch_interface_config_all }}"
+  Tw1/1/7/3:
+    config: "{{ switch_interface_config_all }}"
+  Tw1/1/7/4:
+    config: "{{ switch_interface_config_all }}"
+  Hu1/4/7:
+    description: ethsw-b16-u40-41-trunk1
+    config: >
+      {{ switch_interface_config_lag_member +
+         ['port-channel-protocol lacp',
+          ' port-channel 1 mode active',
+          ' exit'] }}
+  Hu1/4/8:
+    description: ethsw-b16-u40-41-trunk2
+    config: >
+      {{ switch_interface_config_lag_member +
+         ['port-channel-protocol lacp',
+          ' port-channel 1 mode active',
+          ' exit'] }}
+  Po1:
+    description: ethsw-b16-u40-41-trunk
+    config: "{{ switch_interface_config_lag }}"

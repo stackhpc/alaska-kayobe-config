@@ -54,6 +54,19 @@
 
 # Dict mapping Jinja2 block names in kolla's Docker images to their contents.
 #kolla_build_blocks:
+kolla_build_blocks:
+  neutron_server_footer: |
+    # There is no RDO RPM for this ML2 driver and Kolla's plugin mechanism only
+    # supports source builds. Install a locally modified version with a fix for
+    # Dell switches until it is released.
+    RUN pip install git+https://github.com/stackhpc/networking-generic-switch@stackhpc-master
+    # The netmiko package has an issue which prevents it from working with
+    # Neutron due to the use of eventlet, causing the library the enter an
+    # infinite loop. Use our patched version.
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/netmiko.git@issues/430
+  ironic_inspector_footer: |
+    # Install our local changes to ironic inspector.
+    RUN pip install git+https://github.com/stackhpc/ironic-inspector.git@stackhpc-5.1.0.1
 
 ###############################################################################
 # Kolla-ansible configuration.
@@ -85,7 +98,7 @@
 #kolla_enable_etcd:
 #kolla_enable_gnocchi:
 #kolla_enable_grafana:
-#kolla_enable_haproxy:
+kolla_enable_haproxy: True
 #kolla_enable_heat:
 #kolla_enable_horizon:
 #kolla_enable_influxdb:
@@ -106,7 +119,7 @@
 #kolla_enable_rally:
 #kolla_enable_sahara:
 #kolla_enable_senlin:
-#kolla_enable_swift:
+kolla_enable_swift: False
 #kolla_enable_telegraf:
 #kolla_enable_tempest:
 #kolla_enable_vmtp:

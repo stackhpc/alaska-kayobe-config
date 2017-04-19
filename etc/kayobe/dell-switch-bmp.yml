@@ -10,6 +10,31 @@
 # checksum: optional checksum of image, in format required for Ansible's
 #           get_url module.
 #dell_switch_bmp_images:
+dell_switch_bmp_images:
+  # ONIE installer image for S6010-ON.
+  - url: "ftp://ftp.force10networks.com/releases/FTOS_Release/E9.10.0.1P25/S6010/ONIE-FTOS-S6010-9.10.0.1P25.bin"
+    checksum: "md5:f94fdfa50dc23f87bf2871ae96b6cff3"
+    dest: "onie-installer-x86_64-dell_s6010_c2538-r0"
+    match: "option:vendor-class,onie_vendor:x86_64-dell_s6010_c2538-r0"
+    tag: "ONIE-S6010-ON"
+  # Dell Network OS (ex-Force 10) for S6010-ON.
+  - url: "ftp://ftp.force10networks.com/releases/FTOS_Release/E9.10.0.1P25/S6010/FTOS-S6010-9.10.0.1P25.bin"
+    checksum: "md5:d2b1a3cd8174f0c5134bb620e959ee3e"
+    dest: "ftos-x86_64-dell_s6010_c2538-r0"
+    match: "option:vendor-class,DELLNTW-S6010-ON"
+    tag: "FTOS-S6010-ON"
+  # ONIE installer image for S6100-ON.
+  - url: "ftp://ftp.force10networks.com/releases/FTOS_Release/E9.10.0.1P13/S6100/ONIE-FTOS-S6100-ON-9.10.0.1P13.bin"
+    checksum: "md5:6aa639a90c040a7fc6faffa73998da37"
+    dest: "onie-installer-x86_64-dell_s6100_c2538-r0"
+    match: "option:vendor-class,onie_vendor:x86_64-dell_s6100_c2538-r0"
+    tag: "ONIE-S6100-ON"
+  # Dell Network OS (ex-Force 10) for S6100-ON.
+  - url: "ftp://ftp.force10networks.com/releases/FTOS_Release/E9.10.0.1P13/S6100/FTOS-S6100-ON-9.10.0.1P13.bin"
+    checksum: "md5:8328a2de5383b5997212e3cda23c62d6"
+    dest: "ftos-x86_64-dell_s6100_c2538-r0"
+    match: "option:vendor-class,DELLNTW-S6100-ON"
+    tag: "FTOS-S6100-ON"
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

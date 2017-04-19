@@ -1,0 +1,76 @@
+---
+# Switch configuration for ethsw-b17-u39.
+
+# This switch is a 1/10G Dell S1548, and provides the power and management
+# networks.
+
+###############################################################################
+# Switch credentials.
+
+# Host/IP on which to access the switch via SSH.
+ansible_host: 10.41.253.135
+
+# The type of switch used for the management network.
+switch_type: dellos6
+
+###############################################################################
+# Global configuration.
+
+# Global configuration. List of global configuration lines.
+switch_config: "{{ switch_config_all }}"
+
+###############################################################################
+# Interface configuration.
+
+# Interface configuration. Dict mapping switch interface names to configuration
+# dicts. Each dict contains a description item and a 'config' item which should
+# contain a list of per-interface configuration.
+switch_interface_config:
+  Gi1/0/1:
+    description: sv-b17-u27-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/2:
+    description: sv-b17-u28-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/3:
+    description: sv-b17-u29-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/4:
+    description: sv-b17-u30-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/5:
+    description: sv-b17-u31-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/6:
+    description: sv-b17-u32-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/7:
+    description: sv-b17-u33-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/8:
+    description: sv-b17-u34-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/9:
+    description: sv-b17-u35-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/12:
+    description: ethsw-b17-u42-mgt
+    config: "{{ switch_interface_config_switch_mgmt }}"
+  Gi1/0/13:
+    description: ethsw-b17-u40-41-mgt
+    config: "{{ switch_interface_config_switch_mgmt }}"
+  Gi1/0/14:
+    description: ibsw-b17-u42-mgt
+    config: "{{ switch_interface_config_switch_mgmt }}"
+  # Trunk link to other management network switch (Te1/0/2).
+  Te1/0/1:
+    description: ethsw-b16-u39-trunk
+    config: "{{ switch_interface_config_trunk_mgmt }}"
+  # Trunk link to control/provisioning network (Te1/3/4).
+  Te1/0/2:
+    description: ethsw-b17-u42-trunk
+    config: "{{ switch_interface_config_trunk_ctl }}"
+  # In-band management interface.
+  vlan 41:
+    config:
+      - "ip address {{ ansible_host }} {{ 'alaska_ctl' | net_mask }}"

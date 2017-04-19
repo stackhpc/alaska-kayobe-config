@@ -1,0 +1,106 @@
+---
+# Control & provisioning switch configuration.
+
+###############################################################################
+# Switch credentials.
+
+# User to access the switch via SSH.
+ansible_user: "{{ secrets_switch_ssh_username }}"
+
+# Password to access the switch via SSH.
+ansible_ssh_pass: "{{ secrets_switch_ssh_password }}"
+
+# Password to enter privileged mode.
+switch_auth_pass: "{{ secrets_switch_enable_password }}"
+
+###############################################################################
+# Global configuration.
+
+# Global configuration. List of global configuration lines.
+switch_config_all:
+  # These first four are required, along with the management interface
+  # configuration, in order to access the switch via SSH.
+  - "aaa authentication enable default none"
+  - "ip ssh server enable"
+  - "hostname {{ inventory_hostname }}"
+  - "username admin password 7 4535fba0ebeccf0bbe8d3297f5001e65"
+  # Disable Bare Metal Provisioning (BMP) after the first boot.
+  - "reload-type"
+  - " boot-type normal-reload"
+  - " exit"
+  # LLDP configuration.
+  - "protocol lldp"
+  - " advertise dot3-tlv max-frame-size"
+  - " advertise management-tlv management-address system-description system-name"
+  - " advertise interface-port-desc"
+  - " no disable"
+  - " exit"
+  # GVRP configuration.
+  - "protocol gvrp"
+  - " no disable"
+  - " exit"
+
+###############################################################################
+# Interface configuration.
+
+# Interface configuration for management interfaces.
+switch_interface_config_mgmt:
+  - "no shutdown"
+  - "ip address {{ ansible_host }}/{{ 'alaska_ctl' | net_prefix }}"
+
+# Interface configuration for interfaces with controllers or compute nodes
+# attached.
+switch_interface_config_all:
+  - "no shutdown"
+  - "switchport"
+  # LLDP configuration.
+  - "protocol lldp"
+  - " advertise dot3-tlv max-frame-size"
+  - " advertise management-tlv management-address system-description system-name"
+  - " advertise interface-port-desc"
+  - " no disable"
+  - " exit"
+
+# List of VLAN ranges on which to enable GVRP normal registration between trunk
+# ports.
+switch_gvrp_normal_vlan_ranges: >
+  {{ kolla_neutron_ml2_network_vlan_ranges | selectattr('range', 'defined') | map(attribute='range') | map('replace', ':', '-') | list }}
+
+# List of VLAN ranges on which to enable GVRP fixed registration between trunk
+# ports.
+switch_gvrp_fixed_vlan_ranges: >
+  {{ ['alaska_ctl' | net_vlan, 'ilab' | net_vlan] }}
+
+# Interface configuration for LAG interfaces.
+switch_interface_config_lag:
+  - "no shutdown"
+  - "switchport"
+  # GVRP configuration.
+  - "gvrp enable"
+  - "gvrp registration normal {{ switch_gvrp_normal_vlan_ranges | join(',') }}"
+  - "gvrp registration fixed {{ switch_gvrp_fixed_vlan_ranges | join(',') }}"
+
+# Interface configuration for interfaces that belong to a LAG.
+switch_interface_config_lag_member:
+  - "no shutdown"
+  - "no switchport"
+  # LLDP configuration.
+  - "protocol lldp"
+  - " advertise dot3-tlv max-frame-size"
+  - " advertise management-tlv management-address system-description system-name"
+  - " advertise interface-port-desc"
+  - " no disable"
+  - " exit"
+
+# Interface configuration for external (non-portchannel) trunk links
+# eg, for storage network links up to dev cluster
+switch_interface_config_trunk:
+  - "no shutdown"
+  - "switchport"
+  # LLDP configuration.
+  - "protocol lldp"
+  - " advertise dot3-tlv max-frame-size"
+  - " advertise management-tlv management-address system-description system-name"
+  - " advertise interface-port-desc"
+  - " no disable"
+  - " exit"

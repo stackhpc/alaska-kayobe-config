@@ -1,0 +1,25 @@
+[config-mgmt]
+# This host acts as the configuration management control host. This must be
+# localhost.
+localhost ansible_connection=local
+
+[seed-hypervisor]
+# add a seed hypervisor node here if required. this host will run a seed node
+# virtual machine.
+localhost ansible_connection=local
+
+[seed]
+# This host will provide the Bifrost undercloud.
+alaska-seed
+
+[mgmt-switches]
+ethsw-b16-u39
+ethsw-b17-u39
+
+[ctl-switches]
+ethsw-b16-u38
+ethsw-b17-u42
+
+[bdn-switches]
+ethsw-b16-u40-41
+ethsw-b17-u40-41

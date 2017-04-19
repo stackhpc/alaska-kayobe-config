@@ -21,10 +21,10 @@ controllers
 [ctl-switches]
 # Empty group to provide declaration of ctl-switches group.
 
-[hs-switches]
-# Empty group to provide declaration of hs-switches group.
+[bdn-switches]
+# Empty group to provide declaration of bdn-switches group.
 
 [switches:children]
 mgmt-switches
 ctl-switches
-hs-switches
+bdn-switches

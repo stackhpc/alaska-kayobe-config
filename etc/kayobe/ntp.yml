@@ -6,6 +6,7 @@
 
 # Name of the local timezone.
 #timezone:
+timezone: Europe/London
 
 ###############################################################################
 # Network Time Protocol (NTP).

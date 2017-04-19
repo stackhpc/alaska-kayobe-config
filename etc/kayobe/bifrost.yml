@@ -20,13 +20,21 @@
 #kolla_bifrost_dib_os_release:
 
 # List of DIB elements.
-#kolla_bifrost_dib_elements:
+kolla_bifrost_dib_elements:
+  - "devuser"
+  - "disable-selinux"
+  - "serial-console"
+  - "vm"
 
 # DIB init element.
-#kolla_bifrost_dib_init_element:
+kolla_bifrost_dib_init_element: "simple-init"
 
 # DIB environment variables.
-#kolla_bifrost_dib_env_vars:
+kolla_bifrost_dib_env_vars:
+  DIB_CLOUD_INIT_DATASOURCES: "ConfigDrive"
+  DIB_INSTALLTYPE_simple_init: "repo"
+  DIB_DEV_USER_PASSWORD: "devuser"
+  DIB_DEV_USER_PWDLESS_SUDO: "yes"
 
 # List of DIB packages to install.
 #kolla_bifrost_dib_packages:
@@ -42,6 +50,8 @@
 
 # List of of inspector processing plugins.
 #kolla_bifrost_inspector_processing_hooks:
+# system_name_llc not available in bifrost's inspector version.
+kolla_bifrost_inspector_processing_hooks: "{{ inspector_processing_hooks_default }}"
 
 # Which MAC addresses to add as ports during introspection. One of 'all',
 # 'active' or 'pxe'.
@@ -62,6 +72,7 @@
 # Ironic inspector network interface name on which to check for an LLDP switch
 # port description to use as the node's name.
 #kolla_bifrost_inspector_lldp_switch_port_interface:
+kolla_bifrost_inspector_lldp_switch_port_interface: "eno3"
 
 # Ironic inspector deployment kernel location.
 #kolla_bifrost_inspector_deploy_kernel:

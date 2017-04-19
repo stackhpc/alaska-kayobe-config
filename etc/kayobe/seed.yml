@@ -5,6 +5,7 @@
 # User with which to access the seed via SSH during bootstrap, in order to
 # setup the Kayobe user account.
 #seed_bootstrap_user:
+seed_bootstrap_user: "centos"
 
 ###############################################################################
 # Network interface attachments.
@@ -14,6 +15,8 @@
 
 # List of extra networks to which seed nodes are attached.
 #seed_extra_network_interfaces:
+seed_extra_network_interfaces:
+  - alaska_mgmt
 
 ###############################################################################
 # LVM configuration.
@@ -35,6 +38,8 @@
 
 # List of disks for use by seed LVM data volume group.
 #seed_lvm_group_data_disks:
+seed_lvm_group_data_disks:
+  - /dev/vdb
 
 # List of LVM logical volumes for the data volume group.
 #seed_lvm_group_data_lvs:

@@ -1,0 +1,67 @@
+---
+# Management switch configuration.
+
+###############################################################################
+# Switch credentials.
+
+# User to access the switch via SSH.
+ansible_user: "{{ secrets_switch_ssh_username }}"
+
+# Password to access the switch via SSH.
+ansible_ssh_pass: "{{ secrets_switch_ssh_password }}"
+
+# Password to enter privileged mode.
+switch_auth_pass: "{{ secrets_switch_enable_password }}"
+
+###############################################################################
+# Global configuration.
+
+# Global configuration. List of global configuration lines.
+switch_config_all:
+  # These first four are required, along with the management interface
+  # configuration, in order to access the switch via SSH.
+  - "aaa authentication enable default none"
+  - "ip ssh server"
+  - "hostname \"{{ inventory_hostname }}\""
+  - "username \"admin\" password ab1ce64618ed02e6b1713deb510afd61 privilege 1 encrypted"
+  - "ip default-gateway 10.41.255.1"
+  # VLAN configuration.
+  - "vlan {{ alaska_ctl_vlan }},{{ alaska_mgmt_vlan }},{{ ilab_vlan }}"
+  - "exit"
+
+###############################################################################
+# Interface configuration.
+
+# Interface configuration for interfaces with controllers attached.
+switch_interface_config_controller:
+  - "switchport mode trunk"
+  - "switchport trunk native vlan {{ alaska_ctl_vlan }}"
+  - "switchport trunk allowed vlan {{ alaska_ctl_vlan }},{{ alaska_mgmt_vlan }},{{ ilab_vlan }}"
+  - "lldp transmit-mgmt"
+
+# Interface configuration for interfaces with BMCs attached.
+switch_interface_config_bmc:
+  - "switchport mode access"
+  - "switchport access vlan {{ alaska_mgmt_vlan }}"
+  - "lldp transmit-mgmt"
+
+# Interface configuration for interfaces with switch management ports attached.
+switch_interface_config_switch_mgmt:
+  - "switchport mode trunk"
+  - "switchport trunk native vlan {{ alaska_ctl_vlan }}"
+  - "switchport trunk allowed vlan {{ alaska_ctl_vlan }},{{ alaska_mgmt_vlan }},{{ ilab_vlan }}"
+  - "lldp transmit-mgmt"
+
+# Interface configuration for interfaces used as trunk links between the
+# management network.
+switch_interface_config_trunk_mgmt:
+  - "switchport mode trunk"
+  - "switchport trunk allowed vlan {{ alaska_ctl_vlan }},{{ alaska_mgmt_vlan }},{{ ilab_vlan }}"
+  - "lldp transmit-mgmt"
+
+# Interface configuration for interfaces used as trunk links between the
+# control/provisioning and management networks.
+switch_interface_config_trunk_ctl:
+  - "switchport mode trunk"
+  - "switchport trunk allowed vlan {{ ilab_vlan }}"
+  - "lldp transmit-mgmt"

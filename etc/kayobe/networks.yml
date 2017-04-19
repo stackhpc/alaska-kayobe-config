@@ -7,90 +7,84 @@
 # Name of the network used by the seed to provision the bare metal overcloud
 # hosts.
 #provision_oc_net_name:
+provision_oc_net_name: 'alaska_ctl'
 
 # Name of the network used by the overcloud hosts to provision the bare metal
 # workload hosts.
 #provision_wl_net_name:
+provision_wl_net_name: 'alaska_prv'
 
 # Name of the network used to expose the internal OpenStack API endpoints.
 #internal_net_name:
+internal_net_name: 'alaska_prv'
 
 # Name of the network used to expose the external OpenStack API endpoints and
 # to provide external network access via Neutron.
 #external_net_name:
+external_net_name: 'ilab'
 
 # Name of the network used to carry storage data traffic.
 #storage_net_name:
+storage_net_name: 'alaska_prv'
 
 # Name of the network used to carry storage management traffic.
 #storage_mgmt_net_name:
+storage_mgmt_net_name: 'alaska_prv'
 
 # Name of the network used to perform hardware introspection on the bare metal
 # workload hosts.
 #inspection_net_name:
+inspection_net_name: 'alaska_prv'
 
 ###############################################################################
 # Network definitions.
 
-# Overcloud provisioning network IP information.
-# provision_oc_net_cidr:
-# provision_oc_net_allocation_pool_start:
-# provision_oc_net_allocation_pool_end:
-# provision_oc_net_inspection_allocation_pool_start:
-# provision_oc_net_inspection_allocation_pool_end:
-# provision_oc_net_gateway:
-# provision_oc_net_vlan:
-# provision_oc_net_mtu:
+# iLab network IP information.
+ilab_cidr: 10.60.0.0/16
+# Pool for use by kayobe.
+ilab_allocation_pool_start: 10.60.253.2
+ilab_allocation_pool_end: 10.60.253.9
+# Pool for use by neutron.
+ilab_neutron_allocation_pool_start: 10.60.253.10
+ilab_neutron_allocation_pool_end: 10.60.253.127
+# Gateway is dev-director hypervisor.
+ilab_gateway: 10.60.210.1
+ilab_vlan: 60
+# VIP address for external API endpoints.
+ilab_vip_address: 10.60.253.1
+ilab_mtu: 1400
+
+# Power and management network IP information.
+alaska_mgmt_cidr: 10.45.0.0/16
+# Pool for use by kayobe.
+alaska_mgmt_allocation_pool_start: 10.45.253.101
+alaska_mgmt_allocation_pool_end: 10.45.253.101
+alaska_mgmt_vlan: 45
+
+# Control plane provisioning network IP information.
+alaska_ctl_cidr: 10.41.0.0/16
+# Pool for use by kayobe.
+alaska_ctl_allocation_pool_start: 10.41.253.101
+alaska_ctl_allocation_pool_end: 10.41.253.101
+# Pool for use by bifrost's dnsmasq service during hardware inspection.
+alaska_ctl_inspection_allocation_pool_start: 10.41.253.110
+alaska_ctl_inspection_allocation_pool_end: 10.41.253.120
+alaska_ctl_vlan: 41
 
 # Workload provisioning network IP information.
-# provision_wl_net_cidr:
-# provision_wl_net_allocation_pool_start:
-# provision_wl_net_allocation_pool_end:
-# provision_wl_net_inspection_allocation_pool_start:
-# provision_wl_net_inspection_allocation_pool_end:
-# provision_wl_net_neutron_allocation_pool_start:
-# provision_wl_net_neutron_allocation_pool_end:
-# provision_wl_net_gateway:
-# provision_wl_net_vlan:
-# provision_wl_net_mtu:
-
-# Internal network IP information.
-# internal_net_vip_address:
-# internal_net_fqdn:
-# internal_net_cidr:
-# internal_net_allocation_pool_start:
-# internal_net_allocation_pool_end:
-# internal_net_gateway:
-# internal_net_vlan:
-# internal_net_mtu:
-
-# External network IP information.
-# external_net_vip_address:
-# external_net_fqdn:
-# external_net_cidr:
-# external_net_allocation_pool_start:
-# external_net_allocation_pool_end:
-# external_net_neutron_allocation_pool_start:
-# external_net_neutron_allocation_pool_end:
-# external_net_gateway:
-# external_net_vlan:
-# external_net_mtu:
-
-# Storage network IP information.
-# storage_net_cidr:
-# storage_net_allocation_pool_start:
-# storage_net_allocation_pool_end:
-# storage_net_gateway:
-# storage_net_vlan:
-# storage_net_mtu:
-
-# Storage management network IP information.
-# storage_mgmt_net_cidr:
-# storage_mgmt_net_allocation_pool_start:
-# storage_mgmt_net_allocation_pool_end:
-# storage_mgmt_net_gateway:
-# storage_mgmt_net_vlan:
-# storage_mgmt_net_mtu:
+alaska_prv_cidr: 192.168.7.0/24
+# Pool for use by kayobe.
+alaska_prv_allocation_pool_start: 192.168.7.2
+alaska_prv_allocation_pool_end: 192.168.7.9
+# Pool for use by ironic inspector during hardware inspection.
+alaska_prv_inspection_allocation_pool_start: 192.168.7.10
+alaska_prv_inspection_allocation_pool_end: 192.168.7.127
+# Pool for use by neutron during baremetal provisioning.
+alaska_prv_neutron_allocation_pool_start: 192.168.7.128
+alaska_prv_neutron_allocation_pool_end: 192.168.7.254
+alaska_prv_vlan: 7
+# VIP address for internal API endpoints.
+alaska_prv_vip_address: 192.168.7.1
 
 ###############################################################################
 # Network virtual patch link configuration.
