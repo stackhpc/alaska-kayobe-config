@@ -28,8 +28,6 @@ switch_config_quad:
   - "stack-unit 1 port 1 portmode quad"
   - "stack-unit 1 port 2 portmode quad"
   - "stack-unit 1 port 3 portmode quad"
-  # 4x10G ports connecting to SoftIron 10GBaseT switch
-  - "stack-unit 1 port 5 portmode quad"
 
 ###############################################################################
 # Interface configuration.
@@ -40,70 +38,43 @@ switch_config_quad:
 switch_interface_config:
   Ma1/1:
     config: "{{ switch_interface_config_mgmt }}"
-  Te1/1/1:
-    description: sv-b17-u30
-    config: "{{ switch_interface_config_all }}"
-  Te1/1/2:
-    description: sv-b17-u29
-    config: "{{ switch_interface_config_all }}"
-  Te1/1/3:
-    description: sv-b17-u28
-    config: "{{ switch_interface_config_all }}"
-  Te1/1/4:
-    description: sv-b17-u27
-    config: "{{ switch_interface_config_all }}"
-  Te1/2/1:
-    description: sv-b17-u33
-    config: "{{ switch_interface_config_all }}"
-  Te1/2/2:
-    description: sv-b17-u32
-    config: "{{ switch_interface_config_all }}"
-  Te1/2/3:
-    description: sv-b17-u34
-    config: "{{ switch_interface_config_all }}"
-  Te1/2/4:
-    description: sv-b17-u31
-    config: "{{ switch_interface_config_all }}"
-  Te1/3/2:
-    description: sv-b17-u35
+  # Te1/1/1:
+  #   description: sv-b17-u30
+  #   config: "{{ switch_interface_config_all }}"
+  # Te1/1/2:
+  #   description: sv-b17-u29
+  #   config: "{{ switch_interface_config_all }}"
+  # Te1/1/3:
+  #   description: sv-b17-u28
+  #   config: "{{ switch_interface_config_all }}"
+  # Te1/1/4:
+  #   description: sv-b17-u27
+  #   config: "{{ switch_interface_config_all }}"
+  # Te1/2/1:
+  #   description: sv-b17-u33
+  #   config: "{{ switch_interface_config_all }}"
+  # Te1/2/2:
+  #   description: sv-b17-u32
+  #   config: "{{ switch_interface_config_all }}"
+  # Te1/2/3:
+  #   description: sv-b17-u34
+  #   config: "{{ switch_interface_config_all }}"
+  # Te1/2/4:
+  #   description: sv-b17-u31
+  #   config: "{{ switch_interface_config_all }}"
+  # Te1/3/1:
+  #   description: sv-b17-u36
+  #   config: "{{ switch_interface_config_all }}"
+  # Te1/3/2:
+  #   description: sv-b17-u35
+  #   config: "{{ switch_interface_config_all }}"
+  Te1/3/3:
+    description: sv-b17-u37
     config: "{{ switch_interface_config_all }}"
   # Trunk link to management network (Te1/0/2).
   Te1/3/4:
     description: ethsw-b17-u39-trunk
     config: "{{ switch_interface_config_all }}"
-  # SoftIron/Ceph Storage network link to dev cluster
-  Fo1/4:
-    description: ethsw1-ra12-p11
-    config: "{{ switch_interface_config_trunk }}"
-  # 4x10G LAG to SoftIron 10GBaseT Netgear switch
-  Te1/5/1:
-    description: softswitch-xg25
-    config: >
-      {{ switch_interface_config_lag_member +
-         ['port-channel-protocol lacp',
-          ' port-channel 2 mode active',
-          ' exit'] }}
-  Te1/5/2:
-    description: softswitch-xg26
-    config: >
-      {{ switch_interface_config_lag_member +
-         ['port-channel-protocol lacp',
-          ' port-channel 2 mode active',
-          ' exit'] }}
-  Te1/5/3:
-    description: softswitch-xg27
-    config: >
-      {{ switch_interface_config_lag_member +
-         ['port-channel-protocol lacp',
-          ' port-channel 2 mode active',
-          ' exit'] }}
-  Te1/5/4:
-    description: softswitch-xg28
-    config: >
-      {{ switch_interface_config_lag_member +
-         ['port-channel-protocol lacp',
-          ' port-channel 2 mode active',
-          ' exit'] }}
   # LAG member links between control/provisioning network switches.
   Fo1/31:
     description: ethsw-b16-u38-trunk1
@@ -123,20 +94,8 @@ switch_interface_config:
   Po1:
     description: ethsw-b16-u38-trunk
     config: "{{ switch_interface_config_lag }}"
-  # LAG to SoftIron 10GBaseT Netgear switch (no GVRP)
-  Po2:
-    description: softswitch-trunk
-    config: 
-      - "no shutdown"
-      - "switchport"
-  vlan 4:
-    description: softiron-ceph
-    config:
-      - "no shutdown"
-      - "tagged Fo1/4"
-      - "tagged Port-channel 2"
-  vlan 7:
-    description: provisioning
+  vlan 9:
+    description: provisioning-2
     config:
       - "no shutdown"
   vlan 60:
@@ -150,9 +109,9 @@ switch_interface_config:
 # the configuration of these ports. Has the same format as
 # switch_interface_config.
 switch_interface_config_discovery:
-  vlan 7:
-    description: provisioning
-    # Compute nodes.
+  vlan 9:
+    description: provisioning-2
+    # Compute nodes. (FIXME for u21)
     config: >
-      {{ switch_interface_config['vlan 7'].config +
-         ['untagged Te 1/1/1 - 1/2/4, 1/3/2'] }}
+      {{ switch_interface_config['vlan 9'].config +
+         ['untagged Te 1/3/3'] }}
