@@ -19,7 +19,7 @@
 #kolla_neutron_ml2_network_vlan_ranges:
 kolla_neutron_ml2_network_vlan_ranges:
   - physical_network: physnet1
-    range: 100:129
+    range: 130:139
 
 # List of switches to configure for use by genericswitch ML2 mechanism driver.
 # Each item should be a dict containing the following items:
