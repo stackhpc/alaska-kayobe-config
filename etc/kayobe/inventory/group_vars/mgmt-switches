@@ -47,9 +47,8 @@ switch_interface_config_bmc:
 
 # Interface configuration for interfaces with switch management ports attached.
 switch_interface_config_switch_mgmt:
-  - "switchport mode trunk"
-  - "switchport trunk native vlan {{ alaska_ctl_vlan }}"
-  - "switchport trunk allowed vlan {{ alaska_ctl_vlan }},{{ alaska_mgmt_vlan }},{{ ilab_vlan }}"
+  - "switchport mode access"
+  - "switchport access vlan {{ alaska_ctl_vlan }}"
   - "lldp transmit-mgmt"
 
 # Interface configuration for interfaces used as trunk links between the

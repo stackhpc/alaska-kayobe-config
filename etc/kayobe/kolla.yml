@@ -67,6 +67,10 @@ kolla_build_blocks:
   ironic_inspector_footer: |
     # Install our local changes to ironic inspector.
     RUN pip install git+https://github.com/stackhpc/ironic-inspector.git@stackhpc-5.1.0.1
+  ironic_base_footer: |
+    # Install a more recent version of ironic-lib with a fix for
+    # https://bugs.launchpad.net/ironic/+bug/1673731.
+    RUN pip install -U --no-deps ironic-lib==2.7.0
 
 ###############################################################################
 # Kolla-ansible configuration.
