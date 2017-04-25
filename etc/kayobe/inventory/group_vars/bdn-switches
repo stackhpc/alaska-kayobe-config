@@ -49,6 +49,7 @@ switch_interface_config_mgmt:
 switch_interface_config_all:
   - "no shutdown"
   - "switchport"
+  - "flowcontrol rx on tx on"
   # LLDP configuration.
   - "protocol lldp"
   - " advertise dot3-tlv max-frame-size"
