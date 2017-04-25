@@ -5,6 +5,6 @@ alaska_mgmt_ips:
   alaska-seed: 10.45.253.100
   sv-b16-u22: 10.45.253.103
 alaska_prv_ips:
-  sv-b16-u22: 192.168.3.11
+  sv-b16-u22: 192.168.9.11
 ilab_ips:
   sv-b16-u22: 10.60.253.242
