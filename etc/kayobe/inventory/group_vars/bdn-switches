@@ -35,6 +35,8 @@ switch_config_all:
   - " advertise interface-port-desc"
   - " no disable"
   - " exit"
+  # Enable IGMP snooping for IP multicast
+  #- "ip igmp snooping enable"
 
 ###############################################################################
 # Interface configuration.

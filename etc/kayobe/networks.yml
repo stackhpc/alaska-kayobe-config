@@ -86,6 +86,14 @@ alaska_prv_vlan: 7
 # VIP address for internal API endpoints.
 alaska_prv_vip_address: 192.168.7.1
 
+# Internal VLAN for Bulk Data Network switches
+# This VLAN is internal to the BDN switches, and not visible
+# to the connected nodes (all ports are untagged).  However,
+# it cannot be VLAN 1, and it should not overlap with any other
+# VLAN on the BDN.  The VLAN requires an IP interface assigning
+# in order to handle multicast querying and routing.
+alaska_bdn_vlan: 8
+
 ###############################################################################
 # Network virtual patch link configuration.
 
