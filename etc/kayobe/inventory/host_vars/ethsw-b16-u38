@@ -42,26 +42,14 @@ switch_config_quad:
 switch_interface_config:
   Ma1/1:
     config: "{{ switch_interface_config_mgmt }}"
+  Te1/4/2:
+    description: sv-b16-u18
+    config: "{{ switch_interface_config_all }}"
   Te1/5/3:
     description: sv-b16-u19
     config: "{{ switch_interface_config_all }}"
   Te1/6/1:
     description: sv-b16-u23
-    config: "{{ switch_interface_config_all }}"
-  Te1/6/2:
-    description: sv-b16-u25-26
-    config: "{{ switch_interface_config_all }}"
-  Te1/6/3:
-    description: sv-b16-u27-28
-    config: "{{ switch_interface_config_all }}"
-  Te1/6/4:
-    description: sv-b16-u29-30
-    config: "{{ switch_interface_config_all }}"
-  Te1/7/1:
-    description: sv-b16-u31-32
-    config: "{{ switch_interface_config_all }}"
-  Te1/7/2:
-    description: sv-b16-u33-34
     config: "{{ switch_interface_config_all }}"
   # LAG member links between control/provisioning network switches.
   Fo1/31:
@@ -86,13 +74,13 @@ switch_interface_config:
     description: provisioning
     config:
       - "no shutdown"
-      # Controllers
+      # Controllers.
       - "tagged Te 1/6/1"
   vlan 60:
     description: ilab
     config:
       - "no shutdown"
-      # Controllers
+      # Controllers.
       - "tagged Te 1/6/1"
 
 # Interface configuration for hardware discovery. After discovery Neutron owns
@@ -104,4 +92,4 @@ switch_interface_config_discovery:
     # Compute nodes.
     config: >
       {{ switch_interface_config['vlan 8'].config +
-         ['untagged Te 1/5/3,1/6/2-1/7/2'] }}
+         ['untagged Te 1/4/2,1/5/3'] }}
