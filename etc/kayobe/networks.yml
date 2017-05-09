@@ -47,8 +47,7 @@ ilab_allocation_pool_end: 10.60.253.9
 # Pool for use by neutron.
 ilab_neutron_allocation_pool_start: 10.60.253.10
 ilab_neutron_allocation_pool_end: 10.60.253.127
-# Gateway is dev-director hypervisor.
-ilab_gateway: 10.60.210.1
+ilab_gateway: 10.60.255.1
 ilab_vlan: 60
 # VIP address for external API endpoints.
 ilab_vip_address: 10.60.253.1
