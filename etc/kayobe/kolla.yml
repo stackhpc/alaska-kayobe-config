@@ -71,6 +71,32 @@ kolla_build_blocks:
     # Install a more recent version of ironic-lib with a fix for
     # https://bugs.launchpad.net/ironic/+bug/1673731.
     RUN pip install -U --no-deps ironic-lib==2.7.0
+  magnum_base_footer: |
+    # The Swarm Fedora-atomic ironic driver is currently in development, so
+    # pull in an ocata-based version of magnum with this change applied.
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum.git@stackhpc-4.1.1.1
+    # python-kubernetes is not installed by the openstack-magnum RPM in RDO.
+    RUN pip install kubernetes
+  magnum_api_footer: |
+    # The file policy.json in RDO is out of date - install an up to date one
+    # from source.
+    RUN curl -o /etc/magnum/policy.json https://raw.githubusercontent.com/stackhpc/magnum/stackhpc-4.1.1.1/etc/magnum/policy.json \
+        && chown magnum:magnum /etc/magnum/policy.json \
+        && chmod 0600 /etc/magnum/policy.json
+
+# Dict mapping image customization variable names to their values.
+# Each variable takes the form:
+# <image name>_<customization>_<operation>
+# Hyphens in the image name are replaced with underscores. The customization is
+# most commonly packages. The operation should be one of override, append or
+# remove. The value should be a list.
+#kolla_build_customizations:
+kolla_build_customizations:
+  ironic_conductor_packages_append:
+    # e2fsprogs is required to create ext ephemeral filesystems.
+    - 'e2fsprogs'
+    # xfsprogs is required to create XFS ephemeral filesystems.
+    - 'xfsprogs'
 
 ###############################################################################
 # Kolla-ansible configuration.
@@ -110,6 +136,7 @@ kolla_enable_haproxy: True
 #kolla_enable_iscsid:
 #kolla_enable_kuryr:
 #kolla_enable_magnum:
+kolla_enable_magnum: True
 #kolla_enable_manila:
 #kolla_enable_mistral:
 #kolla_enable_mongodb:
