@@ -80,6 +80,18 @@ switch_interface_config:
   Gi1/0/24:
     description: sv-b16-u21
     config: "{{ switch_interface_config_controller }}"
+  Gi1/0/27:
+    description: sv-b16-u25-26-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/28:
+    description: sv-b16-u27-28-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/29:
+    description: sv-b16-u29-30-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/30:
+    description: sv-b16-u31-32-idrac
+    config: "{{ switch_interface_config_bmc }}"
   Gi1/0/32:
     description: ethsw-b16-u40-41-mgt
     config: "{{ switch_interface_config_switch_mgmt }}"
