@@ -72,17 +72,21 @@ kolla_build_blocks:
     # https://bugs.launchpad.net/ironic/+bug/1673731.
     RUN pip install -U --no-deps ironic-lib==2.7.0
   magnum_base_footer: |
-    # The Swarm Fedora-atomic ironic driver is currently in development, so
-    # pull in an ocata-based version of magnum with this change applied.
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum.git@stackhpc-4.1.1.1
     # python-kubernetes is not installed by the openstack-magnum RPM in RDO.
     RUN pip install kubernetes
   magnum_api_footer: |
+    # The Swarm Fedora-atomic ironic driver is currently in development, so
+    # pull in an ocata-based version of magnum with this change applied.
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum.git@stackhpc-4.1.1.1
     # The file policy.json in RDO is out of date - install an up to date one
     # from source.
     RUN curl -o /etc/magnum/policy.json https://raw.githubusercontent.com/stackhpc/magnum/stackhpc-4.1.1.1/etc/magnum/policy.json \
         && chown magnum:magnum /etc/magnum/policy.json \
         && chmod 0600 /etc/magnum/policy.json
+  magnum_conductor_footer: |
+    # The Swarm Fedora-atomic ironic driver is currently in development, so
+    # pull in an ocata-based version of magnum with this change applied.
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum.git@stackhpc-4.1.1.1
 
 # Dict mapping image customization variable names to their values.
 # Each variable takes the form:
@@ -125,7 +129,7 @@ kolla_build_customizations:
 #kolla_enable_cinder_backend_lvm:
 #kolla_enable_cloudkitty:
 #kolla_enable_congress:
-#kolla_enable_etcd:
+kolla_enable_etcd: True
 #kolla_enable_gnocchi:
 #kolla_enable_grafana:
 kolla_enable_haproxy: True

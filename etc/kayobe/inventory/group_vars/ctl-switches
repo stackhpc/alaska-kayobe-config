@@ -28,6 +28,8 @@ switch_config_all:
   - "reload-type"
   - " boot-type normal-reload"
   - " exit"
+  # SSH server configuration.
+  - "ip ssh connection-rate-limit 30"
   # LLDP configuration.
   - "protocol lldp"
   - " advertise dot3-tlv max-frame-size"

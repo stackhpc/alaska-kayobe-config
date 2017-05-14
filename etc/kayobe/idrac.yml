@@ -27,6 +27,10 @@ idrac_network_ips:
   # sv-b16-u19 is currently out of action due to a hardware fault.
   #sv-b16-u19-idrac: 10.45.253.10
   #sv-b16-u23-idrac: 10.45.253.6
+  sv-b16-u25-26-idrac: 10.45.253.5
+  sv-b16-u27-28-idrac: 10.45.253.4
+  sv-b16-u29-30-idrac: 10.45.253.3
+  sv-b16-u31-32-idrac: 10.45.253.2
 
 # Gateway IP address for iDRAC network.
 #idrac_network_gateway:
