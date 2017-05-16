@@ -56,6 +56,8 @@
 #kolla_build_blocks:
 kolla_build_blocks:
   neutron_server_footer: |
+    # We need a patch neutron to force the provision network MTU to 1500.
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/neutron.git@stackhpc-10.0.0.1
     # There is no RDO RPM for this ML2 driver and Kolla's plugin mechanism only
     # supports source builds. Install a locally modified version with a fix for
     # Dell switches until it is released.
