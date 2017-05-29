@@ -93,6 +93,9 @@ switch_interface_config:
   Te1/5/2:
     description: sv-b16-u21
     config: "{{ switch_interface_config_all }}"
+  Te1/5/4:
+    description: sv-b16-u22
+    config: "{{ switch_interface_config_all }}"
   Te1/6/2:
     description: sv-b16-u25-26
     config: "{{ switch_interface_config_all }}"
@@ -135,7 +138,7 @@ switch_interface_config:
     config:
       - "no shutdown"
       # Controllers.
-      - "tagged Te 1/5/2"
+      - "tagged Te 1/5/2,1/5/4"
 
 # Interface configuration for hardware discovery. After discovery Neutron owns
 # the configuration of these ports. Has the same format as
