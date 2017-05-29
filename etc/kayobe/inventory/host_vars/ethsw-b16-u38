@@ -90,6 +90,9 @@ switch_interface_config:
   Te1/4/4:
     description: sv-b16-u17
     config: "{{ switch_interface_config_all }}"
+  Te1/5/1:
+    description: sv-b16-u20
+    config: "{{ switch_interface_config_all }}"
   Te1/5/2:
     description: sv-b16-u21
     config: "{{ switch_interface_config_all }}"
@@ -149,4 +152,4 @@ switch_interface_config_discovery:
     # Compute nodes.
     config: >
       {{ switch_interface_config['vlan 7'].config +
-         ['untagged Te 1/1/1-1/4/4,1/6/2-1/7/1'] }}
+         ['untagged Te 1/1/1-1/5/1,1/6/2-1/7/1'] }}

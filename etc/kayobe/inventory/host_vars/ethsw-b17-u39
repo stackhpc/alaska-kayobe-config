@@ -53,6 +53,9 @@ switch_interface_config:
   Gi1/0/9:
     description: sv-b17-u35-idrac
     config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/11:
+    description: sv-b17-u37-idrac
+    config: "{{ switch_interface_config_bmc }}"
   Gi1/0/12:
     description: ethsw-b17-u42-mgt
     config: "{{ switch_interface_config_switch_mgmt }}"

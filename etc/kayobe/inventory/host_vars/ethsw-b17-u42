@@ -67,6 +67,9 @@ switch_interface_config:
   Te1/3/2:
     description: sv-b17-u35
     config: "{{ switch_interface_config_all }}"
+  Te1/3/3:
+    description: sv-b17-u37
+    config: "{{ switch_interface_config_all }}"
   # Trunk link to management network (Te1/0/2).
   Te1/3/4:
     description: ethsw-b17-u39-trunk
@@ -126,7 +129,7 @@ switch_interface_config:
   # LAG to SoftIron 10GBaseT Netgear switch (no GVRP)
   Po2:
     description: softswitch-trunk
-    config: 
+    config:
       - "no shutdown"
       - "switchport"
   vlan 4:
@@ -155,4 +158,4 @@ switch_interface_config_discovery:
     # Compute nodes.
     config: >
       {{ switch_interface_config['vlan 7'].config +
-         ['untagged Te 1/1/1 - 1/2/4, 1/3/2'] }}
+         ['untagged Te 1/1/1 - 1/2/4, 1/3/2-1/3/3'] }}
