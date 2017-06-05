@@ -51,6 +51,7 @@ idrac_network_ips:
   sv-b16-u27-28-idrac: 10.45.253.4
   sv-b16-u29-30-idrac: 10.45.253.3
   sv-b16-u31-32-idrac: 10.45.253.2
+  sv-b16-u33-34-idrac: 10.45.253.1
 
 # Gateway IP address for iDRAC network.
 #idrac_network_gateway:

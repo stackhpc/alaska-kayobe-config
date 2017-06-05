@@ -111,6 +111,9 @@ switch_interface_config:
   Te1/7/1:
     description: sv-b16-u31-32
     config: "{{ switch_interface_config_all }}"
+  Te1/7/2:
+    description: sv-b16-u33-34
+    config: "{{ switch_interface_config_all }}"
   # LAG member links between control/provisioning network switches.
   Fo1/31:
     description: ethsw-b17-u42-trunk1
@@ -152,4 +155,4 @@ switch_interface_config_discovery:
     # Compute nodes.
     config: >
       {{ switch_interface_config['vlan 7'].config +
-         ['untagged Te 1/1/1-1/5/1,1/6/2-1/7/1'] }}
+         ['untagged Te 1/1/1-1/5/1,1/6/2-1/7/2'] }}

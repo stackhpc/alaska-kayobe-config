@@ -110,6 +110,9 @@ switch_interface_config:
   Gi1/0/34:
     description: ibsw-b16-u35-mgt
     config: "{{ switch_interface_config_switch_mgmt }}"
+  Gi1/0/35:
+    description: sv-b16-u33-34-idrac
+    config: "{{ switch_interface_config_bmc }}"
   # Trunk link to other management network switch (Te1/0/1).
   Te1/0/2:
     description: ethsw-b17-u39-trunk
