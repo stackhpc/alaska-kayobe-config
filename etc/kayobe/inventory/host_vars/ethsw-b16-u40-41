@@ -112,3 +112,11 @@ switch_interface_config:
   Po1:
     description: ethsw-b16-u40-41-trunk
     config: "{{ switch_interface_config_lag }}"
+  vlan 8:
+    description: BDN-internal
+    config:
+      - "ip address 10.8.0.1 /16"
+      - "ip igmp snooping querier"
+      - "tagged port-channel 1"
+      - "untagged TenGigabitEthernet 1/1/1/1-1/1/7/4"
+      - "no shutdown"
