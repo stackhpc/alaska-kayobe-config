@@ -103,7 +103,7 @@ switch_interface_config:
     config:
       - "no shutdown"
       # Trunk link to BDN switch that hosts the SoftIron uplink
-      - "tagged Fo1/4"
+      - "tagged Fo1/30"
       - "ip address 10.4.99.255/16"
   vlan 7:
     description: provisioning
