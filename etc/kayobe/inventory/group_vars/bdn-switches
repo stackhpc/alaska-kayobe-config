@@ -36,7 +36,7 @@ switch_config_all:
   - " no disable"
   - " exit"
   # Enable IGMP snooping for IP multicast
-  #- "ip igmp snooping enable"
+  - "ip igmp snooping enable"
 
 ###############################################################################
 # Interface configuration.
