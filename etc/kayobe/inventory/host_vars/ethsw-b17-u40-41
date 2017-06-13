@@ -60,21 +60,21 @@ switch_interface_config:
   Te1/1/3/4:
     config: "{{ switch_interface_config_all }}"
   Hu1/4/7:
-    description: ethsw-b17-u40-41-trunk1
+    description: ethsw-b16-u40-41-trunk1
     config: >
       {{ switch_interface_config_lag_member +
          ['port-channel-protocol lacp',
           ' port-channel 1 mode active',
           ' exit'] }}
   Hu1/4/8:
-    description: ethsw-b17-u40-41-trunk2
+    description: ethsw-b16-u40-41-trunk2
     config: >
       {{ switch_interface_config_lag_member +
          ['port-channel-protocol lacp',
           ' port-channel 1 mode active',
           ' exit'] }}
   Po1:
-    description: ethsw-b17-u40-41-trunk
+    description: ethsw-b16-u40-41-trunk
     config: "{{ switch_interface_config_lag }}"
   vlan 8:
     description: BDN-internal
