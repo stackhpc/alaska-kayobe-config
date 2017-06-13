@@ -124,3 +124,10 @@ switch_interface_config:
       - "tagged Fo1/4/4/1"
       - "tagged Hu1/4/6"
       - "tagged Po2"
+  vlan 8:
+    description: BDN-internal
+    config:
+      - "ip address 10.8.0.2 /16"
+      - "tagged port-channel 1"
+      - "untagged TenGigabitEthernet 1/1/1/1-1/1/3/4"
+      - "no shutdown"
