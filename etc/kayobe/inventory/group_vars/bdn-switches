@@ -49,6 +49,8 @@ switch_interface_config_mgmt:
 switch_interface_config_all:
   - "no shutdown"
   - "switchport"
+  # Lossless Ethernet: PAUSE
+  - "flowcontrol rx on tx on"
   # LLDP configuration.
   - "protocol lldp"
   - " advertise dot3-tlv max-frame-size"
@@ -66,6 +68,8 @@ switch_interface_config_lag:
 switch_interface_config_lag_member:
   - "no shutdown"
   - "no switchport"
+  # Lossless Ethernet: PAUSE
+  - "flowcontrol rx on tx on"
   # LLDP configuration.
   - "protocol lldp"
   - " advertise dot3-tlv max-frame-size"
