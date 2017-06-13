@@ -77,3 +77,18 @@ switch_interface_config_lag_member:
   - " advertise interface-port-desc"
   - " no disable"
   - " exit"
+
+# Interface configuration for external (non-portchannel) trunk links
+# eg, for storage network links up to dev cluster switch ethsw1-ra12
+switch_interface_config_trunk:
+  - "no shutdown"
+  - "switchport"
+  # Lossless Ethernet: PAUSE
+  - "flowcontrol rx on tx on"
+  # LLDP configuration.
+  - "protocol lldp"
+  - " advertise dot3-tlv max-frame-size"
+  - " advertise management-tlv management-address system-description system-name"
+  - " advertise interface-port-desc"
+  - " no disable"
+  - " exit"
