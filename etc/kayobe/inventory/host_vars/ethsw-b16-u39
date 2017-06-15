@@ -26,6 +26,12 @@ switch_config: "{{ switch_config_all }}"
 # dicts. Each dict contains a description item and a 'config' item which should
 # contain a list of per-interface configuration.
 switch_interface_config:
+  Gi1/0/1:
+    description: gpu-b16-u1-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/2:
+    description: gpu-b16-u2-idrac
+    config: "{{ switch_interface_config_bmc }}"
   Gi1/0/3:
     description: sv-b16-u3-idrac
     config: "{{ switch_interface_config_bmc }}"

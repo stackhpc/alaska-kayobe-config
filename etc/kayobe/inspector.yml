@@ -47,10 +47,17 @@ inspector_processing_hooks_extra:
 # Ironic inspector IPMI password to set.
 #inspector_ipmi_password:
 
-# Ironic inspector network interface name on which to check for an LLDP switch
-# port description to use as the node's name.
-#inspector_lldp_switch_port_interface:
-inspector_lldp_switch_port_interface: eno1
+# Ironic inspector default network interface name on which to check for an LLDP
+# switch port description to use as the node's name.
+#inspector_lldp_switch_port_interface_default:
+inspector_lldp_switch_port_interface_default: eno1
+
+# Ironic inspector map from hostname to network interface name on which to
+# check for an LLDP switch port description to use as the node's name.
+#inspector_lldp_switch_port_interface_map:
+inspector_lldp_switch_port_interface_map:
+  gpu-b16-u1: enp6s0f0
+  gpu-b16-u2: enp6s0f0
 
 ###############################################################################
 # Ironic inspector introspection rules configuration.

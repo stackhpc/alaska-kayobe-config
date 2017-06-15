@@ -27,6 +27,8 @@ idrac_network_ips:
   sv-b17-u35-idrac: 10.45.253.31
   sv-b17-u37-idrac: 10.45.253.29
   # Rack B16:
+  gpu-b16-u1-idrac: 10.45.253.28
+  gpu-b16-u2-idrac: 10.45.253.27
   sv-b16-u3-idrac: 10.45.253.26
   sv-b16-u4-idrac: 10.45.253.25
   sv-b16-u5-idrac: 10.45.253.24
