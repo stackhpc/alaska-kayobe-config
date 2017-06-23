@@ -15,11 +15,7 @@ alaska_mgmt_interface: "eno3.{{ alaska_mgmt_vlan }}"
 alaska_prv_interface: "{{ alaska_cp_interface }}.{{ alaska_prv_vlan }}"
 
 # Control and provisioning network tagged interface.
-alaska_cp_interface: breno1
-
-# Control and provisioning network tagged bridge ports.
-alaska_cp_bridge_ports:
-  - eno1
+alaska_cp_interface: eno1
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

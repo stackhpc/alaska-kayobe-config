@@ -18,19 +18,11 @@ idrac_network_ips:
   # Rack B17:
   sv-b17-u36-idrac: 10.45.253.30
   # Rack B16:
-  # GPU nodes not currently in service due to lack of provisioning network
-  # NICs.
-  #gpu-b16-u1-idrac: 10.45.253.28
-  #gpu-b16-u2-idrac: 10.45.253.27
   # Using u18 instead of u19.
   sv-b16-u18-idrac: 10.45.253.11
   # sv-b16-u19 is currently out of action due to a hardware fault.
   #sv-b16-u19-idrac: 10.45.253.10
   #sv-b16-u23-idrac: 10.45.253.6
-  sv-b16-u25-26-idrac: 10.45.253.5
-  sv-b16-u27-28-idrac: 10.45.253.4
-  sv-b16-u29-30-idrac: 10.45.253.3
-  sv-b16-u31-32-idrac: 10.45.253.2
 
 # Gateway IP address for iDRAC network.
 #idrac_network_gateway:

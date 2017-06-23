@@ -1,0 +1,11 @@
+---
+###############################################################################
+# OpenSM Infiniband subnet manager configuration.
+
+# Whether OpenSM is enabled.
+#opensm_enabled:
+opensm_enabled: False
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes

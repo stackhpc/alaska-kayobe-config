@@ -121,6 +121,7 @@ kolla_build_customizations:
 
 #kolla_enable_aodh:
 #kolla_enable_barbican:
+kolla_enable_barbican: True
 #kolla_enable_cadf_notifications:
 #kolla_enable_ceilometer:
 #kolla_enable_central_logging:
@@ -131,7 +132,7 @@ kolla_build_customizations:
 #kolla_enable_cinder_backend_lvm:
 #kolla_enable_cloudkitty:
 #kolla_enable_congress:
-kolla_enable_etcd: True
+#kolla_enable_etcd:
 #kolla_enable_gnocchi:
 #kolla_enable_grafana:
 kolla_enable_haproxy: True
@@ -155,6 +156,7 @@ kolla_enable_magnum: True
 #kolla_enable_neutron_agent_ha:
 #kolla_enable_rally:
 #kolla_enable_sahara:
+kolla_enable_sahara: True
 #kolla_enable_senlin:
 kolla_enable_swift: False
 #kolla_enable_telegraf:

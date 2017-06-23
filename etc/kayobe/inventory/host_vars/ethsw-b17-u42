@@ -47,39 +47,10 @@ switch_interface_config:
   Te1/3/4:
     description: ethsw-b17-u39-trunk
     config: "{{ switch_interface_config_all }}"
-  # SoftIron/Ceph Storage network link to dev cluster
-  Fo1/4:
-    description: ethsw1-ra12-p11
+  # Trunk to BDN switch for access to SoftIron Ceph
+  Fo1/30:
+    description: ethsw-b17-u40-41-Fo1/4/4/1
     config: "{{ switch_interface_config_trunk }}"
-  # 4x10G LAG to SoftIron 10GBaseT Netgear switch
-  Te1/5/1:
-    description: softswitch-xg25
-    config: >
-      {{ switch_interface_config_lag_member +
-         ['port-channel-protocol lacp',
-          ' port-channel 2 mode active',
-          ' exit'] }}
-  Te1/5/2:
-    description: softswitch-xg26
-    config: >
-      {{ switch_interface_config_lag_member +
-         ['port-channel-protocol lacp',
-          ' port-channel 2 mode active',
-          ' exit'] }}
-  Te1/5/3:
-    description: softswitch-xg27
-    config: >
-      {{ switch_interface_config_lag_member +
-         ['port-channel-protocol lacp',
-          ' port-channel 2 mode active',
-          ' exit'] }}
-  Te1/5/4:
-    description: softswitch-xg28
-    config: >
-      {{ switch_interface_config_lag_member +
-         ['port-channel-protocol lacp',
-          ' port-channel 2 mode active',
-          ' exit'] }}
   # LAG member links between control/provisioning network switches.
   Fo1/31:
     description: ethsw-b16-u38-trunk1
@@ -99,12 +70,7 @@ switch_interface_config:
   Po1:
     description: ethsw-b16-u38-trunk
     config: "{{ switch_interface_config_lag }}"
-  # LAG to SoftIron 10GBaseT Netgear switch (no GVRP)
-  Po2:
-    description: softswitch-trunk
-    config: 
-      - "no shutdown"
-      - "switchport"
+  # This switch does routing between VLAN 4 and VLAN 60
   vlan 4:
     description: softiron-ceph
     config:
@@ -115,10 +81,12 @@ switch_interface_config:
     description: provisioning
     config:
       - "no shutdown"
+  # This switch does routing between VLAN 4 and VLAN 60
   vlan 60:
     description: ilab
     config:
       - "no shutdown"
+      - "ip address 10.60.253.255/16"
       # Trunk to management network.
       - "tagged Te 1/3/4"
 

@@ -51,18 +51,6 @@ switch_interface_config:
   Te1/6/1:
     description: sv-b16-u23
     config: "{{ switch_interface_config_all }}"
-  Te1/6/2:
-    description: sv-b16-u25-26
-    config: "{{ switch_interface_config_all }}"
-  Te1/6/3:
-    description: sv-b16-u27-28
-    config: "{{ switch_interface_config_all }}"
-  Te1/6/4:
-    description: sv-b16-u29-30
-    config: "{{ switch_interface_config_all }}"
-  Te1/7/1:
-    description: sv-b16-u31-32
-    config: "{{ switch_interface_config_all }}"
   # LAG member links between control/provisioning network switches.
   Fo1/31:
     description: ethsw-b17-u42-trunk1
