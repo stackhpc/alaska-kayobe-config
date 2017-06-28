@@ -64,8 +64,8 @@ kolla_build_blocks:
     RUN pip install git+https://github.com/stackhpc/networking-generic-switch@stackhpc-master
     # The netmiko package has an issue which prevents it from working with
     # Neutron due to the use of eventlet, causing the library the enter an
-    # infinite loop. Use our patched version.
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/netmiko.git@issues/430
+    # infinite loop. This was fixed in netmiko-1.4.0.
+    RUN pip install -U --no-deps netmiko>=1.4.0
   ironic_inspector_footer: |
     # Install our local changes to ironic inspector.
     RUN pip install git+https://github.com/stackhpc/ironic-inspector.git@stackhpc-5.1.0.1
