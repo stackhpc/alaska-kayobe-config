@@ -70,38 +70,26 @@ kolla_build_blocks:
         && rm -rf /fluentd-monasca
   neutron_server_footer: |
     # We need a patch neutron to force the provision network MTU to 1500.
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/neutron.git@stackhpc-10.0.0.1
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/neutron.git@stackhpc/pike
     # There is no RDO RPM for this ML2 driver and Kolla's plugin mechanism only
     # supports source builds. Install a locally modified version with a fix for
     # Dell switches until it is released.
-    RUN pip install git+https://github.com/stackhpc/networking-generic-switch@stackhpc-master
+    RUN pip install git+https://github.com/stackhpc/networking-generic-switch@stackhpc/pike
     # The netmiko package has an issue which prevents it from working with
     # Neutron due to the use of eventlet, causing the library the enter an
     # infinite loop. Use our patched version.
     RUN pip install -U --no-deps git+https://github.com/stackhpc/netmiko.git@issues/430
   ironic_inspector_footer: |
-    # Install our local changes to ironic inspector.
-    RUN pip install git+https://github.com/stackhpc/ironic-inspector.git@stackhpc-5.1.0.1
-  ironic_base_footer: |
-    # Install a more recent version of ironic-lib with a fix for
-    # https://bugs.launchpad.net/ironic/+bug/1673731.
-    RUN pip install -U --no-deps ironic-lib==2.7.0
-  magnum_base_footer: |
-    # python-kubernetes is not installed by the openstack-magnum RPM in RDO.
-    RUN pip install kubernetes
+    # Install our custom inspector plugins.
+    RUN pip install stackhpc-inspector-plugins
   magnum_api_footer: |
     # The Swarm Fedora-atomic ironic driver is currently in development, so
-    # pull in an ocata-based version of magnum with this change applied.
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum.git@stackhpc-4.1.1.1
-    # The file policy.json in RDO is out of date - install an up to date one
-    # from source.
-    RUN curl -o /etc/magnum/policy.json https://raw.githubusercontent.com/stackhpc/magnum/stackhpc-4.1.1.1/etc/magnum/policy.json \
-        && chown magnum:magnum /etc/magnum/policy.json \
-        && chmod 0600 /etc/magnum/policy.json
+    # pull in a pike-based version of magnum with this change applied.
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum.git@stackhpc/pike
   magnum_conductor_footer: |
     # The Swarm Fedora-atomic ironic driver is currently in development, so
-    # pull in an ocata-based version of magnum with this change applied.
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum.git@stackhpc-4.1.1.1
+    # pull in an pike-based version of magnum with this change applied.
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum.git@stackhpc/pike
 
 # Dict mapping image customization variable names to their values.
 # Each variable takes the form:
@@ -110,12 +98,6 @@ kolla_build_blocks:
 # most commonly packages. The operation should be one of override, append or
 # remove. The value should be a list.
 #kolla_build_customizations:
-kolla_build_customizations:
-  ironic_conductor_packages_append:
-    # e2fsprogs is required to create ext ephemeral filesystems.
-    - 'e2fsprogs'
-    # xfsprogs is required to create XFS ephemeral filesystems.
-    - 'xfsprogs'
 
 ###############################################################################
 # Kolla-ansible inventory configuration.
