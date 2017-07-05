@@ -32,6 +32,7 @@ switch_config_quad:
   - "stack-unit 1 port 5 portmode quad"
   - "stack-unit 1 port 6 portmode quad"
   - "stack-unit 1 port 7 portmode quad"
+  - "stack-unit 1 port 8 portmode quad"
 
 ###############################################################################
 # Interface configuration.
