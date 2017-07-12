@@ -145,7 +145,7 @@ switch_interface_config:
     config:
       - "no shutdown"
       # Controllers.
-      - "tagged Te 1/5/2"
+      - "tagged Te 1/5/2,1/5/4"
   vlan 60:
     description: ilab
     config:
