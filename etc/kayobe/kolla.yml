@@ -75,10 +75,6 @@ kolla_build_blocks:
     # supports source builds. Install a locally modified version with a fix for
     # Dell switches until it is released.
     RUN pip install git+https://github.com/stackhpc/networking-generic-switch@stackhpc/pike
-    # The netmiko package has an issue which prevents it from working with
-    # Neutron due to the use of eventlet, causing the library the enter an
-    # infinite loop. Use our patched version.
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/netmiko.git@issues/430
   ironic_inspector_footer: |
     # Install our custom inspector plugins.
     RUN pip install stackhpc-inspector-plugins
