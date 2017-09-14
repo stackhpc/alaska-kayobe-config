@@ -64,9 +64,9 @@ kolla_build_blocks:
         && tar -zxf /fluentd-monasca.tar.gz \
         && rm /fluentd-monasca.tar.gz
     RUN cd /fluentd-monasca/fluentd-monasca-master \
-        && /opt/td-agent/embedded/bin/gem build fluentd-monasca-output.gemspec \
-        && /opt/td-agent/embedded/bin/gem install fluentd-monasca-output-0.0.1.gem \
-        && td-agent-gem install fluentd-monasca-output-0.0.1.gem \
+        && gem build fluentd-monasca-output.gemspec \
+        && gem install fluentd-monasca-output-0.0.1.gem \
+        && fluent-gem install fluentd-monasca-output-0.0.1.gem \
         && rm -rf /fluentd-monasca
   neutron_server_footer: |
     # We need a patch neutron to force the provision network MTU to 1500.
