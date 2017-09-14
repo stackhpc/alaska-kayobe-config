@@ -35,6 +35,7 @@ external_net_name: 'ilab'
 
 # Name of the network used to expose the public OpenStack API endpoints.
 #public_net_name:
+public_net_name: 'ilab'
 
 # Name of the network used to carry storage data traffic.
 #storage_net_name:
