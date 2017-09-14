@@ -9,14 +9,13 @@
 
 # Path in which to store data locally.
 #base_path:
+base_path: "/opt/alaska/prod"
 
 # Path in which to cache downloaded images.
 #image_cache_path:
-image_cache_path: "/opt/alaska/prod/images"
 
 # Path on which to checkout source code repositories.
 #source_checkout_path:
-source_checkout_path: "/opt/alaska/prod/source"
 
 # Path on which to create python virtualenvs.
 #virtualenv_path:
