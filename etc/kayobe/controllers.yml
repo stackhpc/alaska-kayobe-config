@@ -19,7 +19,6 @@ controller_bootstrap_user: root
 # List of extra networks to which controller nodes are attached.
 #controller_extra_network_interfaces:
 controller_extra_network_interfaces:
-  - alaska_mgmt
   # Tagged traffic on control and provisioning network.
   - alaska_cp
 

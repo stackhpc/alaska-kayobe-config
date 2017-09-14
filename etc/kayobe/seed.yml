@@ -18,8 +18,6 @@ seed_bootstrap_user: "centos"
 
 # List of extra networks to which seed nodes are attached.
 #seed_extra_network_interfaces:
-seed_extra_network_interfaces:
-  - alaska_mgmt
 
 ###############################################################################
 # LVM configuration.
