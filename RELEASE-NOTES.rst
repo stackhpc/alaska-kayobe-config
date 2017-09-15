@@ -43,6 +43,16 @@ Alt-1 (Development)
 The *alt-1* configuration is contained in the *alaska-alt-1* branch. The
 following tagged releases of this configuration have been made:
 
+2.0.0
+-----
+
+Tag: ``alaska-alt-1-2.0.0``
+
+Based on the kayobe 2.0.0 release (Ocata).
+
+* Enables the OpenStack murano application lifecycle management service.
+* See kayobe 2.0.0 release notes for full feature list.
+
 1.1.0
 -----
 
