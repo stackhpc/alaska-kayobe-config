@@ -8,6 +8,15 @@ Production
 The *production* configuration is contained in the *alaska-prod* branch. The
 following tagged releases of this configuration have been made:
 
+3.0.0
+-----
+
+Tag: ``alaska-prod-3.0.0``
+
+Based on the kayobe 3.0.0 release (Pike).
+
+* See kayobe 3.0.0 release notes for full feature list.
+
 2.0.0
 -----
 
@@ -42,6 +51,15 @@ Alt-1 (Development)
 
 The *alt-1* configuration is contained in the *alaska-alt-1* branch. The
 following tagged releases of this configuration have been made:
+
+3.0.0
+-----
+
+Tag: ``alaska-alt-1-3.0.0``
+
+Based on the kayobe 3.0.0 release (Pike).
+
+* See kayobe 3.0.0 release notes for full feature list.
 
 2.0.0
 -----
