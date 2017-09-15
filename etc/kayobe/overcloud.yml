@@ -17,3 +17,7 @@ overcloud_group_hosts_map:
     - sv-b16-u23
   ignore:
     - sv-b16-u21
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes

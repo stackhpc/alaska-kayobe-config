@@ -2,14 +2,17 @@
 ###############################################################################
 # Network interface definitions for the seed group.
 
-# Seed NAT network interface.
-seed_nat_net_interface: eth0
-
 # Power and management network interface.
 alaska_mgmt_interface: eth1
 
+# Power and management network libvirt network name on the hypervisor.
+alaska_mgmt_libvirt_network_name: br-alaska-mgmt
+
 # Control plane provisioning network interface.
 alaska_ctl_interface: eth2
+
+# Control plane provisioning network libvirt network name on the hypervisor.
+alaska_ctl_libvirt_network_name: br-alaska-ctl
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

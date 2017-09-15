@@ -14,19 +14,6 @@
 # List of volumes.
 #seed_vm_volumes:
 
-# List of network interfaces.
-#seed_vm_interfaces:
-seed_vm_interfaces:
-  # Local network for bootstrapping seed VM.
-  - network: default
-    net_name: seed_nat_net
-  # Power and management network.
-  - network: br-alaska-mgmt
-    net_name: alaska_mgmt
-  # Control plane provisioning network.
-  - network: br-alaska-ctl
-    net_name: alaska_ctl
-
 # Name of the storage pool for the seed VM volumes.
 seed_vm_pool: "alaska"
 
@@ -37,7 +24,7 @@ seed_vm_pool: "alaska"
 #seed_vm_root_format:
 
 # Base image for the seed VM root volume.
-seed_vm_root_image: "https://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud.qcow2"
+#seed_vm_root_image:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

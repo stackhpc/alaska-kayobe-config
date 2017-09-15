@@ -26,6 +26,9 @@ kolla_neutron_ml2_network_vlan_ranges:
 kolla_neutron_ml2_extension_drivers:
   - dns
 
+# List of Neutron ML2 extention drivers to use.
+#kolla_neutron_ml2_extension_drivers:
+
 # List of switches to configure for use by genericswitch ML2 mechanism driver.
 # Each item should be a dict containing the following items:
 # name: Hostname of the switch
