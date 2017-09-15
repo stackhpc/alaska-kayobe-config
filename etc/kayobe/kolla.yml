@@ -55,6 +55,19 @@
 # Dict mapping Jinja2 block names in kolla's Docker images to their contents.
 #kolla_build_blocks:
 kolla_build_blocks:
+  fluentd_footer: |
+    # Install a custom fluentd output plugin that forwards logs to the monasca
+    # log API.
+    ADD https://github.com/stackhpc/fluentd-monasca/archive/master.tar.gz /fluentd-monasca.tar.gz
+    RUN mkdir /fluentd-monasca \
+        && cd /fluentd-monasca \
+        && tar -zxf /fluentd-monasca.tar.gz \
+        && rm /fluentd-monasca.tar.gz
+    RUN cd /fluentd-monasca/fluentd-monasca-master \
+        && /opt/td-agent/embedded/bin/gem build fluentd-monasca-output.gemspec \
+        && /opt/td-agent/embedded/bin/gem install fluentd-monasca-output-0.0.1.gem \
+        && td-agent-gem install fluentd-monasca-output-0.0.1.gem \
+        && rm -rf /fluentd-monasca
   neutron_server_footer: |
     # We need a patch neutron to force the provision network MTU to 1500.
     RUN pip install -U --no-deps git+https://github.com/stackhpc/neutron.git@stackhpc-10.0.0.1

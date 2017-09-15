@@ -5,6 +5,12 @@
 # iLab external network interface.
 ilab_interface: "{{ alaska_cp_interface }}.{{ ilab_vlan }}"
 
+# iLab IP routes.
+ilab_routes:
+  # Static route to storage VLAN via control and provisioning network switch.
+  - cidr: "10.4.0.0/16"
+    gateway: "10.60.253.255"
+
 # Control plane provisioning network interface.
 alaska_ctl_interface: eno3
 
