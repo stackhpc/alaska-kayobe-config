@@ -9,7 +9,7 @@
 
 # Path in which to store data locally.
 #base_path:
-base_path: "/opt/alaska/prod"
+base_path: "/opt/alaska/alt-1"
 
 # Path in which to cache downloaded images.
 #image_cache_path:
