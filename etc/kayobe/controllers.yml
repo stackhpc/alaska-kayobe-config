@@ -10,6 +10,9 @@ controller_bootstrap_user: root
 ###############################################################################
 # Network interface attachments.
 
+# List of networks to which controller nodes are attached.
+#controller_network_interfaces:
+
 # List of default networks to which controller nodes are attached.
 #controller_default_network_interfaces:
 
@@ -19,6 +22,9 @@ controller_extra_network_interfaces:
   - alaska_mgmt
   # Tagged traffic on control and provisioning network.
   - alaska_cp
+
+# List of network interfaces to which network nodes are attached.
+#controller_network_host_network_interfaces:
 
 ###############################################################################
 # Controller node BIOS configuration.
@@ -110,6 +116,19 @@ controller_lvm_group_data_disks:
 
 # Filesystem for docker volumes LVM backing volume. ext4 allows for shrinking.
 #controller_lvm_group_data_lv_docker_volumes_fs:
+
+###############################################################################
+# Controller node sysctl configuration.
+
+# Dict of sysctl parameters to set.
+#controller_sysctl_parameters:
+
+###############################################################################
+# Controller node user configuration.
+
+# List of users to create. This should be in a format accepted by the
+# singleplatform-eng.users role.
+#controller_users:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

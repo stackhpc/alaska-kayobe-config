@@ -4,10 +4,18 @@
 ###############################################################################
 # Network role to network mappings.
 
+# Name of the network used by the seed to manage the bare metal overcloud
+# hosts via their out-of-band management controllers.
+#oob_oc_net_name:
+
 # Name of the network used by the seed to provision the bare metal overcloud
 # hosts.
 #provision_oc_net_name:
 provision_oc_net_name: 'alaska_ctl'
+
+# Name of the network used by the overcloud hosts to manage the bare metal
+# compute hosts via their out-of-band management controllers.
+#oob_wl_net_name:
 
 # Name of the network used by the overcloud hosts to provision the bare metal
 # workload hosts.
@@ -22,6 +30,9 @@ internal_net_name: 'alaska_prv'
 # to provide external network access via Neutron.
 #external_net_name:
 external_net_name: 'ilab'
+
+# Name of the network used to expose the public OpenStack API endpoints.
+#public_net_name:
 
 # Name of the network used to carry storage data traffic.
 #storage_net_name:
