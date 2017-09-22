@@ -86,6 +86,12 @@ kolla_build_blocks:
     # The Swarm Fedora-atomic ironic driver is currently in development, so
     # pull in an pike-based version of magnum with this change applied.
     RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum.git@stackhpc/pike
+  sahara_api_footer: |
+    # Bring in hack to the vanilla plugin
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/pike
+  sahara_engine_footer: |
+    # Bring in hack to the vanilla plugin
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/pike
 
 # Dict mapping image customization variable names to their values.
 # Each variable takes the form:
