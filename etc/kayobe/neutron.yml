@@ -4,6 +4,9 @@
 
 # List of Neutron ML2 mechanism drivers to use.
 #kolla_neutron_ml2_mechanism_drivers:
+kolla_neutron_ml2_mechanism_drivers:
+  - openvswitch
+  - genericswitch
 
 # List of Neutron ML2 type drivers to use.
 #kolla_neutron_ml2_type_drivers:
