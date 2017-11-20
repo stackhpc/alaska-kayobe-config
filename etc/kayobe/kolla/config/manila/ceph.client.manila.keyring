@@ -1,0 +1,2 @@
+[client.manila]
+        key = {{ secrets_ceph_client_manila }}
