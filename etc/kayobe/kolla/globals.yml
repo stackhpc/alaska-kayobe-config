@@ -1,3 +1,4 @@
 ---
 # Add extra Kolla global configuration here.
 rabbitmq_monitoring_user: "monitoring"
+enable_manila_backend_ceph_native: True
