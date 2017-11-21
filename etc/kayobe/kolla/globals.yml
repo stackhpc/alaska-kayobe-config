@@ -1,2 +1,9 @@
 ---
 # Add extra Kolla global configuration here.
+
+enable_manila_backend_ceph_native: True
+
+enable_manila_backend_glusterfs_native: True
+manila_glusterfs_pattern: "simple-striped$"
+manila_glusterfs_servers:
+  - root@10.60.253.38

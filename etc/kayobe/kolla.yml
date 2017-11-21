@@ -15,11 +15,11 @@
 #kolla_source_version:
 
 # URL of Kolla Ansible source code repository if type is 'source'.
-#kolla_ansible_source_url:
+kolla_ansible_source_url: https://github.com/stackhpc/kolla-ansible
 
 # Version (branch, tag, etc.) of Kolla Ansible source code repository if type
 # is 'source'.
-#kolla_ansible_source_version:
+kolla_ansible_source_version: pike-manila
 
 ###############################################################################
 # Kolla configuration.
@@ -92,6 +92,12 @@ kolla_build_blocks:
   sahara_engine_footer: |
     # Bring in hack to the vanilla plugin
     RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/pike
+  manila_share_footer: |
+    # Hack to ensure you can mount gluster volumes in manila-share container
+    # TODO - push this upstream
+    RUN yum install -y glusterfs-client glusterfs-fuse glusterfs-rdma
+    # Even worse hack to avoid configuring gluster auth for the moment
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/manila.git@gluster-hack-pike
 
 # Dict mapping image customization variable names to their values.
 # Each variable takes the form:
@@ -179,7 +185,7 @@ kolla_enable_barbican: True
 #kolla_enable_kuryr:
 #kolla_enable_magnum:
 kolla_enable_magnum: True
-#kolla_enable_manila:
+kolla_enable_manila: True
 #kolla_enable_manila_backend_generic:
 #kolla_enable_manila_backend_hnas:
 #kolla_enable_mistral:
