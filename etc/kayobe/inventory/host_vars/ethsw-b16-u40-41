@@ -112,7 +112,7 @@ switch_interface_config:
           ' exit'] }}
   Po1:
     description: ethsw-b17-u40-41-trunk
-    config: "{{ switch_interface_config_lag }}"
+    config: "{{ switch_interface_config_lag_trunk }}"
   vlan 8:
     description: BDN-internal
     config:

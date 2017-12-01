@@ -68,7 +68,12 @@ switch_interface_config_all:
 # List of VLAN ranges on which to enable GVRP normal registration between trunk
 # ports.
 switch_gvrp_normal_vlan_ranges: >
-  {{ kolla_neutron_ml2_network_vlan_ranges | selectattr('range', 'defined') | map(attribute='range') | map('replace', ':', '-') | list }}
+  {{ kolla_neutron_ml2_network_vlan_ranges |
+     selectattr('physical_network', 'equalto', alaska_cp_physical_network) |
+     selectattr('range', 'defined') |
+     map(attribute='range') |
+     map('replace', ':', '-') |
+     list }}
 
 # List of VLAN ranges on which to enable GVRP fixed registration between trunk
 # ports.

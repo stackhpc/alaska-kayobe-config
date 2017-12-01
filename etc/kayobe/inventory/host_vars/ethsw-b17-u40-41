@@ -113,10 +113,10 @@ switch_interface_config:
           ' exit'] }}
   Po1:
     description: ethsw-b16-u40-41-trunk
-    config: "{{ switch_interface_config_lag }}"
+    config: "{{ switch_interface_config_lag_trunk }}"
   Po2:
     description: softiron-switch-trunk
-    config: "{{ switch_interface_config_lag }}"
+    config: "{{ switch_interface_config_lag_softiron }}"
   vlan 4:
     description: softiron-ceph
     config:
