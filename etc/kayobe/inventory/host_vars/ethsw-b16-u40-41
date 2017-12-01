@@ -119,5 +119,4 @@ switch_interface_config:
       - "ip address 10.8.0.1 /16"
       - "ip igmp snooping querier"
       - "tagged port-channel 1"
-      - "untagged TenGigabitEthernet 1/1/1/1-1/1/5/4,1/1/6/2-1/1/7/4"
       - "no shutdown"
