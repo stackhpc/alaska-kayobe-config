@@ -36,6 +36,7 @@ internal_net_name: 'alaska_prv'
 #external_net_names:
 external_net_names:
   - 'ilab'
+  - 'alaska_bdn'
 
 # Name of the network used to expose the public OpenStack API endpoints.
 #public_net_name:
@@ -70,6 +71,7 @@ ilab_vlan: 60
 # VIP address for external API endpoints.
 ilab_vip_address: 10.60.253.1
 ilab_mtu: 1400
+ilab_physical_network: "{{ alaska_cp_physical_network }}"
 
 # Power and management network IP information.
 alaska_mgmt_cidr: 10.45.0.0/16
@@ -102,6 +104,7 @@ alaska_prv_neutron_allocation_pool_end: 192.168.7.254
 alaska_prv_vlan: 7
 # VIP address for internal API endpoints.
 alaska_prv_vip_address: 192.168.7.1
+alaska_prv_mtu: 1500
 alaska_prv_physical_network: "{{ alaska_cp_physical_network }}"
 
 # Physical network name for the control & provisioning network.

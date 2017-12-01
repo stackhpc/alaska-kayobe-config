@@ -80,7 +80,8 @@ switch_interface_config:
   Te1/1/5/4:
     config: "{{ switch_interface_config_all }}"
   Te1/1/6/1:
-    config: "{{ switch_interface_config_all }}"
+    description: sv-b16-u23
+    config: "{{ switch_interface_config_trunk }}"
   Te1/1/6/2:
     config: "{{ switch_interface_config_all }}"
   Te1/1/6/3:
@@ -118,5 +119,5 @@ switch_interface_config:
       - "ip address 10.8.0.1 /16"
       - "ip igmp snooping querier"
       - "tagged port-channel 1"
-      - "untagged TenGigabitEthernet 1/1/1/1-1/1/7/4"
+      - "untagged TenGigabitEthernet 1/1/1/1-1/1/5/4,1/1/6/2-1/1/7/4"
       - "no shutdown"
