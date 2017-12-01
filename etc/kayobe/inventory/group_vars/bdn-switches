@@ -37,6 +37,10 @@ switch_config_all:
   - " exit"
   # Enable IGMP snooping for IP multicast
   - "ip igmp snooping enable"
+  # GVRP configuration.
+  - "protocol gvrp"
+  - " no disable"
+  - " exit"
 
 ###############################################################################
 # Interface configuration.
@@ -61,8 +65,27 @@ switch_interface_config_all:
   - " no disable"
   - " exit"
 
-# Interface configuration for LAG interfaces.
-switch_interface_config_lag:
+# List of VLAN ranges on which to enable GVRP normal registration between trunk
+# ports.
+switch_gvrp_normal_vlan_ranges: >
+  {{ kolla_neutron_ml2_network_vlan_ranges |
+     selectattr('physical_network', 'equalto', alaska_bdn_physical_network) |
+     selectattr('range', 'defined') |
+     map(attribute='range') |
+     map('replace', ':', '-') |
+     list }}
+
+# Interface configuration for LAG trunk interfaces between the BDN switches.
+switch_interface_config_lag_trunk:
+  - "no shutdown"
+  - "switchport"
+  # GVRP configuration.
+  - "gvrp enable"
+  - "gvrp registration normal {{ switch_gvrp_normal_vlan_ranges | join(',') }}"
+
+# Interface configuration for the LAG interface connecting to the SoftIron
+# appliance.
+switch_interface_config_lag_softiron:
   - "no shutdown"
   - "switchport"
 
@@ -94,3 +117,14 @@ switch_interface_config_trunk:
   - " advertise interface-port-desc"
   - " no disable"
   - " exit"
+
+###############################################################################
+# Neutron generic switch ML2 mechanism driver configuration.
+
+# Dict containing additional configuration for switches managed by the
+# genericswitch ML2 mechanism driver. For per-switch configuration of switches
+# in kolla_neutron_ml2_generic_switch_hosts, this may be set as a group or
+# host variable for the switch host.
+kolla_neutron_ml2_generic_switch_extra:
+  # The physical networks to which this switch is mapped.
+  ngs_physical_networks: "{{ alaska_bdn_physical_network }}"

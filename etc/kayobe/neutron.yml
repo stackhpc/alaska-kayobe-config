@@ -2,7 +2,8 @@
 ###############################################################################
 # Neutron configuration.
 
-# List of Neutron ML2 mechanism drivers to use.
+# List of Neutron ML2 mechanism drivers to use. If unset the kolla-ansible
+# defaults will be used.
 #kolla_neutron_ml2_mechanism_drivers:
 kolla_neutron_ml2_mechanism_drivers:
   - openvswitch
@@ -21,8 +22,10 @@ kolla_neutron_ml2_mechanism_drivers:
 # optional)
 #kolla_neutron_ml2_network_vlan_ranges:
 kolla_neutron_ml2_network_vlan_ranges:
-  - physical_network: physnet1
+  - physical_network: "{{ alaska_cp_physical_network }}"
     range: 130:139
+  - physical_network: "{{ alaska_bdn_physical_network }}"
+    range: 1000:1099
 
 # List of Neutron ML2 extention drivers to use.
 #kolla_neutron_ml2_extension_drivers:
@@ -31,6 +34,9 @@ kolla_neutron_ml2_extension_drivers:
 
 # List of Neutron ML2 extention drivers to use.
 #kolla_neutron_ml2_extension_drivers:
+
+###############################################################################
+# Neutron ML2 generic switch driver configuration.
 
 # List of switches to configure for use by genericswitch ML2 mechanism driver.
 # Each item should be a dict containing the following items:
@@ -53,7 +59,13 @@ kolla_neutron_ml2_extension_drivers:
 # key_file: not currently supported
 # secret: not currently supported
 #kolla_neutron_ml2_generic_switch_hosts:
-kolla_neutron_ml2_generic_switch_hosts: "{{ groups['ctl-switches'] }}"
+kolla_neutron_ml2_generic_switch_hosts: "{{ groups['ctl-switches'] + groups['bdn-switches'] }}"
+
+# Dict containing additional configuration for switches managed by the
+# genericswitch ML2 mechanism driver. For per-switch configuration of switches
+# in kolla_neutron_ml2_generic_switch_hosts, this may be set as a group or
+# host variable for the switch host.
+#kolla_neutron_ml2_generic_switch_extra:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

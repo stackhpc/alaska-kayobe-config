@@ -68,7 +68,12 @@ switch_interface_config_all:
 # List of VLAN ranges on which to enable GVRP normal registration between trunk
 # ports.
 switch_gvrp_normal_vlan_ranges: >
-  {{ kolla_neutron_ml2_network_vlan_ranges | selectattr('range', 'defined') | map(attribute='range') | map('replace', ':', '-') | list }}
+  {{ kolla_neutron_ml2_network_vlan_ranges |
+     selectattr('physical_network', 'equalto', alaska_cp_physical_network) |
+     selectattr('range', 'defined') |
+     map(attribute='range') |
+     map('replace', ':', '-') |
+     list }}
 
 # List of VLAN ranges on which to enable GVRP fixed registration between trunk
 # ports.
@@ -112,3 +117,14 @@ switch_interface_config_trunk:
   - " advertise interface-port-desc"
   - " no disable"
   - " exit"
+
+###############################################################################
+# Neutron generic switch ML2 mechanism driver configuration.
+
+# Dict containing additional configuration for switches managed by the
+# genericswitch ML2 mechanism driver. For per-switch configuration of switches
+# in kolla_neutron_ml2_generic_switch_hosts, this may be set as a group or
+# host variable for the switch host.
+kolla_neutron_ml2_generic_switch_extra:
+  # The physical networks to which this switch is mapped.
+  ngs_physical_networks: "{{ alaska_cp_physical_network }}"
