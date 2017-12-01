@@ -94,3 +94,14 @@ switch_interface_config_trunk:
   - " advertise interface-port-desc"
   - " no disable"
   - " exit"
+
+###############################################################################
+# Neutron generic switch ML2 mechanism driver configuration.
+
+# Dict containing additional configuration for switches managed by the
+# genericswitch ML2 mechanism driver. For per-switch configuration of switches
+# in kolla_neutron_ml2_generic_switch_hosts, this may be set as a group or
+# host variable for the switch host.
+kolla_neutron_ml2_generic_switch_extra:
+  # The physical networks to which this switch is mapped.
+  ngs_physical_networks: "{{ alaska_bdn_physical_network }}"

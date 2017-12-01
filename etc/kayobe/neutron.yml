@@ -57,7 +57,7 @@ kolla_neutron_ml2_extension_drivers:
 # key_file: not currently supported
 # secret: not currently supported
 #kolla_neutron_ml2_generic_switch_hosts:
-kolla_neutron_ml2_generic_switch_hosts: "{{ groups['ctl-switches'] }}"
+kolla_neutron_ml2_generic_switch_hosts: "{{ groups['ctl-switches'] + groups['bdn-switches'] }}"
 
 # Dict containing additional configuration for switches managed by the
 # genericswitch ML2 mechanism driver. For per-switch configuration of switches
