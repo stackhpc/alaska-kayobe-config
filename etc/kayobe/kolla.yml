@@ -7,12 +7,30 @@
 # Type of Kolla control installation. One of 'binary' or 'source'.
 #kolla_ctl_install_type:
 
+# Path to directory for kolla source code checkout.
+#kolla_source_path:
+
 # URL of Kolla source code repository if type is 'source'.
 #kolla_source_url:
 
 # Version (branch, tag, etc.) of Kolla source code repository if type is
 # 'source'.
 #kolla_source_version:
+
+# Path to virtualenv in which to install kolla.
+#kolla_venv:
+
+# Path in which to generate kolla configuration.
+#kolla_build_config_path:
+
+###############################################################################
+# Kolla-ansible installation.
+
+# Type of Kolla-ansible control installation. One of 'binary' or 'source'.
+#kolla_ansible_ctl_install_type:
+
+# Path to directory for kolla-ansible source code checkout.
+#kolla_ansible_source_path:
 
 # URL of Kolla Ansible source code repository if type is 'source'.
 #kolla_ansible_source_url:
@@ -21,11 +39,17 @@
 # is 'source'.
 #kolla_ansible_source_version:
 
+# Path to virtualenv in which to install kolla-ansible.
+#kolla_ansible_venv:
+
+# Path to Kolla-ansible configuration directory.
+#kolla_config_path:
+
+# Path to Kolla-ansible node custom configuration directory.
+#kolla_node_custom_config_path:
+
 ###############################################################################
 # Kolla configuration.
-
-# Path to Kolla configuration directory.
-#kolla_config_path:
 
 # Kolla base container image distribution.
 #kolla_base_distro:
@@ -33,8 +57,17 @@
 # Kolla installation type: binary or source.
 #kolla_install_type:
 
+# URL of docker registry to use for Kolla images.
+#kolla_docker_registry:
+
 # Docker namespace to use for Kolla images.
 #kolla_docker_namespace:
+
+# Username to use to access a docker registry.
+#kolla_docker_registry_username:
+
+# Password to use to access a docker registry.
+#kolla_docker_registry_password:
 
 # Kolla OpenStack release version. This should be a Docker image tag.
 #kolla_openstack_release:
@@ -201,7 +234,6 @@ kolla_enable_sahara: True
 #kolla_enable_skydive:
 #kolla_enable_solum:
 #kolla_enable_swift:
-kolla_enable_swift: False
 #kolla_enable_tacker:
 #kolla_enable_telegraf:
 #kolla_enable_tempest:
