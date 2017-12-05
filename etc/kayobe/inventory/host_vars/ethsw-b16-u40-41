@@ -76,7 +76,8 @@ switch_interface_config:
   Te1/1/5/2:
     config: "{{ switch_interface_config_all }}"
   Te1/1/5/3:
-    config: "{{ switch_interface_config_all }}"
+    description: sv-b16-u21
+    config: "{{ switch_interface_config_trunk }}"
   Te1/1/5/4:
     config: "{{ switch_interface_config_all }}"
   Te1/1/6/1:
