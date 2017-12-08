@@ -1,2 +1,3 @@
 ---
 # Add extra Kolla global configuration here.
+rabbitmq_monitoring_user: "monitoring"

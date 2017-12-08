@@ -113,10 +113,10 @@ switch_interface_config:
           ' exit'] }}
   Po1:
     description: ethsw-b16-u40-41-trunk
-    config: "{{ switch_interface_config_lag }}"
+    config: "{{ switch_interface_config_lag_trunk }}"
   Po2:
     description: softiron-switch-trunk
-    config: "{{ switch_interface_config_lag }}"
+    config: "{{ switch_interface_config_lag_softiron }}"
   vlan 4:
     description: softiron-ceph
     config:
@@ -129,5 +129,4 @@ switch_interface_config:
     config:
       - "ip address 10.8.0.2 /16"
       - "tagged port-channel 1"
-      - "untagged TenGigabitEthernet 1/1/1/1-1/1/3/4"
       - "no shutdown"
