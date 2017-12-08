@@ -23,3 +23,48 @@ ethsw-b17-u42
 [bdn-switches]
 ethsw-b16-u40-41
 ethsw-b17-u40-41
+
+[baremetal-compute]
+# Rack B17:
+sv-b17-u27 ipmi_address=10.45.253.39
+sv-b17-u28 ipmi_address=10.45.253.38
+sv-b17-u29 ipmi_address=10.45.253.37
+sv-b17-u30 ipmi_address=10.45.253.36
+sv-b17-u31 ipmi_address=10.45.253.35
+sv-b17-u32 ipmi_address=10.45.253.34
+sv-b17-u33 ipmi_address=10.45.253.33
+sv-b17-u34 ipmi_address=10.45.253.32
+sv-b17-u35 ipmi_address=10.45.253.31
+# sv-b17-u36 is in use by the alt-1 partition.
+#sv-b17-u36 ipmi_address=10.45.253.30
+sv-b17-u37 ipmi_address=10.45.253.29
+# Rack B16:
+gpu-b16-u1 ipmi_address=10.45.253.28
+gpu-b16-u2 ipmi_address=10.45.253.27
+sv-b16-u3 ipmi_address=10.45.253.26
+sv-b16-u4 ipmi_address=10.45.253.25
+sv-b16-u5 ipmi_address=10.45.253.24
+sv-b16-u6 ipmi_address=10.45.253.23
+sv-b16-u7 ipmi_address=10.45.253.22
+sv-b16-u8 ipmi_address=10.45.253.21
+sv-b16-u9 ipmi_address=10.45.253.20
+sv-b16-u10 ipmi_address=10.45.253.19
+sv-b16-u11 ipmi_address=10.45.253.18
+sv-b16-u12 ipmi_address=10.45.253.17
+sv-b16-u13 ipmi_address=10.45.253.16
+sv-b16-u14 ipmi_address=10.45.253.15
+sv-b16-u15 ipmi_address=10.45.253.14
+sv-b16-u16 ipmi_address=10.45.253.13
+sv-b16-u17 ipmi_address=10.45.253.12
+sv-b16-u18 ipmi_address=10.45.253.11
+# sv-b16-u19 is in use by the alt-1 partition.
+#sv-b16-u19 ipmi_address=10.45.253.10
+sv-b16-u20 ipmi_address=10.45.253.9
+sv-b16-u25-26 ipmi_address=10.45.253.5
+sv-b16-u27-28 ipmi_address=10.45.253.4
+sv-b16-u29-30 ipmi_address=10.45.253.3
+sv-b16-u31-32 ipmi_address=10.45.253.2
+sv-b16-u33-34 ipmi_address=10.45.253.1
+
+[baremetal-compute:vars]
+bmc_type=idrac
