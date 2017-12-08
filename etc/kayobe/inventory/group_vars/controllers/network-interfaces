@@ -21,6 +21,14 @@ alaska_cp_interface: breno1
 alaska_cp_bridge_ports:
   - eno1
 
+# Bulk data network interface.
+alaska_bdn_interface: breth0
+
+# Bulk data network bridge ports.
+alaska_bdn_bridge_ports:
+  # FIXME: Using eth0 temporarily until 25G interfaces work.
+  - eth0
+
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes

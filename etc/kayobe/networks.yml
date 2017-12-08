@@ -28,10 +28,15 @@ provision_wl_net_name: 'alaska_prv'
 #internal_net_name:
 internal_net_name: 'alaska_prv'
 
-# Name of the network used to expose the external OpenStack API endpoints and
-# to provide external network access via Neutron.
-#external_net_name:
-external_net_name: 'ilab'
+# List of names of networks used to provide external network access via
+# Neutron.
+# Deprecated name: external_net_name
+# If external_net_name is defined, external_net_names will default to a list
+# containing one item, external_net_name.
+#external_net_names:
+external_net_names:
+  - 'ilab'
+  - 'alaska_bdn'
 
 # Name of the network used to expose the public OpenStack API endpoints.
 #public_net_name:
@@ -66,6 +71,7 @@ ilab_vlan: 60
 # VIP address for external API endpoints.
 ilab_vip_address: 10.60.253.1
 ilab_mtu: 1400
+ilab_physical_network: "{{ alaska_cp_physical_network }}"
 
 # Power and management network IP information.
 alaska_mgmt_cidr: 10.45.0.0/16
@@ -98,6 +104,11 @@ alaska_prv_neutron_allocation_pool_end: 192.168.7.254
 alaska_prv_vlan: 7
 # VIP address for internal API endpoints.
 alaska_prv_vip_address: 192.168.7.1
+alaska_prv_mtu: 1500
+alaska_prv_physical_network: "{{ alaska_cp_physical_network }}"
+
+# Physical network name for the control & provisioning network.
+alaska_cp_physical_network: physnet1
 
 # Internal VLAN for Bulk Data Network switches
 # This VLAN is internal to the BDN switches, and not visible
@@ -106,6 +117,7 @@ alaska_prv_vip_address: 192.168.7.1
 # VLAN on the BDN.  The VLAN requires an IP interface assigning
 # in order to handle multicast querying and routing.
 alaska_bdn_vlan: 8
+alaska_bdn_physical_network: physnet2
 
 ###############################################################################
 # Network virtual patch link configuration.
@@ -123,6 +135,13 @@ alaska_bdn_vlan: 8
 # Suffix for virtual patch link interface names when connected towards the
 # OVS bridge.
 #network_patch_suffix_ovs:
+
+###############################################################################
+# Network routing table configuration.
+
+# List of IP routing tables. Each item should be a dict containing 'id' and
+# 'name' items. These tables will be added to /etc/iproute2/rt_tables.
+#network_route_tables:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
