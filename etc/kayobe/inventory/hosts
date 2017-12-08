@@ -23,3 +23,9 @@ ethsw-b17-u42
 [bdn-switches]
 ethsw-b16-u40-41
 ethsw-b17-u40-41
+
+[baremetal-compute]
+# Rack B17:
+sv-b17-u36 ipmi_address=10.45.253.30
+# Rack B16:
+sv-b16-u19 ipmi_address=10.45.253.10
