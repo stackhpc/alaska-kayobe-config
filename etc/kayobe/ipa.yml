@@ -28,6 +28,8 @@ ipa_build_source_url: "https://github.com/stackhpc/ironic-python-agent"
 # images.
 #ipa_build_dib_elements_extra:
 ipa_build_dib_elements_extra:
+  # Install dependencies required for the extra-hardware plugin.
+  - "ipa-extra-hardware"
   - "stackhpc-ipa-hardware-managers"
 
 # List of Diskimage Builder (DIB) elements to use when building IPA images.
@@ -82,6 +84,8 @@ ipa_build_dib_git_elements:
 
 # List of additional inspection collectors to run.
 #ipa_collectors_extra:
+ipa_collectors_extra:
+  - "extra-hardware"
 
 # List of inspection collectors to run.
 #ipa_collectors:
