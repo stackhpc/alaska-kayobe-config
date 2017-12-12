@@ -30,6 +30,9 @@ ipa_build_source_url: "https://github.com/stackhpc/ironic-python-agent"
 ipa_build_dib_elements_extra:
   # Install dependencies required for the extra-hardware plugin.
   - "ipa-extra-hardware"
+  # Add Mellanox element which installs packages and loads drivers required for
+  # Mellanox NICs.
+  - "mellanox"
   - "stackhpc-ipa-hardware-managers"
 
 # List of Diskimage Builder (DIB) elements to use when building IPA images.
