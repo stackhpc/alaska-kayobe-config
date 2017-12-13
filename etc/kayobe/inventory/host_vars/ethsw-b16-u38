@@ -43,9 +43,6 @@ switch_config_quad:
 switch_interface_config:
   Ma1/1:
     config: "{{ switch_interface_config_mgmt }}"
-  Te1/4/2:
-    description: sv-b16-u18
-    config: "{{ switch_interface_config_all }}"
   Te1/5/3:
     description: sv-b16-u19
     config: "{{ switch_interface_config_all }}"
@@ -93,4 +90,4 @@ switch_interface_config_discovery:
     # Compute nodes.
     config: >
       {{ switch_interface_config['vlan 8'].config +
-         ['untagged Te 1/4/2,1/5/3'] }}
+         ['untagged Te 1/5/3'] }}
