@@ -33,6 +33,8 @@ ipa_build_dib_elements_extra:
   # Add Mellanox element which installs packages and loads drivers required for
   # Mellanox NICs.
   - "mellanox"
+  # Add StackHPC's custom IPA hardware managers. Currently this includes:
+  # * BIOS version verification
   - "stackhpc-ipa-hardware-managers"
 
 # List of Diskimage Builder (DIB) elements to use when building IPA images.
