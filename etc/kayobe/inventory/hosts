@@ -29,3 +29,6 @@ ethsw-b17-u40-41
 sv-b17-u36 ipmi_address=10.45.253.30
 # Rack B16:
 sv-b16-u19 ipmi_address=10.45.253.10
+
+[baremetal-compute:vars]
+bmc_type=idrac
