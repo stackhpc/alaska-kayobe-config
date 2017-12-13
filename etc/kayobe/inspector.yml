@@ -108,11 +108,20 @@ inspector_lldp_switch_port_interface_map:
 # List of additional ironic inspector rules.
 #inspector_rules_extra:
 inspector_rules_extra:
-  - description: "Set the expected BIOS version."
+  - description: "Set the expected BIOS version for PowerEdge R630/R730/R730XD nodes."
     conditions:
     - field: "data://inventory.system_vendor.product_name"
       op: "matches"
-      value: "^PowerEdge R630$"
+      value: "^(PowerEdge R630|PowerEdge R730|PowerEdge R730xd)$"
+    actions:
+    - action: "set-attribute"
+      path: "extra/system_vendor/bios_version"
+      value: "2.6.0"
+  - description: "Set the expected BIOS version for PowerEdge C1430."
+    conditions:
+    - field: "data://inventory.system_vendor.product_name"
+      op: "matches"
+      value: "^(PowerEdge C4130)$"
     actions:
     - action: "set-attribute"
       path: "extra/system_vendor/bios_version"
