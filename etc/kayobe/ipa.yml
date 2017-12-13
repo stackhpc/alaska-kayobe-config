@@ -5,10 +5,10 @@
 # Ironic Python Agent (IPA) image build configuration.
 
 # Whether to build IPA images from source.
-#ipa_build_images:
+ipa_build_images: True
 
 # URL of IPA source repository.
-#ipa_build_source_url:
+ipa_build_source_url: "https://github.com/stackhpc/ironic-python-agent"
 
 # Version of IPA source repository.
 #ipa_build_source_version:
@@ -27,6 +27,15 @@
 # List of additional Diskimage Builder (DIB) elements to use when building IPA
 # images.
 #ipa_build_dib_elements_extra:
+ipa_build_dib_elements_extra:
+  # Install dependencies required for the extra-hardware plugin.
+  - "ipa-extra-hardware"
+  # Add Mellanox element which installs packages and loads drivers required for
+  # Mellanox NICs.
+  - "mellanox"
+  # Add StackHPC's custom IPA hardware managers. Currently this includes:
+  # * BIOS version verification
+  - "stackhpc-ipa-hardware-managers"
 
 # List of Diskimage Builder (DIB) elements to use when building IPA images.
 #ipa_build_dib_elements:
@@ -46,6 +55,11 @@
 # List of git repositories containing Diskimage Builder (DIB) elements. See
 # stackhpc.os-images role for usage.
 #ipa_build_dib_git_elements:
+ipa_build_dib_git_elements:
+  - repo: "https://github.com/stackhpc/stackhpc-image-elements"
+    local: "{{ source_checkout_path }}/stackhpc-image-elements"
+    version: "master"
+    elements_path: "elements"
 
 ###############################################################################
 # Ironic Python Agent (IPA) images configuration.
@@ -75,6 +89,8 @@
 
 # List of additional inspection collectors to run.
 #ipa_collectors_extra:
+ipa_collectors_extra:
+  - "extra-hardware"
 
 # List of inspection collectors to run.
 #ipa_collectors:

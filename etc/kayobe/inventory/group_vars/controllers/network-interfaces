@@ -22,12 +22,12 @@ alaska_cp_bridge_ports:
   - eno1
 
 # Bulk data network interface.
-alaska_bdn_interface: breth0
+alaska_bdn_interface: breno2
 
 # Bulk data network bridge ports.
 alaska_bdn_bridge_ports:
-  # FIXME: Using eth0 temporarily until 25G interfaces work.
-  - eth0
+  # FIXME: Using eno2 temporarily until 25G interfaces work.
+  - eno2
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
