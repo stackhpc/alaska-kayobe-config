@@ -119,6 +119,10 @@ kolla_build_blocks:
     # The Swarm Fedora-atomic ironic driver is currently in development, so
     # pull in an pike-based version of magnum with this change applied.
     RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum.git@stackhpc/pike
+  grafana_footer: |
+    RUN grafana-cli plugins install monasca-datasource
+    # Install plugin for Gantt charts
+    RUN grafana-cli plugins install natel-discrete-panel
 
 # Dict mapping image customization variable names to their values.
 # Each variable takes the form:
@@ -127,6 +131,10 @@ kolla_build_blocks:
 # most commonly packages. The operation should be one of override, append or
 # remove. The value should be a list.
 #kolla_build_customizations:
+kolla_build_customizations:
+   # Use our own repo server to install the monasca-grafana fork
+   base_yum_repo_files_remove:
+     - 'grafana.repo'
 
 ###############################################################################
 # Kolla-ansible inventory configuration.
@@ -196,6 +204,7 @@ kolla_enable_barbican: True
 #kolla_enable_freezer:
 #kolla_enable_gnocchi:
 #kolla_enable_grafana:
+kolla_enable_grafana: True
 #kolla_enable_haproxy:
 #kolla_enable_heat:
 #kolla_enable_horizon:
