@@ -125,6 +125,10 @@ kolla_build_blocks:
   sahara_engine_footer: |
     # Bring in hack to the vanilla plugin
     RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/pike
+  grafana_footer: |
+    RUN grafana-cli plugins install monasca-datasource
+    # Install plugin for Gantt charts
+    RUN grafana-cli plugins install natel-discrete-panel
 
 # Dict mapping image customization variable names to their values.
 # Each variable takes the form:
@@ -133,6 +137,10 @@ kolla_build_blocks:
 # most commonly packages. The operation should be one of override, append or
 # remove. The value should be a list.
 #kolla_build_customizations:
+kolla_build_customizations:
+   # Use our own repo server to install the monasca-grafana fork
+   base_yum_repo_files_remove:
+     - 'grafana.repo'
 
 ###############################################################################
 # Kolla-ansible inventory configuration.
@@ -161,6 +169,19 @@ kolla_build_blocks:
 # * vars: A dict mapping variable names to values for hosts in this
 #         kolla-ansible group.
 #kolla_overcloud_inventory_top_level_group_map:
+kolla_overcloud_inventory_top_level_group_map:
+  control:
+    groups:
+      - controllers
+  network:
+    groups:
+      - network
+  compute:
+    groups:
+      - compute
+  monitoring:
+    groups:
+      - controllers
 
 # List of names of top level kolla-ansible groups. Any of these groups which
 # have no hosts mapped to them will be provided with an empty group definition.
@@ -202,6 +223,7 @@ kolla_enable_barbican: True
 #kolla_enable_freezer:
 #kolla_enable_gnocchi:
 #kolla_enable_grafana:
+kolla_enable_grafana: True
 #kolla_enable_haproxy:
 #kolla_enable_heat:
 #kolla_enable_horizon:
