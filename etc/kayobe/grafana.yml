@@ -15,6 +15,7 @@ grafana_monitoring_node_dashboard_repo:
 
 # Dashboard repo version. Optional, defaults to 'HEAD'.
 #grafana_monitoring_node_dashboard_repo_version:
+grafana_monitoring_node_dashboard_repo_version: master
 
 # Path to which Grafana dashboards will be cloned to a monitoring node
 #grafana_monitoring_node_dashboard_repo_checkout_path: "{{ source_checkout_path ~ '/grafana-dashboards' }}"
