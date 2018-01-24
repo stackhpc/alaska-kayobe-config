@@ -126,7 +126,13 @@ kolla_build_blocks:
     # Bring in hack to the vanilla plugin
     RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/pike
   grafana_footer: |
-    RUN grafana-cli plugins install monasca-datasource
+    # TODO: Re-enable the official plugin when #450868 is merged upstream. For now we will
+    # manually install it from git
+    # RUN grafana-cli plugins install monasca-datasource
+    RUN mkdir -p /var/lib/grafana/plugins/monasca-datasource \
+        && curl -Lo tmp.tgz https://github.com/stackhpc/monasca-grafana-datasource/tarball/log-query-api \
+        && tar zxvf tmp.tgz -C /var/lib/grafana/plugins/monasca-datasource --strip-components=1 \
+        && rm tmp.tgz
     # Install plugin for Gantt charts
     RUN grafana-cli plugins install natel-discrete-panel
 
