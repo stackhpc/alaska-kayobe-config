@@ -58,6 +58,9 @@ grafana_datasources:
   elasticsearch:
     port: 9200
     host: 10.60.253.3
-    project_id: "1c8ec8e9fdc64895ada3c91af6bef423"
+    # This should be set to the tenant ID for the control plan organisation.
+    # The full elasticsearch index is of the form:
+    # monasca-{{ project-id }}-{{ date }}
+    project_id: "03cc1b94463c44e791222cb82008b8b1"
 
 ###############################################################################
