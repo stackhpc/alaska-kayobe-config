@@ -129,6 +129,7 @@ kolla_build_blocks:
         && rm tmp.tgz
     # Install plugin for Gantt charts
     RUN grafana-cli plugins install natel-discrete-panel
+    RUN grafana-cli plugins install vonage-status-panel
 
 # Dict mapping image customization variable names to their values.
 # Each variable takes the form:
