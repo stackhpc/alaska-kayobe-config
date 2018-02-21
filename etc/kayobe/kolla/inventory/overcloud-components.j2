@@ -4,6 +4,9 @@
 # Top level groups define the roles of hosts, e.g. controller or compute.
 # Components define groups of services, e.g. nova or ironic.
 # Services define single containers, e.g. nova-compute or ironic-api.
+#
+# NOTE: Changes from the default mappings are marked with CUSTOMISED. See
+# the git history for full details.
 
 [baremetal:children]
 control
@@ -39,8 +42,11 @@ monitoring
 [karbor:children]
 control
 
+###### CUSTOMISED #######
 [kibana:children]
+#control
 monitoring
+#########################
 
 [telegraf:children]
 compute
@@ -49,8 +55,11 @@ monitoring
 network
 storage
 
+###### CUSTOMISED ######
 [elasticsearch:children]
+#control
 monitoring
+########################
 
 [haproxy:children]
 network
