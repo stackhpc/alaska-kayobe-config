@@ -238,6 +238,7 @@ kolla_enable_grafana: True
 #kolla_enable_ironic:
 #kolla_enable_iscsid:
 #kolla_enable_karbor:
+kolla_enable_kibana: True
 #kolla_enable_kuryr:
 #kolla_enable_magnum:
 kolla_enable_magnum: True
