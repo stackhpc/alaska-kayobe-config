@@ -39,6 +39,12 @@ control
 [influxdb:children]
 monitoring
 
+###### CUSTOMISED #######
+[kafka:children]
+#control
+monitoring
+#########################
+
 [karbor:children]
 control
 
@@ -208,3 +214,9 @@ control
 
 [skydive:children]
 monitoring
+
+###### CUSTOMISED #######
+[zookeeper:children]
+#control
+monitoring
+#########################
