@@ -208,6 +208,7 @@ kolla_enable_barbican: True
 #kolla_enable_cloudkitty:
 #kolla_enable_congress:
 #kolla_enable_designate:
+#kolla_enable_elasticsearch:
 kolla_enable_elasticsearch: True
 #kolla_enable_etcd:
 #kolla_enable_freezer:
@@ -218,9 +219,11 @@ kolla_enable_grafana: True
 #kolla_enable_heat:
 #kolla_enable_horizon:
 #kolla_enable_influxdb:
+kolla_enable_influxdb: True
 #kolla_enable_ironic:
 #kolla_enable_iscsid:
 #kolla_enable_karbor:
+#kolla_enable_kibana:
 kolla_enable_kibana: True
 #kolla_enable_kuryr:
 #kolla_enable_magnum:
@@ -229,6 +232,7 @@ kolla_enable_magnum: True
 #kolla_enable_manila_backend_generic:
 #kolla_enable_manila_backend_hnas:
 #kolla_enable_mistral:
+#kolla_enable_monasca:
 kolla_enable_monasca: True
 #kolla_enable_mongodb:
 #kolla_enable_multipathd:
