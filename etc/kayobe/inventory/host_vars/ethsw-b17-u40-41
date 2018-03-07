@@ -22,9 +22,9 @@ switch_config: "{{ switch_config_all + switch_config_quad }}"
 # FIXME: Workaround: Global configuration for quad mode (4x10G) ports.
 switch_config_quad:
   # Place required ports into quad mode.
-  - "stack-unit 1 module 1 port 1 portmode quad speed 10G"
-  - "stack-unit 1 module 1 port 2 portmode quad speed 10G"
-  - "stack-unit 1 module 1 port 3 portmode quad speed 10G"
+  - "stack-unit 1 module 1 port 1 portmode quad speed 25G"
+  - "stack-unit 1 module 1 port 2 portmode quad speed 25G"
+  - "stack-unit 1 module 1 port 3 portmode quad speed 25G"
   - "stack-unit 1 module 4 port 4 portmode single speed 40G"
   - "stack-unit 1 module 4 port 5 portmode quad speed 10G"
 
@@ -37,29 +37,34 @@ switch_config_quad:
 switch_interface_config:
   Ma1/1:
     config: "{{ switch_interface_config_mgmt }}"
-  Te1/1/1/1:
+  Tw1/1/1/1:
+    description: sv-b17-u27
     config: "{{ switch_interface_config_all }}"
-  Te1/1/1/2:
+  Tw1/1/1/2:
+    description: sv-b17-u28
     config: "{{ switch_interface_config_all }}"
-  Te1/1/1/3:
+  Tw1/1/1/3:
     config: "{{ switch_interface_config_all }}"
-  Te1/1/1/4:
+  Tw1/1/1/4:
     config: "{{ switch_interface_config_all }}"
-  Te1/1/2/1:
+  Tw1/1/2/1:
+    description: sv-b17-u31
     config: "{{ switch_interface_config_all }}"
-  Te1/1/2/2:
+  Tw1/1/2/2:
     config: "{{ switch_interface_config_all }}"
-  Te1/1/2/3:
+  Tw1/1/2/3:
     config: "{{ switch_interface_config_all }}"
-  Te1/1/2/4:
+  Tw1/1/2/4:
     config: "{{ switch_interface_config_all }}"
-  Te1/1/3/1:
+  Tw1/1/3/1:
+    description: sv-b17-u35
     config: "{{ switch_interface_config_all }}"
-  Te1/1/3/2:
+  Tw1/1/3/2:
     config: "{{ switch_interface_config_all }}"
-  Te1/1/3/3:
+  Tw1/1/3/3:
+    description: sv-b17-u37
     config: "{{ switch_interface_config_all }}"
-  Te1/1/3/4:
+  Tw1/1/3/4:
     config: "{{ switch_interface_config_all }}"
   Fo1/4/4/1:
     description: ethsw-b17-u42-Fo1/30
