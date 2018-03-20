@@ -19,6 +19,10 @@ overcloud_group_hosts_map:
     - sv-b16-u21
     - sv-b16-u22
 
+# To prevent some network issues you can choose to disable cloud-init
+#disable_cloud_init:
+disable_cloud_init: True
+
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes
