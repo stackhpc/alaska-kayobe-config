@@ -108,6 +108,10 @@ kolla_build_blocks:
     # supports source builds. Install a locally modified version with a fix for
     # Dell switches until it is released.
     RUN pip install git+https://github.com/stackhpc/networking-generic-switch@stackhpc/pike
+    # Install a locally modified version of networking-mlnx with support for
+    # disabling the SDN controller sync mechanism in the mlnx_sdn_assist
+    # driver. This allows us to bind to flat Infiniband networks.
+    RUN pip install git+https://github.com/stackhpc/networking-mlnx@cauterise-sdn-client
   ironic_inspector_footer: |
     # Install our custom inspector plugins.
     RUN pip install stackhpc-inspector-plugins
