@@ -147,6 +147,8 @@ kolla_build_customizations:
    # Use our own repo server to install the monasca-grafana fork
    base_yum_repo_files_remove:
      - 'grafana.repo'
+   influxdb_packages_override:
+     - 'influxdb-0.10.3-1'
 
 ###############################################################################
 # Kolla-ansible inventory configuration.
