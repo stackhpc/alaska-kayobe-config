@@ -33,11 +33,11 @@
 #kolla_ansible_source_path:
 
 # URL of Kolla Ansible source code repository if type is 'source'.
-#kolla_ansible_source_url:
+kolla_ansible_source_url: https://github.com/stackhpc/kolla-ansible
 
 # Version (branch, tag, etc.) of Kolla Ansible source code repository if type
 # is 'source'.
-#kolla_ansible_source_version:
+kolla_ansible_source_version: pike-manila
 
 # Path to virtualenv in which to install kolla-ansible.
 #kolla_ansible_venv:
@@ -241,7 +241,7 @@ kolla_enable_kibana: True
 #kolla_enable_kuryr:
 #kolla_enable_magnum:
 kolla_enable_magnum: True
-#kolla_enable_manila:
+kolla_enable_manila: True
 #kolla_enable_manila_backend_generic:
 #kolla_enable_manila_backend_hnas:
 #kolla_enable_mistral:
