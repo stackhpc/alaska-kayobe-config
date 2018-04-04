@@ -5,3 +5,15 @@ rabbitmq_monitoring_user: "monitoring"
 keystone_token_provider: "fernet"
 
 magnum_tag: 6.0.0.0
+
+# Monasca doesn't support binary type container builds
+monasca_install_type: "source"
+
+# Roles which grant read/write access to Monasca APIs
+monasca_default_authorized_roles:
+  - admin
+  - monasca-user
+
+# Roles which grant write access to Monasca APIs
+monasca_agent_authorized_roles:
+  - monasca-agent
