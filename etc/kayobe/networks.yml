@@ -119,6 +119,9 @@ alaska_cp_physical_network: physnet1
 alaska_bdn_vlan: 8
 alaska_bdn_physical_network: physnet2
 
+# Low Latency Network (LLN) - Infiniband.
+alaska_lln_physical_network: physnet3
+
 ###############################################################################
 # Network virtual patch link configuration.
 
