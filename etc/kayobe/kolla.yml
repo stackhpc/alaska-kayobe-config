@@ -12,7 +12,6 @@
 
 # URL of Kolla source code repository if type is 'source'.
 #kolla_source_url:
-kolla_source_url: https://git.openstack.org/openstack/kolla
 
 # Version (branch, tag, etc.) of Kolla source code repository if type is
 # 'source'.
