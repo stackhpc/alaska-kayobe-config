@@ -6,6 +6,10 @@
 # defaults will be used.
 #kolla_neutron_ml2_mechanism_drivers:
 kolla_neutron_ml2_mechanism_drivers:
+  # Use the Mellanox SDN assist mechanism driver for binding ports on a flat IB
+  # network. The driver has been modified to avoid synchronising state to an
+  # SDN controller.
+  - mlnx_sdn_assist
   - openvswitch
   - genericswitch
 
