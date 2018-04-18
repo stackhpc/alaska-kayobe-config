@@ -3,3 +3,5 @@
 rabbitmq_monitoring_user: "monitoring"
 
 keystone_token_provider: "fernet"
+
+magnum_tag: 6.0.0.0
