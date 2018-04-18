@@ -108,6 +108,16 @@ kolla_build_blocks:
     # supports source builds. Install a locally modified version with a fix for
     # Dell switches until it is released.
     RUN pip install git+https://github.com/stackhpc/networking-generic-switch@stackhpc/pike
+    # Install a locally modified version of networking-mlnx with support for
+    # disabling the SDN controller sync mechanism in the mlnx_sdn_assist
+    # driver. This allows us to bind to flat Infiniband networks.
+    RUN pip install git+https://github.com/stackhpc/networking-mlnx@cauterise-sdn-client
+  ironic_base_footer: |
+    # Pull in Moshe's fix for IB ports to ensure they don't need
+    # local-link-connection information:
+    # https://review.openstack.org/#/c/548396. This can be removed once the
+    # aforementioned fix is included in a pike series release of ironic.
+    RUN pip install -U --no-deps git+https://github.com/openstack/ironic@stable/pike
   ironic_inspector_footer: |
     # Install our custom inspector plugins.
     RUN pip install stackhpc-inspector-plugins
@@ -147,9 +157,15 @@ kolla_build_blocks:
 # remove. The value should be a list.
 #kolla_build_customizations:
 kolla_build_customizations:
-   # Use our own repo server to install the monasca-grafana fork
-   base_yum_repo_files_remove:
-     - 'grafana.repo'
+  # Required for Keystone federation via EGI Check-in, and any other IdPs
+  # that support the OpenID Connect protocol
+  keystone_base_packages_append:
+    - 'mod_auth_openidc'
+  # Use our own repo server to install the monasca-grafana fork
+  base_yum_repo_files_remove:
+    - 'grafana.repo'
+  influxdb_packages_override:
+    - 'influxdb-0.10.3-1'
 
 ###############################################################################
 # Kolla-ansible inventory configuration.

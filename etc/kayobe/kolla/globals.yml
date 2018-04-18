@@ -1,4 +1,7 @@
 ---
 # Add extra Kolla global configuration here.
 rabbitmq_monitoring_user: "monitoring"
+
 magnum_tag: 6.0.0.0
+
+keystone_token_provider: "fernet"
