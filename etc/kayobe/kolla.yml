@@ -12,10 +12,12 @@
 
 # URL of Kolla source code repository if type is 'source'.
 #kolla_source_url:
+kolla_source_url: https://git.openstack.org/openstack/kolla
 
 # Version (branch, tag, etc.) of Kolla source code repository if type is
 # 'source'.
 #kolla_source_version:
+kolla_source_version: stable/queens
 
 # Path to virtualenv in which to install kolla.
 #kolla_venv:
@@ -33,11 +35,11 @@
 #kolla_ansible_source_path:
 
 # URL of Kolla Ansible source code repository if type is 'source'.
-#kolla_ansible_source_url:
+kolla_ansible_source_url: https://www.github.com/stackhpc/kolla-ansible
 
 # Version (branch, tag, etc.) of Kolla Ansible source code repository if type
 # is 'source'.
-#kolla_ansible_source_version:
+kolla_ansible_source_version: clients_keystone
 
 # Path to virtualenv in which to install kolla-ansible.
 #kolla_ansible_venv:
@@ -71,6 +73,7 @@
 
 # Kolla OpenStack release version. This should be a Docker image tag.
 #kolla_openstack_release:
+kolla_openstack_release: 6.0.0.0
 
 # Dict mapping names of sources to their definitions for
 # kolla_install_type=source. See kolla.common.config for details.
@@ -112,13 +115,17 @@ kolla_build_blocks:
     # Install our custom inspector plugins.
     RUN pip install stackhpc-inspector-plugins
   magnum_api_footer: |
-    # The Swarm Fedora-atomic ironic driver is currently in development, so
-    # pull in a pike-based version of magnum with this change applied.
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum.git@stackhpc/pike
+    # This branch fixes k8s FailedNodeAllocatableEnforcement warning
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/queens
   magnum_conductor_footer: |
-    # The Swarm Fedora-atomic ironic driver is currently in development, so
-    # pull in an pike-based version of magnum with this change applied.
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum.git@stackhpc/pike
+    # This branch fixes k8s FailedNodeAllocatableEnforcement warning
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/queens
+  sahara_api_footer: |
+    # Bring in hack to the vanilla plugin
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/pike
+  sahara_engine_footer: |
+    # Bring in hack to the vanilla plugin
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/pike
   grafana_footer: |
     # TODO: Re-enable the official plugin when #450868 is merged upstream. For now we will
     # manually install it from git
