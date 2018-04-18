@@ -117,12 +117,6 @@ kolla_build_blocks:
   magnum_conductor_footer: |
     # This branch fixes k8s FailedNodeAllocatableEnforcement warning
     RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/queens
-  sahara_api_footer: |
-    # Bring in hack to the vanilla plugin
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/pike
-  sahara_engine_footer: |
-    # Bring in hack to the vanilla plugin
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/pike
   grafana_footer: |
     # TODO: Re-enable the official plugin when #450868 is merged upstream. For now we will
     # manually install it from git
