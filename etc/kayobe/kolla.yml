@@ -257,6 +257,7 @@ kolla_enable_grafana: True
 #kolla_enable_influxdb:
 kolla_enable_influxdb: True
 #kolla_enable_ironic:
+kolla_enable_ironic_ipxe: True
 #kolla_enable_iscsid:
 #kolla_enable_kafka:
 kolla_enable_kafka: True
