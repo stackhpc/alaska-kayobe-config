@@ -1,0 +1,3 @@
+{
+    "certificate:get": "rule:admin_or_owner or rule:cluster_user"
+}
