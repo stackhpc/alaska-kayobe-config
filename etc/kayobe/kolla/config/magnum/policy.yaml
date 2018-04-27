@@ -1,0 +1,4 @@
+# Retrieve CA information about the given bay/cluster.
+# GET  /v1/certificates/{bay_uuid/cluster_uuid}
+# All members of a project can get the certs and access the cluster
+"certificate:get": "rule:admin_or_owner or rule:cluster_user"
