@@ -2,3 +2,19 @@
 # Add extra Kolla global configuration here.
 rabbitmq_monitoring_user: "monitoring"
 magnum_tag: 6.0.0.0
+
+# Monasca doesn't support binary type container builds
+monasca_install_type: "source"
+
+# Use the legacy port as LXC services are configured to use it
+#monasca_api_port: 8070
+monasca_api_port: 8082
+
+# Roles which grant read/write access to Monasca APIs
+monasca_default_authorized_roles:
+  - admin
+  - monasca-user
+
+# Roles which grant write access to Monasca APIs
+monasca_agent_authorized_roles:
+  - monasca-agent
