@@ -18,3 +18,5 @@ monasca_default_authorized_roles:
 # Roles which grant write access to Monasca APIs
 monasca_agent_authorized_roles:
   - monasca-agent
+
+keystone_token_provider: "fernet"
