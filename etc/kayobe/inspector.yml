@@ -23,9 +23,14 @@
 # List of of additional inspector processing plugins.
 #inspector_processing_hooks_extra:
 inspector_processing_hooks_extra:
+  # Adds switch system name to ironic port local_link_connection.
   - system_name_llc
+  # Assigns physical_network to ironic port based on switch system name.
   - system_name_physnet
+  # Assigns physical_network to ironic port for Infiniband ports.
   - ib_physnet
+  # Processes additional inventory data collected by the extra-hardware
+  # collector.
   - extra_hardware
 
 # List of of additional inspector processing plugins.
