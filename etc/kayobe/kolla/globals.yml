@@ -20,3 +20,6 @@ monasca_agent_authorized_roles:
   - monasca-agent
 
 keystone_token_provider: "fernet"
+
+# Default size causes ES to fall over very easily
+es_heap_size: "24g"
