@@ -127,6 +127,12 @@ kolla_build_blocks:
   magnum_conductor_footer: |
     # This branch fixes k8s FailedNodeAllocatableEnforcement warning
     RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/queens
+  monasca_log_api_footer: |
+    # Support for the log query API isn't yet merged upstream. This
+    # implicitly pulls in some other packages like voluptous required
+    # to run the log-query-api.
+    RUN pip install -U git+https://github.com/stackhpc/monasca-common@2.10.0 \
+        && pip install -U git+https://github.com/stackhpc/monasca-log-api@stackhpc/log-query-api
   grafana_footer: |
     # TODO: Re-enable the official plugin when #450868 is merged upstream. For now we will
     # manually install it from git
