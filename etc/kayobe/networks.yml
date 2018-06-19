@@ -70,7 +70,7 @@ ilab_gateway: 10.60.255.1
 ilab_vlan: 60
 # VIP address for external API endpoints.
 ilab_vip_address: 10.60.253.1
-ilab_mtu: 1400
+ilab_mtu: 1500
 ilab_physical_network: "{{ alaska_cp_physical_network }}"
 
 # Power and management network IP information.
