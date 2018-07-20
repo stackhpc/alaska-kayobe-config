@@ -118,6 +118,7 @@ alaska_cp_physical_network: physnet1
 # in order to handle multicast querying and routing.
 alaska_bdn_vlan: 8
 alaska_bdn_physical_network: physnet2
+alaska_bdn_mtu: 9000
 
 # Low Latency Network (LLN) - Infiniband.
 alaska_lln_physical_network: physnet3
