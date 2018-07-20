@@ -4,7 +4,22 @@
 
 # List of users to create. This should be in a format accepted by the
 # singleplatform-eng.users role.
-#users_default:
+users_default:
+- username: stack
+  name: Kayobe deployment user
+  append: True
+  ssh_key:
+  # Authorise all users' SSH keys for the stack user. This allows them to
+  # operate kayobe.
+  - "{{ lookup('file', kayobe_config_path ~ '/ssh-keys/id_rsa_bharat.pub') }}"
+
+- username: kolla
+  name: Kolla deployment user
+  append: True
+  ssh_key:
+  # Authorise all users' SSH keys for the kolla user. This allows them to
+  # operate kolla.
+  - "{{ lookup('file', kayobe_config_path ~ '/ssh-keys/id_rsa_bharat.pub') }}"
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
