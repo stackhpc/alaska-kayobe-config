@@ -168,15 +168,11 @@ kolla_build_blocks:
 # remove. The value should be a list.
 #kolla_build_customizations:
 kolla_build_customizations:
-  # Required for Keystone federation via EGI Check-in, and any other IdPs
-  # that support the OpenID Connect protocol
-  keystone_base_packages_append:
-    - 'mod_auth_openidc'
-  # Use our own repo server to install the monasca-grafana fork
-  base_yum_repo_files_remove:
-    - 'grafana.repo'
-  influxdb_packages_override:
-    - 'influxdb-0.10.3-1'
+   # Use our own repo server to install the monasca-grafana fork
+   base_yum_repo_files_remove:
+     - 'grafana.repo'
+   influxdb_packages_override:
+     - 'influxdb-0.10.3-1'
 
 ###############################################################################
 # Kolla-ansible inventory configuration.
