@@ -133,6 +133,12 @@ kolla_build_blocks:
     # to run the log-query-api.
     RUN pip install -U git+https://github.com/stackhpc/monasca-common@2.10.0 \
         && pip install -U git+https://github.com/stackhpc/monasca-log-api@stackhpc/log-query-api
+  sahara_api_footer: |
+    # Bring in hack to the vanilla plugin
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/pike
+  sahara_engine_footer: |
+    # Bring in hack to the vanilla plugin
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/pike
   grafana_footer: |
     # TODO: Re-enable the official plugin when #450868 is merged upstream. For now we will
     # manually install it from git
@@ -162,11 +168,15 @@ kolla_build_blocks:
 # remove. The value should be a list.
 #kolla_build_customizations:
 kolla_build_customizations:
-   # Use our own repo server to install the monasca-grafana fork
-   base_yum_repo_files_remove:
-     - 'grafana.repo'
-   influxdb_packages_override:
-     - 'influxdb-0.10.3-1'
+  # Required for Keystone federation via EGI Check-in, and any other IdPs
+  # that support the OpenID Connect protocol
+  keystone_base_packages_append:
+    - 'mod_auth_openidc'
+  # Use our own repo server to install the monasca-grafana fork
+  base_yum_repo_files_remove:
+    - 'grafana.repo'
+  influxdb_packages_override:
+    - 'influxdb-0.10.3-1'
 
 ###############################################################################
 # Kolla-ansible inventory configuration.
@@ -246,6 +256,7 @@ kolla_enable_grafana: True
 #kolla_enable_influxdb:
 kolla_enable_influxdb: True
 #kolla_enable_ironic:
+kolla_enable_ironic_ipxe: True
 #kolla_enable_iscsid:
 #kolla_enable_kafka:
 kolla_enable_kafka: True
