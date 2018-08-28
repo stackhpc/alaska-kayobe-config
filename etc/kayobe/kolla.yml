@@ -133,6 +133,12 @@ kolla_build_blocks:
     # to run the log-query-api.
     RUN pip install -U git+https://github.com/stackhpc/monasca-common@2.10.0 \
         && pip install -U git+https://github.com/stackhpc/monasca-log-api@stackhpc/log-query-api
+  sahara_api_footer: |
+    # Bring in hack to the vanilla plugin
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/pike
+  sahara_engine_footer: |
+    # Bring in hack to the vanilla plugin
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/pike
   grafana_footer: |
     # TODO: Re-enable the official plugin when #450868 is merged upstream. For now we will
     # manually install it from git
@@ -246,6 +252,7 @@ kolla_enable_grafana: True
 #kolla_enable_influxdb:
 kolla_enable_influxdb: True
 #kolla_enable_ironic:
+kolla_enable_ironic_ipxe: True
 #kolla_enable_iscsid:
 #kolla_enable_kafka:
 kolla_enable_kafka: True
