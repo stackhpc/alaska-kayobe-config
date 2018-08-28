@@ -133,6 +133,17 @@ kolla_build_blocks:
     # to run the log-query-api.
     RUN pip install -U git+https://github.com/stackhpc/monasca-common@2.10.0 \
         && pip install -U git+https://github.com/stackhpc/monasca-log-api@stackhpc/log-query-api
+  logstash_header: |
+    # We need Logstash 2.4 because we are using Kafaka 0.8, and this is the
+    # latest version of Logstash which provides a compatible Kafka plugin.
+    # For more detail see:
+    # https://www.elastic.co/guide/en/logstash/2.4/installing-logstash.html
+    RUN rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch \
+        && printf "[logstash-2.4]\nname=Logstash repository for 2.4.x packages\nbaseurl=https://packages.elastic.co/logstash/2.4/centos\ngpgcheck=1\ngpgkey=https://packages.elastic.co/GPG-KEY-elasticsearch\nenabled=1" > /etc/yum.repos.d/logstash.repo
+  logstash_footer: |
+    # Logstash 2.4 installs to a different directory
+    RUN rm -r /usr/share/logstash \
+        && ln -s /opt/logstash /usr/share/
   grafana_footer: |
     # TODO: Re-enable the official plugin when #450868 is merged upstream. For now we will
     # manually install it from git
@@ -165,6 +176,7 @@ kolla_build_customizations:
    # Use our own repo server to install the monasca-grafana fork
    base_yum_repo_files_remove:
      - 'grafana.repo'
+     - 'logstash.repo'
    influxdb_packages_override:
      - 'influxdb-0.10.3-1'
 
@@ -284,6 +296,7 @@ kolla_enable_sahara: True
 #kolla_enable_senlin:
 #kolla_enable_skydive:
 #kolla_enable_solum:
+kolla_enable_storm: True
 #kolla_enable_swift:
 #kolla_enable_tacker:
 #kolla_enable_telegraf:
