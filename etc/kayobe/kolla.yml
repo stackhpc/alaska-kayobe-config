@@ -91,12 +91,13 @@ kolla_build_blocks:
   fluentd_footer: |
     # Install a custom fluentd output plugin that forwards logs to the monasca
     # log API.
-    ADD https://github.com/stackhpc/fluentd-monasca/archive/0.0.1.tar.gz /fluentd-monasca.tar.gz
+    ARG tag=0.0.1
+    ADD https://github.com/stackhpc/fluentd-monasca/archive/$tag.tar.gz /fluentd-monasca.tar.gz
     RUN mkdir /fluentd-monasca \
         && cd /fluentd-monasca \
         && tar -zxf /fluentd-monasca.tar.gz \
         && rm /fluentd-monasca.tar.gz
-    RUN cd /fluentd-monasca/fluentd-monasca-master \
+    RUN cd /fluentd-monasca/fluentd-monasca-$tag \
         && gem build fluentd-monasca-output.gemspec \
         && gem install fluentd-monasca-output-0.0.1.gem \
         && fluent-gem install fluentd-monasca-output-0.0.1.gem \
