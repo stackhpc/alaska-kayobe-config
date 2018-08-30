@@ -102,8 +102,6 @@ kolla_build_blocks:
         && fluent-gem install fluentd-monasca-output-0.0.1.gem \
         && rm -rf /fluentd-monasca
   neutron_server_footer: |
-    # We need a patch neutron to force the provision network MTU to 1500.
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/neutron.git@stackhpc/11.0.0.0b1.1
     # There is no RDO RPM for this ML2 driver and Kolla's plugin mechanism only
     # supports source builds. Install a locally modified version with a fix for
     # Dell switches until it is released.
@@ -112,12 +110,6 @@ kolla_build_blocks:
     # disabling the SDN controller sync mechanism in the mlnx_sdn_assist
     # driver. This allows us to bind to flat Infiniband networks.
     RUN pip install git+https://github.com/stackhpc/networking-mlnx@stackhpc/11.0.0.1
-  ironic_base_footer: |
-    # Pull in Moshe's fix for IB ports to ensure they don't need
-    # local-link-connection information:
-    # https://review.openstack.org/#/c/548396. This can be removed once the
-    # aforementioned fix is included in a pike series release of ironic.
-    RUN pip install -U --no-deps git+https://github.com/openstack/ironic@6222091015d67c0e779edc45bf78d1da7011efbe
   ironic_inspector_footer: |
     # Install our custom inspector plugins.
     RUN pip install stackhpc-inspector-plugins==1.1.1
@@ -135,10 +127,10 @@ kolla_build_blocks:
         && pip install -U git+https://github.com/stackhpc/monasca-log-api@stackhpc/log-query-api
   sahara_api_footer: |
     # Bring in hack to the vanilla plugin
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/7.0.0.0b2.1
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/7.0.2.1
   sahara_engine_footer: |
     # Bring in hack to the vanilla plugin
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/7.0.0.0b2.1
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/stackhpc/7.0.2.1
   grafana_footer: |
     # TODO: Re-enable the official plugin when #450868 is merged upstream. For now we will
     # manually install it from git
