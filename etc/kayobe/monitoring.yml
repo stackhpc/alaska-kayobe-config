@@ -27,7 +27,7 @@ monitoring_extra_network_interfaces:
 
 # Dict of monitoring node BIOS options. Format is same as that used by
 # stackhpc.drac role.
-#monitoring_bios_config: 
+#monitoring_bios_config:
 
 # Dict of default monitoring node BIOS options. Format is same as that used by
 # stackhpc.drac role.
