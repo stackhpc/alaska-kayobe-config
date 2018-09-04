@@ -1,0 +1,6 @@
+---
+
+- name: "Run the update test"
+  hosts: localhost
+  roles:
+    - os_smoke_test

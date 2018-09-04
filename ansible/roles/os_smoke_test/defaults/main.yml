@@ -1,0 +1,4 @@
+---
+# defaults file for os_upgrade_test
+
+os_smoke_test_venv: "{{ ansible_env.HOME }}/.venvs/openstack-cli"
