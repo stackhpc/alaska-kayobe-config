@@ -8,10 +8,10 @@
 ipa_build_images: True
 
 # URL of IPA source repository.
-ipa_build_source_url: "https://github.com/stackhpc/ironic-python-agent"
+#ipa_build_source_url: "https://github.com/stackhpc/ironic-python-agent"
 
 # Version of IPA source repository.
-ipa_build_source_version: refs/tags/stackhpc/2.2.3.1
+#ipa_build_source_version: refs/tags/stackhpc/2.2.3.1
 
 # URL of IPA upper constraints file.
 #ipa_build_upper_constraints_file_url:
