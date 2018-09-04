@@ -19,6 +19,14 @@
 
 # List of of default inspector processing plugins.
 #inspector_processing_hooks_default:
+# Remove scheduler from default processing hooks.
+inspector_processing_hooks_default:
+  - ramdisk_error
+  - validate_interfaces
+  - capabilities
+  - pci_devices
+  - local_link_connection
+  - lldp_basic
 
 # List of of additional inspector processing plugins.
 #inspector_processing_hooks_extra:
