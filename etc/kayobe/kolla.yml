@@ -15,7 +15,7 @@ kolla_source_url: https://github.com/stackhpc/kolla.git
 
 # Version (branch, tag, etc.) of Kolla source code repository if type is
 # 'source'.
-kolla_source_version: refs/tags/stackhpc/5.0.3.3
+kolla_source_version: refs/tags/stackhpc/6.1.0.1
 
 # Path to virtualenv in which to install kolla.
 #kolla_venv:
@@ -37,7 +37,7 @@ kolla_ansible_source_url: https://github.com/stackhpc/kolla-ansible.git
 
 # Version (branch, tag, etc.) of Kolla Ansible source code repository if type
 # is 'source'.
-kolla_ansible_source_version: refs/tags/stackhpc/5.0.3.1
+kolla_ansible_source_version: refs/tags/stackhpc/6.1.0.1
 
 # Path to virtualenv in which to install kolla-ansible.
 #kolla_ansible_venv:
@@ -70,7 +70,7 @@ kolla_ansible_source_version: refs/tags/stackhpc/5.0.3.1
 #kolla_docker_registry_password:
 
 # Kolla OpenStack release version. This should be a Docker image tag.
-kolla_openstack_release: 5.0.3.3-1
+kolla_openstack_release: 6.1.0.1-1
 
 # Dict mapping names of sources to their definitions for
 # kolla_install_type=source. See kolla.common.config for details.
@@ -106,11 +106,11 @@ kolla_build_blocks:
     # There is no RDO RPM for this ML2 driver and Kolla's plugin mechanism only
     # supports source builds. Install a locally modified version with a fix for
     # Dell switches until it is released.
-    RUN pip install git+https://github.com/stackhpc/networking-generic-switch@stackhpc/0.4.1.1
+    RUN pip install git+https://github.com/stackhpc/networking-generic-switch@stackhpc/1.0.0.1
     # Install a locally modified version of networking-mlnx with support for
     # disabling the SDN controller sync mechanism in the mlnx_sdn_assist
     # driver. This allows us to bind to flat Infiniband networks.
-    RUN pip install git+https://github.com/stackhpc/networking-mlnx@stackhpc/11.0.0.1
+    RUN pip install git+https://github.com/stackhpc/networking-mlnx@stackhpc/12.0.0.1
   ironic_inspector_footer: |
     # Install our custom inspector plugins.
     RUN pip install stackhpc-inspector-plugins==1.1.1
@@ -221,9 +221,6 @@ kolla_overcloud_inventory_top_level_group_map:
 # Whether TLS is enabled for the external API endpoints.
 #kolla_enable_tls_external:
 
-# Path to external API certificate.
-#kolla_external_fqdn_cert:
-
 # Whether debug logging is enabled.
 #kolla_openstack_logging_debug:
 
@@ -319,6 +316,17 @@ kolla_enable_sahara: True
 # Dictionary containing custom passwords to add or override in the Kolla
 # passwords file.
 #kolla_ansible_custom_passwords:
+
+###############################################################################
+# TLS certificate bundle management
+
+# Optionally copy a TLS certificate bundle into place.
+#
+# When enabled, this will copy the contents of kolla_tls_cert into place for
+# use by HAproxy.
+#
+# Note that this should be formatted as a literal style block scalar.
+#kolla_tls_cert:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

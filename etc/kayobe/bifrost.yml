@@ -8,7 +8,7 @@
 kolla_bifrost_source_url: https://github.com/stackhpc/bifrost.git
 
 # Version (branch, tag, etc.) of Bifrost source code repository.
-kolla_bifrost_source_version: refs/tags/stackhpc/4.0.1.1
+kolla_bifrost_source_version: refs/tags/stackhpc/5.0.1.2
 
 ###############################################################################
 # Diskimage-builder configuration.
