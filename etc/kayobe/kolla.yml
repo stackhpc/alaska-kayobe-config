@@ -15,7 +15,7 @@ kolla_source_url: https://github.com/stackhpc/kolla.git
 
 # Version (branch, tag, etc.) of Kolla source code repository if type is
 # 'source'.
-kolla_source_version: refs/tags/stackhpc/6.1.0.1
+kolla_source_version: refs/tags/stackhpc/6.1.0.2
 
 # Path to virtualenv in which to install kolla.
 #kolla_venv:
@@ -70,7 +70,7 @@ kolla_ansible_source_version: refs/tags/stackhpc/6.1.0.1
 #kolla_docker_registry_password:
 
 # Kolla OpenStack release version. This should be a Docker image tag.
-kolla_openstack_release: 6.1.0.1-1
+kolla_openstack_release: 6.1.0.2-1
 
 # Dict mapping names of sources to their definitions for
 # kolla_install_type=source. See kolla.common.config for details.
