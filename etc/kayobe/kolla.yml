@@ -61,7 +61,7 @@ kolla_ansible_source_version: refs/tags/stackhpc/6.1.0.1
 #kolla_docker_registry:
 
 # Docker namespace to use for Kolla images.
-#kolla_docker_namespace:
+kolla_docker_namespace: stackhpc
 
 # Username to use to access a docker registry.
 #kolla_docker_registry_username:
