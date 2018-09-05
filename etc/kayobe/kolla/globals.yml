@@ -6,9 +6,6 @@ rabbitmq_monitoring_user: "monitoring"
 # defaults to UUID.  This setting overrides K-A and brings it in-line with
 # Keystone's default.
 keystone_token_provider: "fernet"
-keystone_tag: 6.0.0.0
-
-magnum_tag: 6.0.0.0
 
 # Monasca doesn't support binary type container builds
 monasca_install_type: "source"
