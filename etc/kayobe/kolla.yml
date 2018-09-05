@@ -165,6 +165,18 @@ kolla_build_customizations:
     - 'grafana.repo'
   influxdb_packages_override:
     - 'influxdb-0.10.3-1'
+  ironic_inspector_packages_append:
+    # Allow custom packages to be installed via pip.
+    - 'python-pip'
+  magnum_base_packages_append:
+    # Allow custom packages to be installed via pip.
+    - 'python-pip'
+  neutron_server_packages_append:
+    # Allow custom packages to be installed via pip.
+    - 'python-pip'
+  sahara_base_packages_append:
+    # Allow custom packages to be installed via pip.
+    - 'python-pip'
 
 ###############################################################################
 # Kolla-ansible inventory configuration.
