@@ -163,6 +163,11 @@ kolla_build_customizations:
   # Use our own repo server to install the monasca-grafana fork
   base_yum_repo_files_remove:
     - 'grafana.repo'
+  fluentd_packages_append:
+    # Install packages necessary to build the fluentd-monasca Ruby Gem.
+    - 'gcc-c++'
+    - 'make'
+    - 'ruby-devel'
   influxdb_packages_override:
     - 'influxdb-0.10.3-1'
   ironic_inspector_packages_append:
