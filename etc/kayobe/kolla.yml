@@ -146,6 +146,11 @@ kolla_build_blocks:
     # This is the most recent version of Kafka that Monasca currently supports
     ENV kafka_url=https://archive.apache.org/dist/kafka/0.9.0.1/kafka_2.11-0.9.0.1.tgz
     ENV kafka_pkg_sha512sum=818a821877436bbb9698a32afeb299bc569985a6b712179a9882bf1a10edfdb4992519ba39c1d7499144650b30781fc943a4d5d15b8d5916a4c1a5e542d9b956
+  zookeeper_version: |
+    # The default URL in kolla references the stable release, but this has now
+    # been bumped to 3.4.12.
+    ENV zookeeper_url=http://apache.mirror.anlx.net/zookeeper/zookeeper-3.4.10/zookeeper-3.4.10.tar.gz
+    ENV zookeeper_pkg_sha512sum=4c54e40ac8d0b267db4a188a30e39ed0ac2c3e8a8fadaf244be45ff5adee956df28f6cb9f1eb56f175e924fa3629b64f98286a090c46764c91c017613c80a51b
 
 
 # Dict mapping image customization variable names to their values.
