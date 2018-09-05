@@ -18,3 +18,7 @@ monasca_default_authorized_roles:
 # Roles which grant write access to Monasca APIs
 monasca_agent_authorized_roles:
   - monasca-agent
+
+# Use the pike release of Sahara, since our changes have not been ported to
+# Queens.
+sahara_tag: 5.0.3.3-1
