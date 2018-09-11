@@ -1,7 +1,11 @@
 ---
 # Add extra Kolla global configuration here.
 rabbitmq_monitoring_user: "monitoring"
-magnum_tag: 6.0.0.0
+
+# Although Kolla-Ansible provides full support for Fernet tokens, it still
+# defaults to UUID.  This setting overrides K-A and brings it in-line with
+# Keystone's default.
+keystone_token_provider: "fernet"
 
 # Monasca doesn't support binary type container builds
 monasca_install_type: "source"
@@ -19,7 +23,9 @@ monasca_default_authorized_roles:
 monasca_agent_authorized_roles:
   - monasca-agent
 
-keystone_token_provider: "fernet"
-
 # Default size causes ES to fall over very easily
 es_heap_size: "24g"
+
+# Use the pike release of Sahara, since our changes have not been ported to
+# Queens.
+sahara_tag: 5.0.3.3-1

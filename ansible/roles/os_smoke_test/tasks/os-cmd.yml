@@ -1,0 +1,8 @@
+---
+
+- name: |
+    run openstack command: {{ cmd }}
+  command: >
+    {{ os_smoke_test_venv }}/bin/{{ cmd }}
+  environment: "{{ openstack_auth_env }}"
+  changed_when: false
