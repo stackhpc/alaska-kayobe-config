@@ -11,11 +11,11 @@
 #kolla_source_path:
 
 # URL of Kolla source code repository if type is 'source'.
-#kolla_source_url:
+kolla_source_url: https://github.com/stackhpc/kolla.git
 
 # Version (branch, tag, etc.) of Kolla source code repository if type is
 # 'source'.
-#kolla_source_version:
+kolla_source_version: refs/tags/stackhpc/5.0.3.3
 
 # Path to virtualenv in which to install kolla.
 #kolla_venv:
@@ -33,11 +33,11 @@
 #kolla_ansible_source_path:
 
 # URL of Kolla Ansible source code repository if type is 'source'.
-#kolla_ansible_source_url:
+kolla_ansible_source_url: https://github.com/stackhpc/kolla-ansible.git
 
 # Version (branch, tag, etc.) of Kolla Ansible source code repository if type
 # is 'source'.
-#kolla_ansible_source_version:
+kolla_ansible_source_version: refs/tags/stackhpc/5.0.3.1
 
 # Path to virtualenv in which to install kolla-ansible.
 #kolla_ansible_venv:
@@ -70,7 +70,7 @@
 #kolla_docker_registry_password:
 
 # Kolla OpenStack release version. This should be a Docker image tag.
-#kolla_openstack_release:
+kolla_openstack_release: 5.0.3.3-1
 
 # Dict mapping names of sources to their definitions for
 # kolla_install_type=source. See kolla.common.config for details.
@@ -91,42 +91,35 @@ kolla_build_blocks:
   fluentd_footer: |
     # Install a custom fluentd output plugin that forwards logs to the monasca
     # log API.
-    ADD https://github.com/stackhpc/fluentd-monasca/archive/master.tar.gz /fluentd-monasca.tar.gz
+    ARG tag=0.0.1
+    ADD https://github.com/stackhpc/fluentd-monasca/archive/$tag.tar.gz /fluentd-monasca.tar.gz
     RUN mkdir /fluentd-monasca \
         && cd /fluentd-monasca \
         && tar -zxf /fluentd-monasca.tar.gz \
         && rm /fluentd-monasca.tar.gz
-    RUN cd /fluentd-monasca/fluentd-monasca-master \
+    RUN cd /fluentd-monasca/fluentd-monasca-$tag \
         && gem build fluentd-monasca-output.gemspec \
         && gem install fluentd-monasca-output-0.0.1.gem \
         && fluent-gem install fluentd-monasca-output-0.0.1.gem \
         && rm -rf /fluentd-monasca
   neutron_server_footer: |
-    # We need a patch neutron to force the provision network MTU to 1500.
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/neutron.git@stackhpc/pike
     # There is no RDO RPM for this ML2 driver and Kolla's plugin mechanism only
     # supports source builds. Install a locally modified version with a fix for
     # Dell switches until it is released.
-    RUN pip install git+https://github.com/stackhpc/networking-generic-switch@stackhpc/pike
+    RUN pip install git+https://github.com/stackhpc/networking-generic-switch@stackhpc/0.4.1.1
     # Install a locally modified version of networking-mlnx with support for
     # disabling the SDN controller sync mechanism in the mlnx_sdn_assist
     # driver. This allows us to bind to flat Infiniband networks.
-    RUN pip install git+https://github.com/stackhpc/networking-mlnx@cauterise-sdn-client
-  ironic_base_footer: |
-    # Pull in Moshe's fix for IB ports to ensure they don't need
-    # local-link-connection information:
-    # https://review.openstack.org/#/c/548396. This can be removed once the
-    # aforementioned fix is included in a pike series release of ironic.
-    RUN pip install -U --no-deps git+https://github.com/openstack/ironic@stable/pike
+    RUN pip install git+https://github.com/stackhpc/networking-mlnx@stackhpc/11.0.0.1
   ironic_inspector_footer: |
     # Install our custom inspector plugins.
-    RUN pip install stackhpc-inspector-plugins
+    RUN pip install stackhpc-inspector-plugins==1.1.1
   magnum_api_footer: |
     # This branch fixes k8s FailedNodeAllocatableEnforcement warning
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/queens
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/6.1.1.1
   magnum_conductor_footer: |
     # This branch fixes k8s FailedNodeAllocatableEnforcement warning
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/queens
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/6.1.1.1
   monasca_log_api_footer: |
     # Support for the log query API isn't yet merged upstream. This
     # implicitly pulls in some other packages like voluptous required
@@ -135,10 +128,10 @@ kolla_build_blocks:
         && pip install -U git+https://github.com/stackhpc/monasca-log-api@stackhpc/log-query-api
   sahara_api_footer: |
     # Bring in hack to the vanilla plugin
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/pike
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/7.0.2.1
   sahara_engine_footer: |
     # Bring in hack to the vanilla plugin
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/pike
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/7.0.2.1
   grafana_footer: |
     # TODO: Re-enable the official plugin when #450868 is merged upstream. For now we will
     # manually install it from git
@@ -275,7 +268,7 @@ kolla_enable_monasca: True
 #kolla_enable_mongodb:
 #kolla_enable_multipathd:
 #kolla_enable_murano:
-kolla_enable_murano: True
+kolla_enable_murano: false
 #kolla_enable_neutron_vpnaas:
 #kolla_enable_neutron_dvr:
 #kolla_enable_neutron_fwaas:
