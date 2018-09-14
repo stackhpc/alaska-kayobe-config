@@ -820,5 +820,5 @@ REST_API_REQUIRED_SETTINGS = ['OPENSTACK_HYPERVISOR_FEATURES',
 WEBSSO_ENABLED = True
 WEBSSO_CHOICES = (
     ("credentials", _("Keystone Credentials")),
-    ("oidc", _("EGI AAI Check-in")),
+    ("mapped", _("Authenticate Externally")),
 )
