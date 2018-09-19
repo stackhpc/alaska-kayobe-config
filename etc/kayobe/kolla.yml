@@ -15,7 +15,7 @@ kolla_source_url: https://github.com/stackhpc/kolla.git
 
 # Version (branch, tag, etc.) of Kolla source code repository if type is
 # 'source'.
-kolla_source_version: refs/tags/stackhpc/5.0.3.3
+kolla_source_version: refs/tags/stackhpc/6.1.0.2
 
 # Path to virtualenv in which to install kolla.
 #kolla_venv:
@@ -37,7 +37,7 @@ kolla_ansible_source_url: https://github.com/stackhpc/kolla-ansible.git
 
 # Version (branch, tag, etc.) of Kolla Ansible source code repository if type
 # is 'source'.
-kolla_ansible_source_version: refs/tags/stackhpc/5.0.3.1
+kolla_ansible_source_version: refs/tags/stackhpc/6.1.0.1
 
 # Path to virtualenv in which to install kolla-ansible.
 #kolla_ansible_venv:
@@ -61,7 +61,7 @@ kolla_ansible_source_version: refs/tags/stackhpc/5.0.3.1
 #kolla_docker_registry:
 
 # Docker namespace to use for Kolla images.
-#kolla_docker_namespace:
+kolla_docker_namespace: stackhpc
 
 # Username to use to access a docker registry.
 #kolla_docker_registry_username:
@@ -70,7 +70,7 @@ kolla_ansible_source_version: refs/tags/stackhpc/5.0.3.1
 #kolla_docker_registry_password:
 
 # Kolla OpenStack release version. This should be a Docker image tag.
-kolla_openstack_release: 5.0.3.3-1
+kolla_openstack_release: 6.1.0.2-1
 
 # Dict mapping names of sources to their definitions for
 # kolla_install_type=source. See kolla.common.config for details.
@@ -106,11 +106,11 @@ kolla_build_blocks:
     # There is no RDO RPM for this ML2 driver and Kolla's plugin mechanism only
     # supports source builds. Install a locally modified version with a fix for
     # Dell switches until it is released.
-    RUN pip install git+https://github.com/stackhpc/networking-generic-switch@stackhpc/0.4.1.1
+    RUN pip install git+https://github.com/stackhpc/networking-generic-switch@stackhpc/1.0.0.1
     # Install a locally modified version of networking-mlnx with support for
     # disabling the SDN controller sync mechanism in the mlnx_sdn_assist
     # driver. This allows us to bind to flat Infiniband networks.
-    RUN pip install git+https://github.com/stackhpc/networking-mlnx@stackhpc/11.0.0.1
+    RUN pip install git+https://github.com/stackhpc/networking-mlnx@stackhpc/12.0.0.1
   ironic_inspector_footer: |
     # Install our custom inspector plugins.
     RUN pip install stackhpc-inspector-plugins==1.1.1
@@ -144,14 +144,15 @@ kolla_build_blocks:
     RUN grafana-cli plugins install natel-discrete-panel
     RUN grafana-cli plugins install vonage-status-panel
   kafka_version: |
-    # TODO(dszumski) This is the most recent version of Kafka that Monasca
-    # currently supports but we need to upgrade Monasca services before we
-    # can use it. Until then continue to use the same version as provided
-    # by the LXC container.
-    # ENV kafka_url=https://archive.apache.org/dist/kafka/0.9.0.1/kafka_2.11-0.9.0.1.tgz
-    # ENV kafka_pkg_sha512sum=818a821877436bbb9698a32afeb299bc569985a6b712179a9882bf1a10edfdb4992519ba39c1d7499144650b30781fc943a4d5d15b8d5916a4c1a5e542d9b956
-    ENV kafka_url=https://archive.apache.org/dist/kafka/0.8.2.2/kafka_2.10-0.8.2.2.tgz
-    ENV kafka_pkg_sha512sum=03978c4e82257eb36cc4c80c82c8e22a18a4546fd857b4fa34b089674960894321efb9c461229944b2b148c32c0cc4ec8a5d4c01ea8aee67ed9bedcf632a6b0d
+    # This is the most recent version of Kafka that Monasca currently supports
+    ENV kafka_url=https://archive.apache.org/dist/kafka/0.9.0.1/kafka_2.11-0.9.0.1.tgz
+    ENV kafka_pkg_sha512sum=818a821877436bbb9698a32afeb299bc569985a6b712179a9882bf1a10edfdb4992519ba39c1d7499144650b30781fc943a4d5d15b8d5916a4c1a5e542d9b956
+  zookeeper_version: |
+    # The default URL in kolla references the stable release, but this has now
+    # been bumped to 3.4.12.
+    ENV zookeeper_url=http://apache.mirror.anlx.net/zookeeper/zookeeper-3.4.10/zookeeper-3.4.10.tar.gz
+    ENV zookeeper_pkg_sha1sum=eb2145498c5f7a0d23650d3e0102318363206fba
+
 
 # Dict mapping image customization variable names to their values.
 # Each variable takes the form:
@@ -161,11 +162,28 @@ kolla_build_blocks:
 # remove. The value should be a list.
 #kolla_build_customizations:
 kolla_build_customizations:
-   # Use our own repo server to install the monasca-grafana fork
-   base_yum_repo_files_remove:
-     - 'grafana.repo'
-   influxdb_packages_override:
-     - 'influxdb-0.10.3-1'
+  # Use our own repo server to install the monasca-grafana fork
+  base_yum_repo_files_remove:
+    - 'grafana.repo'
+  fluentd_packages_append:
+    # Install packages necessary to build the fluentd-monasca Ruby Gem.
+    - 'gcc-c++'
+    - 'make'
+    - 'ruby-devel'
+  influxdb_packages_override:
+    - 'influxdb-0.10.3-1'
+  ironic_inspector_packages_append:
+    # Allow custom packages to be installed via pip.
+    - 'python-pip'
+  magnum_base_packages_append:
+    # Allow custom packages to be installed via pip.
+    - 'python-pip'
+  neutron_server_packages_append:
+    # Allow custom packages to be installed via pip.
+    - 'python-pip'
+  sahara_base_packages_append:
+    # Allow custom packages to be installed via pip.
+    - 'python-pip'
 
 ###############################################################################
 # Kolla-ansible inventory configuration.
@@ -308,6 +326,17 @@ kolla_enable_sahara: True
 # Dictionary containing custom passwords to add or override in the Kolla
 # passwords file.
 #kolla_ansible_custom_passwords:
+
+###############################################################################
+# TLS certificate bundle management
+
+# Optionally copy a TLS certificate bundle into place.
+#
+# When enabled, this will copy the contents of kolla_tls_cert into place for
+# use by HAproxy.
+#
+# Note that this should be formatted as a literal style block scalar.
+#kolla_tls_cert:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

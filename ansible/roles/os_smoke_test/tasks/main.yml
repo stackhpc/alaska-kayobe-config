@@ -1,0 +1,59 @@
+---
+
+- name: set up openstack cli virtualenv
+  pip:
+    virtualenv: "{{ os_smoke_test_venv }}"
+    name:
+      - python-openstackclient
+      - python-ironicclient
+      - python-ironic-inspector-client
+      - python-barbicanclient
+      - python-heatclient
+      - python-glanceclient
+      - python-magnumclient
+      - python-keystoneclient
+      - osc-placement
+
+- include_tasks: os-cmd.yml
+  vars:
+    cmd: openstack catalog list
+
+- include_tasks: os-cmd.yml
+  vars:
+    cmd: openstack baremetal node list
+  when: kolla_enable_ironic | bool
+
+- include_tasks: os-cmd.yml
+  vars:
+    cmd: openstack port list
+  when: kolla_enable_neutron | bool
+
+- include_tasks: os-cmd.yml
+  vars:
+    cmd: openstack server list
+  when: kolla_enable_nova | bool
+
+- include_tasks: os-cmd.yml
+  vars:
+    cmd: openstack stack list
+  when: kolla_enable_heat | default(true)
+
+- include_tasks: os-cmd.yml
+  vars:
+    cmd: openstack secret list
+  when: kolla_enable_barbican
+
+- include_tasks: os-cmd.yml
+  vars:
+    cmd: openstack resource provider list
+
+- include_tasks: os-cmd.yml
+  vars:
+    cmd: openstack image list
+
+- include_tasks: os-cmd.yml
+  vars:
+    cmd: openstack coe cluster list
+  when: kolla_enable_magnum | default(false)
+
+
