@@ -12,7 +12,6 @@
 
 # Base path for kayobe state on remote hosts.
 #base_path:
-base_path: "/opt/alaska/prod"
 
 # Path in which to cache downloaded images on remote hosts.
 #image_cache_path:
