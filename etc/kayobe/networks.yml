@@ -72,6 +72,10 @@ ilab_vlan: 60
 ilab_vip_address: 10.60.253.128
 ilab_mtu: 1500
 ilab_physical_network: "{{ alaska_cp_physical_network }}"
+ilab_routes:
+  # Route to the storage network via the control & provisioning network switch.
+  - cidr: 10.4.0.0/16
+    gateway: 10.60.253.255
 
 # Power and management network IP information.
 alaska_mgmt_cidr: 10.45.0.0/16
