@@ -19,6 +19,29 @@ monasca_default_authorized_roles:
 monasca_agent_authorized_roles:
   - monasca-agent
 
+# Container image tags.
+# These should be allowed to change independently, as services are updated.
+
+barbican_tag: 6.1.0.2-1
+cron_tag: 6.1.0.2-1
+fluentd_tag: 6.1.0.2-1
+glance_tag: 6.1.0.2-1
+haproxy_tag: 6.1.0.2-1
+heat_tag: 6.1.0.2-1
+horizon_tag: 6.1.0.2-1
+ironic_tag: 6.1.0.2-1
+iscsid_tag: 6.1.0.2-1
+keepalived_tag: 6.1.0.2-1
+keystone_tag: 6.1.0.2-1
+kolla_toolbox_tag: 6.1.0.2-1
+magnum_tag: 6.1.0.2-1
+manila_tag: 6.1.0.2-1
+mariadb_tag: 6.1.0.2-1
+memcached_tag: 6.1.0.2-1
+neutron_tag: 6.1.0.2-1
+nova_tag: 6.1.0.2-1
+openvswitch_tag: 6.1.0.2-1
+rabbitmq_tag: 6.1.0.2-1
 # Use the pike release of Sahara, since our changes have not been ported to
 # Queens.
 sahara_tag: 5.0.3.3-1
