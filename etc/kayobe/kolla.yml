@@ -112,6 +112,9 @@ kolla_build_blocks:
     # to run the log-query-api.
     RUN pip install -U git+https://github.com/stackhpc/monasca-common@2.10.0 \
         && pip install -U git+https://github.com/stackhpc/monasca-log-api@stackhpc/log-query-api
+  monasca_notification_footer: |
+    # Apply notification plugin config bugfix
+    RUN pip install -U git+https://github.com/stackhpc/monasca-notification@stackhpc/1.14.0.1
   sahara_api_footer: |
     # Bring in hack to the vanilla plugin
     RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/7.0.2.1
