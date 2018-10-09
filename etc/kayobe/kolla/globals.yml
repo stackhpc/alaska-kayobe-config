@@ -45,6 +45,7 @@ magnum_tag: 6.1.0.2-2
 manila_tag: 6.1.0.2-1
 mariadb_tag: 6.1.0.2-1
 memcached_tag: 6.1.0.2-1
+monasca_notification_tag: 6.1.0.2-4
 neutron_tag: 6.1.0.2-1
 nova_tag: 6.1.0.2-1
 openvswitch_tag: 6.1.0.2-1
