@@ -37,7 +37,7 @@ kolla_ansible_source_url: https://github.com/stackhpc/kolla-ansible.git
 
 # Version (branch, tag, etc.) of Kolla Ansible source code repository if type
 # is 'source'.
-kolla_ansible_source_version: refs/tags/stackhpc/6.1.0.1
+kolla_ansible_source_version: refs/tags/stackhpc/6.1.0.4
 
 # Path to virtualenv in which to install kolla-ansible.
 #kolla_ansible_venv:
@@ -70,7 +70,7 @@ kolla_docker_namespace: stackhpc
 #kolla_docker_registry_password:
 
 # Kolla OpenStack release version. This should be a Docker image tag.
-kolla_openstack_release: 6.1.0.2-2
+kolla_openstack_release: 6.1.0.2-4
 
 # Dict mapping names of sources to their definitions for
 # kolla_install_type=source. See kolla.common.config for details.
@@ -112,6 +112,9 @@ kolla_build_blocks:
     # to run the log-query-api.
     RUN pip install -U git+https://github.com/stackhpc/monasca-common@2.10.0 \
         && pip install -U git+https://github.com/stackhpc/monasca-log-api@stackhpc/log-query-api
+  monasca_notification_footer: |
+    # Apply notification plugin config bugfix
+    RUN pip install -U git+https://github.com/stackhpc/monasca-notification@stackhpc/1.14.0.2
   sahara_api_footer: |
     # Bring in hack to the vanilla plugin
     RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/7.0.2.1
