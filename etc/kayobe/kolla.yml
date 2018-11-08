@@ -308,7 +308,7 @@ kolla_enable_murano: false
 #kolla_enable_neutron_agent_ha:
 #kolla_enable_neutron_bgp_dragent:
 #kolla_enable_neutron_provider_networks:
-#kolla_enable_nova_serialconsole_proxy:
+kolla_enable_nova_serialconsole_proxy: true
 #kolla_enable_octavia:
 #kolla_enable_osprofiler:
 #kolla_enable_panko:
