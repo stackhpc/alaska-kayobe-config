@@ -37,7 +37,7 @@ kolla_ansible_source_url: https://github.com/stackhpc/kolla-ansible.git
 
 # Version (branch, tag, etc.) of Kolla Ansible source code repository if type
 # is 'source'.
-kolla_ansible_source_version: refs/tags/stackhpc/6.1.0.5
+kolla_ansible_source_version: refs/tags/stackhpc/6.1.0.6
 
 # Path to virtualenv in which to install kolla-ansible.
 #kolla_ansible_venv:
@@ -267,7 +267,7 @@ kolla_enable_murano: false
 #kolla_enable_neutron_agent_ha:
 #kolla_enable_neutron_bgp_dragent:
 #kolla_enable_neutron_provider_networks:
-#kolla_enable_nova_serialconsole_proxy:
+kolla_enable_nova_serialconsole_proxy: true
 #kolla_enable_octavia:
 #kolla_enable_osprofiler:
 #kolla_enable_panko:
