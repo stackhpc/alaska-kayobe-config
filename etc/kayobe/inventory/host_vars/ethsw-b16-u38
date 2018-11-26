@@ -81,13 +81,24 @@ switch_interface_config:
       # Controllers.
       - "tagged Te 1/6/1"
 
-# Interface configuration for hardware discovery. After discovery Neutron owns
-# the configuration of these ports. Has the same format as
+# Interface configuration for enabling hardware discovery. After discovery
+# Neutron owns the configuration of these ports. Has the same format as
 # switch_interface_config.
-switch_interface_config_discovery:
+switch_interface_config_enable_discovery:
   vlan 8:
     description: provisioning
     # Compute nodes.
     config: >
       {{ switch_interface_config['vlan 8'].config +
          ['untagged Te 1/5/3'] }}
+
+# Interface configuration for disabling hardware discovery. After discovery
+# Neutron owns the configuration of these ports. Has the same format as
+# switch_interface_config.
+switch_interface_config_disable_discovery:
+  vlan 8:
+    description: provisioning
+    # Compute nodes.
+    config: >
+      {{ switch_interface_config['vlan 8'].config +
+         ['no untagged Te 1/5/3'] }}
