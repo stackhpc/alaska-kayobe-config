@@ -7,6 +7,12 @@ rabbitmq_monitoring_user: "monitoring"
 # Keystone's default.
 keystone_token_provider: "fernet"
 
+# Enable Ceph as the backend for storage.
+glance_backend_ceph: "no"
+cinder_backend_ceph: "yes"
+nova_backend_ceph: "no"
+
+
 # Monasca doesn't support binary type container builds
 monasca_install_type: "source"
 
