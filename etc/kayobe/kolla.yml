@@ -303,7 +303,7 @@ kolla_enable_murano: false
 #kolla_enable_neutron_vpnaas:
 #kolla_enable_neutron_dvr:
 #kolla_enable_neutron_fwaas:
-#kolla_enable_neutron_lbaas:
+kolla_enable_neutron_lbaas: true
 #kolla_enable_neutron_qos:
 #kolla_enable_neutron_agent_ha:
 #kolla_enable_neutron_bgp_dragent:
