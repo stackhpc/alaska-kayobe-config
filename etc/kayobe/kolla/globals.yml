@@ -19,6 +19,10 @@ monasca_default_authorized_roles:
 monasca_agent_authorized_roles:
   - monasca-agent
 
+# Designate (DNSaaS) configuration
+designate_backend: "bind9"
+designate_ns_record: "sv-b16-u23.alaska.local"
+
 # Container image tags.
 # These should be allowed to change independently, as services are updated.
 
