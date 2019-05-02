@@ -15,7 +15,7 @@ kolla_source_url: https://github.com/stackhpc/kolla.git
 
 # Version (branch, tag, etc.) of Kolla source code repository if type is
 # 'source'.
-kolla_source_version: refs/tags/stackhpc/6.2.1.1
+kolla_source_version: stackhpc/rocky
 
 # Path to virtualenv in which to install kolla.
 #kolla_venv:
@@ -37,7 +37,7 @@ kolla_ansible_source_url: https://github.com/stackhpc/kolla-ansible.git
 
 # Version (branch, tag, etc.) of Kolla Ansible source code repository if type
 # is 'source'.
-kolla_ansible_source_version: refs/tags/stackhpc/6.2.0.1
+kolla_ansible_source_version: stackhpc/rocky
 
 # Path to virtualenv in which to install kolla-ansible.
 #kolla_ansible_venv:
@@ -70,7 +70,7 @@ kolla_docker_namespace: stackhpc
 #kolla_docker_registry_password:
 
 # Kolla OpenStack release version. This should be a Docker image tag.
-kolla_openstack_release: 6.2.1.1-1
+kolla_openstack_release: 7.1.0.1
 
 # Dict mapping names of sources to their definitions for
 # kolla_install_type=source. See kolla.common.config for details.
@@ -88,20 +88,6 @@ kolla_openstack_release: 6.2.1.1-1
 # Dict mapping Jinja2 block names in kolla's Docker images to their contents.
 #kolla_build_blocks:
 kolla_build_blocks:
-  fluentd_footer: |
-    # Install a custom fluentd output plugin that forwards logs to the monasca
-    # log API.
-    ARG tag=0.0.1
-    ADD https://github.com/stackhpc/fluentd-monasca/archive/$tag.tar.gz /fluentd-monasca.tar.gz
-    RUN mkdir /fluentd-monasca \
-        && cd /fluentd-monasca \
-        && tar -zxf /fluentd-monasca.tar.gz \
-        && rm /fluentd-monasca.tar.gz
-    RUN cd /fluentd-monasca/fluentd-monasca-$tag \
-        && gem build fluentd-monasca-output.gemspec \
-        && gem install fluentd-monasca-output-0.0.1.gem \
-        && fluent-gem install fluentd-monasca-output-0.0.1.gem \
-        && rm -rf /fluentd-monasca
   neutron_server_footer: |
     # There is no RDO RPM for this ML2 driver and Kolla's plugin mechanism only
     # supports source builds. Install a locally modified version with a fix for
@@ -119,39 +105,16 @@ kolla_build_blocks:
     RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/6.3.0.2
   magnum_conductor_footer: |
     # This branch fixes k8s FailedNodeAllocatableEnforcement warning
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/6.3.0.2
-  monasca_log_api_footer: |
-    # Support for the log query API isn't yet merged upstream. This
-    # implicitly pulls in some other packages like voluptous required
-    # to run the log-query-api.
-    RUN pip install -U git+https://github.com/stackhpc/monasca-common@2.10.0 \
-        && pip install -U git+https://github.com/stackhpc/monasca-log-api@stackhpc/log-query-api
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/6.1.1.2
   sahara_api_footer: |
     # Bring in hack to the vanilla plugin
     RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/7.0.2.1
   sahara_engine_footer: |
     # Bring in hack to the vanilla plugin
     RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/7.0.2.1
-  grafana_footer: |
-    # TODO: Re-enable the official plugin when #450868 is merged upstream. For now we will
-    # manually install it from git
-    # RUN grafana-cli plugins install monasca-datasource
-    RUN mkdir -p /var/lib/grafana/plugins/monasca-datasource \
-        && curl -Lo tmp.tgz https://github.com/stackhpc/monasca-grafana-datasource/tarball/log-query-api \
-        && tar zxvf tmp.tgz -C /var/lib/grafana/plugins/monasca-datasource --strip-components=1 \
-        && rm tmp.tgz
+  monasca_grafana_footer: |
     # Install plugin for Gantt charts
     RUN grafana-cli plugins install natel-discrete-panel
-  kafka_version: |
-    # This is the most recent version of Kafka that Monasca currently supports
-    ENV kafka_url=https://archive.apache.org/dist/kafka/0.9.0.1/kafka_2.11-0.9.0.1.tgz
-    ENV kafka_pkg_sha512sum=818a821877436bbb9698a32afeb299bc569985a6b712179a9882bf1a10edfdb4992519ba39c1d7499144650b30781fc943a4d5d15b8d5916a4c1a5e542d9b956
-  zookeeper_version: |
-    # The default URL in kolla references the stable release, but this has now
-    # been bumped to 3.4.12.
-    ENV zookeeper_url=http://apache.mirror.anlx.net/zookeeper/zookeeper-3.4.10/zookeeper-3.4.10.tar.gz
-    ENV zookeeper_pkg_sha1sum=eb2145498c5f7a0d23650d3e0102318363206fba
-
 
 # Dict mapping image customization variable names to their values.
 # Each variable takes the form:
@@ -165,16 +128,8 @@ kolla_build_customizations:
   # that support the OpenID Connect protocol
   keystone_base_packages_append:
     - 'mod_auth_openidc'
-  # Use our own repo server to install the monasca-grafana fork
-  base_yum_repo_files_remove:
-    - 'grafana.repo'
-  fluentd_packages_append:
-    # Install packages necessary to build the fluentd-monasca Ruby Gem.
-    - 'gcc-c++'
-    - 'make'
-    - 'ruby-devel'
   influxdb_packages_override:
-    - 'influxdb-0.10.3-1'
+    - 'influxdb-1.3.7'
   ironic_inspector_packages_append:
     # Allow custom packages to be installed via pip.
     - 'python-pip'
@@ -267,25 +222,20 @@ kolla_enable_barbican: True
 #kolla_enable_congress:
 #kolla_enable_designate:
 #kolla_enable_elasticsearch:
-kolla_enable_elasticsearch: True
 #kolla_enable_etcd:
 #kolla_enable_freezer:
 #kolla_enable_gnocchi:
 #kolla_enable_grafana:
-kolla_enable_grafana: True
 #kolla_enable_haproxy:
 #kolla_enable_heat:
 #kolla_enable_horizon:
 #kolla_enable_influxdb:
-kolla_enable_influxdb: True
 #kolla_enable_ironic:
 kolla_enable_ironic_ipxe: True
 #kolla_enable_iscsid:
 #kolla_enable_kafka:
-kolla_enable_kafka: True
 #kolla_enable_karbor:
 #kolla_enable_kibana:
-kolla_enable_kibana: True
 #kolla_enable_kuryr:
 #kolla_enable_magnum:
 kolla_enable_magnum: True
@@ -295,7 +245,7 @@ kolla_enable_manila_backend_cephfs_native: true
 #kolla_enable_manila_backend_hnas:
 #kolla_enable_mistral:
 #kolla_enable_monasca:
-kolla_enable_monasca: false
+kolla_enable_monasca: True
 #kolla_enable_mongodb:
 #kolla_enable_multipathd:
 #kolla_enable_murano:
