@@ -15,7 +15,7 @@ kolla_source_url: https://github.com/stackhpc/kolla.git
 
 # Version (branch, tag, etc.) of Kolla source code repository if type is
 # 'source'.
-kolla_source_version: refs/tags/stackhpc/6.2.1.1
+kolla_source_version: stackhpc/rocky
 
 # Path to virtualenv in which to install kolla.
 #kolla_venv:
@@ -37,7 +37,7 @@ kolla_ansible_source_url: https://github.com/stackhpc/kolla-ansible.git
 
 # Version (branch, tag, etc.) of Kolla Ansible source code repository if type
 # is 'source'.
-kolla_ansible_source_version: refs/tags/stackhpc/6.2.0.1
+kolla_ansible_source_version: stackhpc/rocky
 
 # Path to virtualenv in which to install kolla-ansible.
 #kolla_ansible_venv:
@@ -70,7 +70,7 @@ kolla_docker_namespace: stackhpc
 #kolla_docker_registry_password:
 
 # Kolla OpenStack release version. This should be a Docker image tag.
-kolla_openstack_release: 6.2.1.1-1
+kolla_openstack_release: 7.1.0.1
 
 # Dict mapping names of sources to their definitions for
 # kolla_install_type=source. See kolla.common.config for details.
@@ -106,29 +106,13 @@ kolla_build_blocks:
   magnum_conductor_footer: |
     # This branch fixes k8s FailedNodeAllocatableEnforcement warning
     RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/6.3.0.2
-  monasca_log_api_footer: |
-    # Support for the log query API isn't yet merged upstream. This
-    # implicitly pulls in some other packages like voluptous required
-    # to run the log-query-api.
-    RUN pip install -U git+https://github.com/stackhpc/monasca-common@2.10.0 \
-        && pip install -U git+https://github.com/stackhpc/monasca-log-api@stackhpc/log-query-api
-  monasca_notification_footer: |
-    # Apply notification plugin config bugfix
-    RUN pip install -U git+https://github.com/stackhpc/monasca-notification@stackhpc/1.14.0.2
   sahara_api_footer: |
     # Bring in hack to the vanilla plugin
     RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/7.0.2.1
   sahara_engine_footer: |
     # Bring in hack to the vanilla plugin
     RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/7.0.2.1
-  grafana_footer: |
-    # TODO: Re-enable the official plugin when #450868 is merged upstream. For now we will
-    # manually install it from git
-    # RUN grafana-cli plugins install monasca-datasource
-    RUN mkdir -p /var/lib/grafana/plugins/monasca-datasource \
-        && curl -Lo tmp.tgz https://github.com/stackhpc/monasca-grafana-datasource/tarball/log-query-api \
-        && tar zxvf tmp.tgz -C /var/lib/grafana/plugins/monasca-datasource --strip-components=1 \
-        && rm tmp.tgz
+  monasca_grafana_footer: |
     # Install plugin for Gantt charts
     RUN grafana-cli plugins install natel-discrete-panel
     RUN grafana-cli plugins install vonage-status-panel
@@ -142,11 +126,8 @@ kolla_build_blocks:
 # remove. The value should be a list.
 #kolla_build_customizations:
 kolla_build_customizations:
-  # Use our own repo server to install the monasca-grafana fork
-  base_yum_repo_files_remove:
-    - 'grafana.repo'
   influxdb_packages_override:
-    - 'influxdb-1.3.3'
+    - 'influxdb-1.3.7'
   ironic_inspector_packages_append:
     # Allow custom packages to be installed via pip.
     - 'python-pip'
@@ -244,7 +225,6 @@ kolla_enable_ironic_ipxe: True
 #kolla_enable_kafka:
 #kolla_enable_karbor:
 #kolla_enable_kibana:
-kolla_enable_kibana: True
 #kolla_enable_kuryr:
 #kolla_enable_magnum:
 kolla_enable_magnum: True
