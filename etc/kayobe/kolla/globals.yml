@@ -23,6 +23,9 @@ monasca_agent_authorized_roles:
 monasca_grafana_server_port: "3000"
 monasca_control_plane_project: "monasca"
 
+# Disable chrony container - use ntpd on the host.
+enable_chrony: false
+
 # Container image tags.
 # These should be allowed to change independently, as services are updated.
 
