@@ -42,6 +42,9 @@ kolla_ansible_source_version: refs/tags/stackhpc/7.1.0.1
 # Path to virtualenv in which to install kolla-ansible.
 #kolla_ansible_venv:
 
+# Extra requirements to install inside the kolla-ansible virtualenv.
+#kolla_ansible_venv_extra_requirements:
+
 # Path to Kolla-ansible configuration directory.
 #kolla_config_path:
 
@@ -54,7 +57,7 @@ kolla_ansible_source_version: refs/tags/stackhpc/7.1.0.1
 # Kolla base container image distribution.
 #kolla_base_distro:
 
-# Kolla installation type: binary or source.
+# Kolla container image type: binary or source.
 #kolla_install_type:
 
 # URL of docker registry to use for Kolla images.
@@ -197,16 +200,32 @@ kolla_overcloud_inventory_top_level_group_map:
 # Whether debug logging is enabled.
 #kolla_openstack_logging_debug:
 
+# Upper constraints file for installation of Kolla.
+#kolla_upper_constraints_file:
+
+# User account to use for Kolla SSH access.
+#kolla_ansible_user:
+
+# Primary group of Kolla SSH user.
+#kolla_ansible_group:
+
+# Whether to use privilege escalation for all operations performed via Kolla
+# Ansible.
+#kolla_ansible_become:
+
 ###############################################################################
 # Kolla feature flag configuration.
 
 #kolla_enable_aodh:
 #kolla_enable_barbican:
 kolla_enable_barbican: True
+#kolla_enable_blazar:
 #kolla_enable_cadf_notifications:
 #kolla_enable_ceilometer:
 #kolla_enable_central_logging:
 #kolla_enable_ceph:
+#kolla_enable_ceph_mds:
+#kolla_enable_ceph_nfs:
 #kolla_enable_ceph_rgw:
 #kolla_enable_cinder:
 #kolla_enable_cinder_backend_hnas_iscsi:
@@ -214,11 +233,13 @@ kolla_enable_barbican: True
 #kolla_enable_cinder_backend_iscsi:
 #kolla_enable_cinder_backend_lvm:
 #kolla_enable_cinder_backend_nfs:
+#kolla_enable_cinder_backend_zfssa_iscsi:
 #kolla_enable_cloudkitty:
 #kolla_enable_congress:
 #kolla_enable_designate:
 #kolla_enable_elasticsearch:
 #kolla_enable_etcd:
+#kolla_enable_fluentd:
 #kolla_enable_freezer:
 #kolla_enable_gnocchi:
 #kolla_enable_grafana:
@@ -228,6 +249,8 @@ kolla_enable_barbican: True
 #kolla_enable_influxdb:
 #kolla_enable_ironic:
 kolla_enable_ironic_ipxe: True
+#kolla_enable_ironic_ipxe:
+#kolla_enable_ironic_pxe_uefi:
 #kolla_enable_iscsid:
 #kolla_enable_kafka:
 #kolla_enable_karbor:
@@ -239,6 +262,8 @@ kolla_enable_manila: true
 kolla_enable_manila_backend_cephfs_native: true
 #kolla_enable_manila_backend_generic:
 #kolla_enable_manila_backend_hnas:
+#kolla_enable_manila_backend_cephfs_native:
+#kolla_enable_manila_backend_cephfs_nfs:
 #kolla_enable_mistral:
 #kolla_enable_monasca:
 kolla_enable_monasca: True
@@ -246,18 +271,23 @@ kolla_enable_monasca: True
 #kolla_enable_multipathd:
 #kolla_enable_murano:
 kolla_enable_murano: false
-#kolla_enable_neutron_vpnaas:
-#kolla_enable_neutron_dvr:
-#kolla_enable_neutron_fwaas:
-kolla_enable_neutron_lbaas: true
-#kolla_enable_neutron_qos:
 #kolla_enable_neutron_agent_ha:
 #kolla_enable_neutron_bgp_dragent:
+#kolla_enable_neutron_dvr:
+#kolla_enable_neutron_fwaas:
+#kolla_enable_neutron_lbaas:
+kolla_enable_neutron_lbaas: true
 #kolla_enable_neutron_provider_networks:
+#kolla_enable_neutron_qos:
+#kolla_enable_neutron_segments:
+#kolla_enable_neutron_sriov:
+#kolla_enable_neutron_vpnaas:
+#kolla_enable_nova_serialconsole_proxy:
 kolla_enable_nova_serialconsole_proxy: true
 #kolla_enable_octavia:
 #kolla_enable_osprofiler:
 #kolla_enable_panko:
+#kolla_enable_qdrouterd:
 #kolla_enable_rally:
 #kolla_enable_sahara:
 kolla_enable_sahara: True
@@ -265,11 +295,13 @@ kolla_enable_sahara: True
 #kolla_enable_senlin:
 #kolla_enable_skydive:
 #kolla_enable_solum:
+#kolla_enable_storm:
 #kolla_enable_swift:
 #kolla_enable_tacker:
 #kolla_enable_telegraf:
 #kolla_enable_tempest:
 #kolla_enable_trove:
+#kolla_enable_vitrage:
 #kolla_enable_vmtp:
 #kolla_enable_watcher:
 #kolla_enable_zookeeper:
@@ -296,6 +328,10 @@ kolla_enable_sahara: True
 #
 # Note that this should be formatted as a literal style block scalar.
 #kolla_tls_cert:
+
+# Path to a CA certificate file to use for the OS_CACERT environment variable in
+# openrc files when TLS is enabled, instead of Kolla-Ansible's default.
+#kolla_external_fqdn_cacert:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
