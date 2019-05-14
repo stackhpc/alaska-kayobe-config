@@ -96,6 +96,8 @@ kolla_build_blocks:
     # supports source builds. Install a locally modified version with a fix for
     # Dell switches until it is released.
     RUN pip install git+https://github.com/stackhpc/networking-generic-switch@stackhpc/1.2.0.1
+    # Install networking-mlnx for InfiniBand support.
+    RUN pip install git+https://opendev.org/openstack/networking-mlnx@13.1.0
   ironic_inspector_footer: |
     # Install our custom inspector plugins.
     RUN pip install stackhpc-inspector-plugins==1.1.1
