@@ -107,6 +107,9 @@ kolla_build_blocks:
   magnum_conductor_footer: |
     # This branch fixes k8s FailedNodeAllocatableEnforcement warning
     RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/7.1.0.1
+  nova_compute_ironic_footer: |
+    # Fix teardown with cleaning enabled: https://bugs.launchpad.net/nova/+bug/1815799
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/nova@stackhpc/18.2.0.1
   sahara_api_footer: |
     # Bring in hack to the vanilla plugin
     RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/7.0.2.1
@@ -135,6 +138,9 @@ kolla_build_customizations:
     # Allow custom packages to be installed via pip.
     - 'python-pip'
   magnum_base_packages_append:
+    # Allow custom packages to be installed via pip.
+    - 'python-pip'
+  nova_compute_ironic_packages_append:
     # Allow custom packages to be installed via pip.
     - 'python-pip'
   neutron_server_packages_append:
