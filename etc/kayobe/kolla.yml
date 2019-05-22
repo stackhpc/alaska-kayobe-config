@@ -134,7 +134,7 @@ kolla_build_blocks:
 #kolla_build_customizations:
 kolla_build_customizations:
   influxdb_packages_override:
-    - 'influxdb-1.3.7'
+    - 'influxdb-1.7.6'
   ironic_inspector_packages_append:
     # Allow custom packages to be installed via pip.
     - 'python-pip'
