@@ -91,6 +91,9 @@ kolla_openstack_release: 7.0.2.1-1
 # Dict mapping Jinja2 block names in kolla's Docker images to their contents.
 #kolla_build_blocks:
 kolla_build_blocks:
+  monasca_log_api_footer: |
+    # TODO: Remove this workaround when this is merged: https://review.opendev.org/#/c/656295/
+    RUN pip install -U git+https://github.com/stackhpc/monasca-log-api@stable/rocky
   neutron_server_footer: |
     # There is no RDO RPM for this ML2 driver and Kolla's plugin mechanism only
     # supports source builds. Install a locally modified version with a fix for
@@ -239,7 +242,7 @@ kolla_enable_barbican: True
 #kolla_enable_fluentd:
 #kolla_enable_freezer:
 #kolla_enable_gnocchi:
-#kolla_enable_grafana:
+kolla_enable_grafana: True
 #kolla_enable_haproxy:
 #kolla_enable_heat:
 #kolla_enable_horizon:
