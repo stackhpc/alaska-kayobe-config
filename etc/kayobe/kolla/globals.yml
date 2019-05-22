@@ -27,7 +27,8 @@ monasca_agent_authorized_roles:
 es_heap_size: "24g"
 
 # Settings to ensure backwords compatibility with Queens Monasca deployment
-monasca_grafana_server_port: "3000"
+# FIXME(dszumski): Switch back to 3000 when issue with new Grafana image is fixed
+monasca_grafana_server_port: "3001"
 monasca_control_plane_project: "monasca"
 monasca_grafana_admin_username: "grafana-admin"
 
