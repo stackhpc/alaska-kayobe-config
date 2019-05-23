@@ -37,7 +37,7 @@ glance_tag: 7.0.2.1-1
 haproxy_tag: 7.0.2.1-1
 heat_tag: 7.0.2.1-1
 horizon_tag: 7.0.2.1-1
-influxdb_tag: 7.1.0.1
+influxdb_tag: 7.0.2.1-1
 ironic_tag: 7.0.2.1-1
 iscsid_tag: 7.0.2.1-1
 kafka_tag: 7.1.0.1
