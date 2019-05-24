@@ -22,6 +22,7 @@ monasca_agent_authorized_roles:
 # Settings to ensure backwords compatibility with Queens Monasca deployment
 monasca_grafana_server_port: "3000"
 monasca_control_plane_project: "monasca"
+monasca_grafana_admin_username: "grafana-admin"
 
 # Disable chrony container - use ntpd on the host.
 enable_chrony: false
