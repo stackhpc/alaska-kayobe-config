@@ -15,7 +15,7 @@ kolla_source_url: https://github.com/stackhpc/kolla.git
 
 # Version (branch, tag, etc.) of Kolla source code repository if type is
 # 'source'.
-kolla_source_version: refs/tags/stackhpc/7.0.2.1
+kolla_source_version: refs/tags/stackhpc/7.0.2.2
 
 # Path to virtualenv in which to install kolla.
 #kolla_venv:
@@ -37,7 +37,7 @@ kolla_ansible_source_url: https://github.com/stackhpc/kolla-ansible.git
 
 # Version (branch, tag, etc.) of Kolla Ansible source code repository if type
 # is 'source'.
-kolla_ansible_source_version: refs/tags/stackhpc/7.1.0.2
+kolla_ansible_source_version: refs/tags/stackhpc/7.1.0.3
 
 # Path to virtualenv in which to install kolla-ansible.
 #kolla_ansible_venv:
@@ -73,7 +73,7 @@ kolla_docker_namespace: stackhpc
 #kolla_docker_registry_password:
 
 # Kolla OpenStack release version. This should be a Docker image tag.
-kolla_openstack_release: 7.0.2.1-1
+kolla_openstack_release: 7.0.2.2-1
 
 # Dict mapping names of sources to their definitions for
 # kolla_install_type=source. See kolla.common.config for details.
@@ -91,9 +91,6 @@ kolla_openstack_release: 7.0.2.1-1
 # Dict mapping Jinja2 block names in kolla's Docker images to their contents.
 #kolla_build_blocks:
 kolla_build_blocks:
-  monasca_log_api_footer: |
-    # TODO: Remove this workaround when this is merged: https://review.opendev.org/#/c/656295/
-    RUN pip install -U git+https://github.com/stackhpc/monasca-log-api@stable/rocky
   neutron_server_footer: |
     # There is no RDO RPM for this ML2 driver and Kolla's plugin mechanism only
     # supports source builds. Install a locally modified version with a fix for
@@ -123,6 +120,14 @@ kolla_build_blocks:
     # Install plugin for Gantt charts
     RUN grafana-cli plugins install natel-discrete-panel
     RUN grafana-cli plugins install vonage-status-panel
+  monasca_notification_footer: |
+    # Bring in Slack template patch and fixes for notification plugins
+    # TODO(dszumski): When the following are merged, we can create a new
+    # release, bump the release version in Kolla and remove this footer.
+    # https://review.opendev.org/#/c/519630/
+    # https://review.opendev.org/#/c/656780/
+    # https://review.opendev.org/#/c/656783/
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/monasca-notification@stackhpc/1.14.0.3
 
 
 # Dict mapping image customization variable names to their values.
@@ -134,7 +139,7 @@ kolla_build_blocks:
 #kolla_build_customizations:
 kolla_build_customizations:
   influxdb_packages_override:
-    - 'influxdb-1.3.7'
+    - 'influxdb-1.7.6'
   ironic_inspector_packages_append:
     # Allow custom packages to be installed via pip.
     - 'python-pip'
