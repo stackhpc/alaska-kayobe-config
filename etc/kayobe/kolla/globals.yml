@@ -20,8 +20,10 @@ monasca_agent_authorized_roles:
   - monasca-agent
 
 # Settings to ensure backwords compatibility with Queens Monasca deployment
-monasca_grafana_server_port: "3000"
+# FIXME(dszumski): Switch back to 3000 when issue with new Grafana image is fixed
+monasca_grafana_server_port: "3001"
 monasca_control_plane_project: "monasca"
+monasca_grafana_admin_username: "grafana-admin"
 
 # Disable chrony container - use ntpd on the host.
 enable_chrony: false
@@ -32,8 +34,10 @@ enable_chrony: false
 barbican_tag: 7.0.2.1-1
 cron_tag: 7.0.2.1-1
 elasticsearch_tag: 7.1.0.1
-fluentd_tag: 7.1.0.1
+fluentd_tag: 7.0.2.2-1
 glance_tag: 7.0.2.1-1
+# FIXME: Use old build of Grafana until new build is fixed
+grafana_tag: 6.1.0.2-2
 haproxy_tag: 7.0.2.1-1
 heat_tag: 7.0.2.1-1
 horizon_tag: 7.0.2.1-1
@@ -51,6 +55,8 @@ manila_tag: 7.0.2.1-1
 mariadb_tag: 7.0.2.1-1
 memcached_tag: 7.0.2.1-1
 monasca_tag: 7.1.0.1
+monasca_log_api_tag: 7.0.2.2-1
+monasca_notification_tag: 7.0.2.2-1
 neutron_tag: 7.0.2.1-1
 nova_tag: 7.0.2.1-1
 openvswitch_tag: 7.0.2.1-1

@@ -15,7 +15,7 @@ kolla_source_url: https://github.com/stackhpc/kolla.git
 
 # Version (branch, tag, etc.) of Kolla source code repository if type is
 # 'source'.
-kolla_source_version: refs/tags/stackhpc/7.0.2.1
+kolla_source_version: refs/tags/stackhpc/7.0.2.2
 
 # Path to virtualenv in which to install kolla.
 #kolla_venv:
@@ -37,7 +37,7 @@ kolla_ansible_source_url: https://github.com/stackhpc/kolla-ansible.git
 
 # Version (branch, tag, etc.) of Kolla Ansible source code repository if type
 # is 'source'.
-kolla_ansible_source_version: refs/tags/stackhpc/7.1.0.2
+kolla_ansible_source_version: refs/tags/stackhpc/7.1.0.3
 
 # Path to virtualenv in which to install kolla-ansible.
 #kolla_ansible_venv:
@@ -73,7 +73,7 @@ kolla_docker_namespace: stackhpc
 #kolla_docker_registry_password:
 
 # Kolla OpenStack release version. This should be a Docker image tag.
-kolla_openstack_release: 7.0.2.1-1
+kolla_openstack_release: 7.0.2.2-1
 
 # Dict mapping names of sources to their definitions for
 # kolla_install_type=source. See kolla.common.config for details.
@@ -119,6 +119,15 @@ kolla_build_blocks:
   monasca_grafana_footer: |
     # Install plugin for Gantt charts
     RUN grafana-cli plugins install natel-discrete-panel
+    RUN grafana-cli plugins install vonage-status-panel
+  monasca_notification_footer: |
+    # Bring in Slack template patch and fixes for notification plugins
+    # TODO(dszumski): When the following are merged, we can create a new
+    # release, bump the release version in Kolla and remove this footer.
+    # https://review.opendev.org/#/c/519630/
+    # https://review.opendev.org/#/c/656780/
+    # https://review.opendev.org/#/c/656783/
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/monasca-notification@stackhpc/1.14.0.3
 
 # Dict mapping image customization variable names to their values.
 # Each variable takes the form:
@@ -250,7 +259,7 @@ kolla_enable_barbican: True
 #kolla_enable_fluentd:
 #kolla_enable_freezer:
 #kolla_enable_gnocchi:
-#kolla_enable_grafana:
+kolla_enable_grafana: True
 #kolla_enable_haproxy:
 #kolla_enable_heat:
 #kolla_enable_horizon:
