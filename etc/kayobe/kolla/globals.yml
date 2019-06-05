@@ -20,8 +20,7 @@ monasca_agent_authorized_roles:
   - monasca-agent
 
 # Settings to ensure backwords compatibility with Queens Monasca deployment
-# FIXME(dszumski): Switch back to 3000 when issue with new Grafana image is fixed
-monasca_grafana_server_port: "3001"
+monasca_grafana_server_port: "3000"
 monasca_control_plane_project: "monasca"
 monasca_grafana_admin_username: "grafana-admin"
 
