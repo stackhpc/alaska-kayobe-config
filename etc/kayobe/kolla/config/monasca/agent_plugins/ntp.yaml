@@ -1,0 +1,7 @@
+---
+{% raw %}
+init_config: null
+instances:
+- built_by: Ntp
+  host: "{{ external_ntp_servers | first }}"
+{% endraw %}
