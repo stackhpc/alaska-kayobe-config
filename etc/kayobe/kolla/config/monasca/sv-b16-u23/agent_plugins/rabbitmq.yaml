@@ -1,0 +1,21 @@
+{% raw %}
+init_config: null
+instances:
+- built_by: RabbitMQ
+  exchanges:
+  - nova
+  - cinder
+  - glance
+  - keystone
+  - neutron
+  - heat
+  - ironic
+  name: RabbitMQ
+  nodes:
+  - "rabbit@{{ inventory_hostname }}"
+  queues:
+  - conductor
+  rabbitmq_api_url: "http://{{ api_interface_address }}:{{ rabbitmq_management_port }}/api/"
+  rabbitmq_pass: "{{ rabbitmq_monitoring_password }}"
+  rabbitmq_user: "{{ rabbitmq_monitoring_user }}"
+{% endraw %}
