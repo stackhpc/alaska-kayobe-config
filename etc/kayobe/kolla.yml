@@ -37,7 +37,7 @@ kolla_ansible_source_url: https://github.com/stackhpc/kolla-ansible.git
 
 # Version (branch, tag, etc.) of Kolla Ansible source code repository if type
 # is 'source'.
-kolla_ansible_source_version: refs/tags/stackhpc/7.1.0.4
+kolla_ansible_source_version: refs/tags/stackhpc/7.1.0.5
 
 # Path to virtualenv in which to install kolla-ansible.
 #kolla_ansible_venv:
@@ -128,7 +128,6 @@ kolla_build_blocks:
     # https://review.opendev.org/#/c/656780/
     # https://review.opendev.org/#/c/656783/
     RUN pip install -U --no-deps git+https://github.com/stackhpc/monasca-notification@stackhpc/1.14.0.3
-
 
 # Dict mapping image customization variable names to their values.
 # Each variable takes the form:
