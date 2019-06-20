@@ -42,8 +42,8 @@ kolla_bifrost_dib_env_vars:
 ###############################################################################
 # Ironic configuration.
 
-# Whether to enable ipmitool-based drivers.
-#kolla_bifrost_enable_ipmitool_drivers:
+# List of hardware types to enable for Bifrost's Ironic.
+#kolla_bifrost_enabled_hardware_types:
 
 ###############################################################################
 # Ironic Inspector configuration.
@@ -79,6 +79,27 @@ kolla_bifrost_inspector_lldp_switch_port_interface: "eno3"
 
 # Ironic inspector deployment ramdisk location.
 #kolla_bifrost_inspector_deploy_ramdisk:
+
+###############################################################################
+# Ironic Python Agent (IPA) configuration.
+
+# URL of Ironic Python Agent (IPA) kernel image.
+#kolla_bifrost_ipa_kernel_upstream_url:
+
+# URL of checksum of Ironic Python Agent (IPA) kernel image.
+#kolla_bifrost_ipa_kernel_checksum_url:
+
+# Algorithm of checksum of Ironic Python Agent (IPA) kernel image.
+#kolla_bifrost_ipa_kernel_checksum_algorithm:
+
+# URL of Ironic Python Agent (IPA) ramdisk image.
+#kolla_bifrost_ipa_ramdisk_upstream_url:
+
+# URL of checksum of Ironic Python Agent (IPA) ramdisk image.
+#kolla_bifrost_ipa_ramdisk_checksum_url:
+
+# Algorithm of checksum of Ironic Python Agent (IPA) ramdisk image.
+#kolla_bifrost_ipa_ramdisk_checksum_algorithm:
 
 ###############################################################################
 # Inventory configuration.

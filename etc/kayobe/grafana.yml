@@ -48,19 +48,11 @@ grafana_control_plane_organisation: "monasca@default"
 #
 #grafana_datasources:
 grafana_datasources:
-  # TODO: Change to VIP when these are behind HAProxy
   monasca_api:
     port: 8082
-    host: 10.60.253.3
+    host: "{{ kolla_internal_vip_address }}"
   monasca_log_api:
     port: 5607
-    host: 10.60.253.3
-  elasticsearch:
-    port: 9200
-    host: 10.60.253.3
-    # This should be the Monasca service project ID for the control plane.
-    # The full elasticsearch index is of the form:
-    # monasca-{{ project-id }}-{{ date }}
-    project_id: "{{ monasca_control_plane_project_id | default('') }}"
+    host: "{{ kolla_internal_vip_address }}"
 
 ###############################################################################
