@@ -13,8 +13,25 @@ instances:
   name: RabbitMQ
   nodes:
   - "rabbit@{{ inventory_hostname }}"
-  queues:
-  - conductor
+  whitelist:
+    queues:
+      - message_stats/deliver_details/rate
+      - message_stats/publish_details/rate
+      - message_stats/redeliver_details/rate
+      - messages_ready
+      - messages_ready_details/rate
+      - messages_unacknowledged
+      - messages_unacknowledged_details/rate
+    exchange:
+      - message_stats/publish_out
+      - message_stats/publish_out_details/rate
+      - message_stats/publish_in
+      - message_stats/publish_in_details/rate
+    node:
+      - fd_used
+      - mem_used
+      - run_queue
+      - sockets_used
   rabbitmq_api_url: "http://{{ api_interface_address }}:{{ rabbitmq_management_port }}/api/"
   rabbitmq_pass: "{{ rabbitmq_monitoring_password }}"
   rabbitmq_user: "{{ rabbitmq_monitoring_user }}"
