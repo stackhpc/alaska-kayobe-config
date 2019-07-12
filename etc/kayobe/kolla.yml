@@ -37,7 +37,7 @@ kolla_ansible_source_url: https://github.com/stackhpc/kolla-ansible.git
 
 # Version (branch, tag, etc.) of Kolla Ansible source code repository if type
 # is 'source'.
-kolla_ansible_source_version: refs/tags/stackhpc/7.1.0.5
+kolla_ansible_source_version: refs/tags/stackhpc/7.1.0.8
 
 # Path to virtualenv in which to install kolla-ansible.
 #kolla_ansible_venv:
