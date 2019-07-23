@@ -167,8 +167,6 @@ kolla_build_customizations:
   sahara_base_packages_append:
     # Allow custom packages to be installed via pip.
     - 'python-pip'
-  monasca_grafana_version_override:
-    - 'v4.2.0'
   monasca_grafana_url_override:
     - 'https://github.com/stackhpc/grafana/archive/v4.2.0.tar.gz'
 
