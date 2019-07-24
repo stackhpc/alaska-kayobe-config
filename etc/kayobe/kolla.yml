@@ -15,7 +15,7 @@ kolla_source_url: https://github.com/stackhpc/kolla.git
 
 # Version (branch, tag, etc.) of Kolla source code repository if type is
 # 'source'.
-kolla_source_version: refs/tags/stackhpc/7.0.2.3
+kolla_source_version: refs/tags/stackhpc/7.0.2.4-wip
 
 # Path to virtualenv in which to install kolla.
 #kolla_venv:
@@ -137,27 +137,10 @@ kolla_build_blocks:
     # https://review.opendev.org/#/c/656780/
     # https://review.opendev.org/#/c/656783/
     RUN pip install -U --no-deps git+https://github.com/stackhpc/monasca-notification@stackhpc/1.14.0.3
-  monasca_grafana_install: |
-    RUN gem install rake fpm \
-        && curl -sSL -o /tmp/monasca-grafana.tgz https://github.com/stackhpc/grafana/archive/v4.2.0.tar.gz \
-        && mkdir -p ${monasca_grafana_build_path} \
-        && tar --strip 1 -xvf /tmp/monasca-grafana.tgz -C ${monasca_grafana_build_path} \
-        && rm -f /tmp/monasca-grafana.tgz \
-        && cd ${monasca_grafana_build_path} \
-        && go run build.go setup \
-        && npm install -g yarn \
-        && yarn \
-        && go run build.go build package \
-        && mv ${monasca_grafana_build_path}/dist /grafana_pkgs \
-        && rm -rf /grafana
-
-    {% if base_package_type == 'rpm' %}
-      {% set monasca_grafana_packages = ['/grafana_pkgs/grafana*.rpm'] %}
-    {% elif base_package_type == 'deb' %}
-      {% set monasca_grafana_packages = ['/grafana_pkgs/grafana*.deb'] %}
-    {% endif %}
-
-    {{ macros.install_packages(monasca_grafana_packages | customizable("packages")) }}
+  monasca_grafana_arguments: |
+    ENV monasca_grafana_build_path=${GO_PATH}/src/github.com/grafana/grafana
+    ARG monasca_grafana_version=v4.2.0
+    ARG monasca_grafana_url=https://github.com/monasca/grafana/archive/$monasca_grafana_version.tar.gz
 
 # Dict mapping image customization variable names to their values.
 # Each variable takes the form:
