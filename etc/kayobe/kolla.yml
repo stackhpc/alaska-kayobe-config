@@ -140,7 +140,7 @@ kolla_build_blocks:
   monasca_grafana_arguments: |
     ENV monasca_grafana_build_path=${GO_PATH}/src/github.com/grafana/grafana
     ARG monasca_grafana_version=v4.2.0
-    ARG monasca_grafana_url=https://github.com/monasca/grafana/archive/$monasca_grafana_version.tar.gz
+    ARG monasca_grafana_url=https://github.com/stackhpc/grafana/archive/$monasca_grafana_version.tar.gz
 
 # Dict mapping image customization variable names to their values.
 # Each variable takes the form:
