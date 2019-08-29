@@ -9,6 +9,7 @@
     notification_name: "Default Slack Notification"
     notification_type: "SLACK"
     monasca_client_virtualenv_dir: "{{ ansible_env.VIRTUAL_ENV | default(omit) }}"
+    virtualenv_become: "no"
     skip_tasks: ["misc", "openstack", "monasca"]
   roles:
     - {role: stackhpc.monasca_default_alarms, tags: [alarms]}

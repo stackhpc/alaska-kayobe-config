@@ -1,1 +1,1 @@
-{% raw %}{{ alarm_name }} has triggered on: Host {{ metrics[0].dimensions.hostname }}:{% endraw %}  http://{{ilab_vip_address}}{% raw %}:3000/plugins/monasca-app/page/alarms?dimensions=hostname:{{ metrics[0].dimensions.hostname }}{% endraw %}
+{% set url = "http://" + ilab_vip_address + ":3000/plugins/monasca-app/page/alarms" %}{% raw %}{{ alarm_name }} - State: {{ state }}.{% endraw %} {{ url }}
