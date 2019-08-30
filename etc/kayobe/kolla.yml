@@ -73,7 +73,7 @@ kolla_docker_namespace: stackhpc
 #kolla_docker_registry_password:
 
 # Kolla OpenStack release version. This should be a Docker image tag.
-kolla_openstack_release: 7.0.2.6-4
+kolla_openstack_release: 7.0.2.6-3
 
 # Dict mapping names of sources to their definitions for
 # kolla_install_type=source. See kolla.common.config for details.
@@ -119,11 +119,7 @@ kolla_build_blocks:
   monasca_api_footer: |
     # NOTE(brtknr): Install upstream patch currently under review:
     # https://review.opendev.org/#/c/670318/
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/monasca-api.git@stackhpc/2.7.0.3
-  monasca_persister_footer: |
-    # NOTE(brtknr): Install upstream patch currently under review:
-    # https://review.opendev.org/#/c/674484/
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/monasca-persister.git@stackhpc/1.12.0.2
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/monasca-api.git@stackhpc/2.7.0.2
   monasca_grafana_footer: |
     # Install plugin for Gantt charts
     RUN grafana-cli plugins install natel-discrete-panel
