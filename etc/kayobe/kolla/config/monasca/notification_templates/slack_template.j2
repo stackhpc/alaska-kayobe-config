@@ -1,1 +1,1 @@
-{% raw %}{{ alarm_name }} has triggered on {% for item in metrics %}host {{ metrics[0].dimensions.hostname }}, service {{ item.dimensions.service }}{% if not loop.last %}, {% endif %}{% endfor %}.{% endraw %}
+{% set url = "http://" + ilab_vip_address + ":3000/plugins/monasca-app/page/alarms" %}{% raw %}{{ alarm_name }} - State: {{ state }}.{% endraw %} {{ url }}
