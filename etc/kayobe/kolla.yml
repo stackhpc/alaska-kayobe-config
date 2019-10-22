@@ -187,6 +187,7 @@ kolla_build_customizations:
 # Custom overcloud inventory containing a mapping from components to top level
 # groups.
 #kolla_overcloud_inventory_custom_components:
+kolla_overcloud_inventory_custom_components: "{{ lookup('template', kayobe_config_path ~ '/kolla/inventory/overcloud-components.j2') }}"
 
 # Custom overcloud inventory containing a mapping from services to components.
 #kolla_overcloud_inventory_custom_services:
@@ -228,6 +229,9 @@ kolla_overcloud_inventory_top_level_group_map:
 
 # Whether TLS is enabled for the external API endpoints.
 #kolla_enable_tls_external:
+
+# Path to external API certificate.
+#kolla_external_fqdn_cert:
 
 # Whether debug logging is enabled.
 #kolla_openstack_logging_debug:

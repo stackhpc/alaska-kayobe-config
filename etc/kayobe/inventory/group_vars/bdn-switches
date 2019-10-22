@@ -57,6 +57,8 @@ switch_interface_config_all:
   - "switchport"
   # Lossless Ethernet: PAUSE
   - "flowcontrol rx on tx on"
+  # Enable jumbo frames
+  - "mtu 9122"
   # LLDP configuration.
   - "protocol lldp"
   - " advertise dot3-tlv max-frame-size"
@@ -95,6 +97,8 @@ switch_interface_config_lag_member:
   - "no switchport"
   # Lossless Ethernet: PAUSE
   - "flowcontrol rx on tx on"
+  # Enable jumbo frames
+  - "mtu 9122"
   # LLDP configuration.
   - "protocol lldp"
   - " advertise dot3-tlv max-frame-size"
@@ -110,6 +114,8 @@ switch_interface_config_trunk:
   - "switchport"
   # Lossless Ethernet: PAUSE
   - "flowcontrol rx on tx on"
+  # Enable jumbo frames
+  - "mtu 9122"
   # LLDP configuration.
   - "protocol lldp"
   - " advertise dot3-tlv max-frame-size"
