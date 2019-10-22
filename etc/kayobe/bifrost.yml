@@ -7,7 +7,8 @@
 # URL of Bifrost source code repository.
 kolla_bifrost_source_url: https://github.com/stackhpc/bifrost.git
 
-# Version (branch, tag, etc.) of Bifrost source code repository.
+# Version (branch, tag, etc.) of Bifrost source code repository. Default is
+# {{ openstack_branch }}.
 kolla_bifrost_source_version: refs/tags/stackhpc/5.0.1.2
 
 ###############################################################################
