@@ -10,6 +10,10 @@ keystone_token_provider: "fernet"
 # Monasca doesn't support binary type container builds
 monasca_install_type: "source"
 
+# Use the legacy port as LXC services are configured to use it
+#monasca_api_port: 8070
+monasca_api_port: 8082
+
 # Roles which grant read/write access to Monasca APIs
 monasca_default_authorized_roles:
   - admin
@@ -18,6 +22,10 @@ monasca_default_authorized_roles:
 # Roles which grant write access to Monasca APIs
 monasca_agent_authorized_roles:
   - monasca-agent
+
+#NOTE(wszumski): Disabled on alt-1 due to RAM limitations
+# Default size causes ES to fall over very easily
+#es_heap_size: "24g"
 
 # Settings to ensure backwords compatibility with Queens Monasca deployment
 monasca_grafana_server_port: "3000"
