@@ -96,7 +96,7 @@ kolla_build_blocks:
     # There is no RDO RPM for this ML2 driver and Kolla's plugin mechanism only
     # supports source builds. Install a locally modified version with a fix for
     # Dell switches until it is released.
-    RUN pip install git+https://github.com/stackhpc/networking-generic-switch@stackhpc/1.14.0.1
+    RUN pip install git+https://github.com/stackhpc/networking-generic-switch@stackhpc/1.3.1.1
     # Install networking-mlnx for InfiniBand support.
     RUN pip install git+https://opendev.org/openstack/networking-mlnx@14.0.1
   ironic_inspector_footer: |
