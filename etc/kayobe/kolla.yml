@@ -74,7 +74,7 @@ kolla_docker_namespace: stackhpc
 
 # Kolla OpenStack release version. This should be a Docker image tag.
 # Default is {{ openstack_release }}.
-kolla_openstack_release: 8.0.1.1-1
+kolla_openstack_release: 8.0.1.1-2
 
 # Dict mapping names of sources to their definitions for
 # kolla_install_type=source. See kolla.common.config for details.
@@ -123,7 +123,7 @@ kolla_build_blocks:
   monasca_persister_footer: |
     # NOTE(brtknr): Implement separate db per tenancy (stein backport):
     # https://review.opendev.org/#/c/674484/
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/monasca-persister.git@stackhpc/1.14.0.1
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/monasca-persister.git@stackhpc/1.14.0.2
   monasca_grafana_footer: |
     # Install plugin for Gantt charts
     RUN grafana-cli plugins install natel-discrete-panel
