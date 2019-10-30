@@ -35,9 +35,11 @@ monitoring
 
 [etcd:children]
 control
-compute
 
 [influxdb:children]
+monitoring
+
+[prometheus:children]
 monitoring
 
 ###### CUSTOMISED #######
@@ -54,7 +56,6 @@ control
 #control
 monitoring
 #########################
-
 [telegraf:children]
 compute
 control
@@ -93,15 +94,15 @@ control
 [qdrouterd:children]
 control
 
-[monasca:children]
-monitoring
-
 [monasca-agent:children]
 compute
 control
 monitoring
 network
 storage
+
+[monasca:children]
+monitoring
 
 [storm:children]
 monitoring
@@ -183,40 +184,15 @@ control
 [aodh:children]
 control
 
+[cyborg:children]
+control
+compute
+
 [congress:children]
 control
 
 [panko:children]
 control
-
-[prometheus:children]
-monitoring
-
-[prometheus-alertmanager:children]
-monitoring
-
-[prometheus-node-exporter:children]
-monitoring
-control
-compute
-network
-storage
-
-[prometheus-mysqld-exporter:children]
-mariadb
-
-[prometheus-haproxy-exporter:children]
-haproxy
-
-[prometheus-memcached-exporter:children]
-memcached
-
-[prometheus-cadvisor:children]
-monitoring
-control
-compute
-network
-storage
 
 [gnocchi:children]
 control
@@ -261,6 +237,12 @@ control
 [bifrost:children]
 deployment
 
+###### CUSTOMISED #######
+[zookeeper:children]
+#control
+monitoring
+#########################
+
 [zun:children]
 control
 
@@ -272,9 +254,3 @@ control
 
 [blazar:children]
 control
-
-###### CUSTOMISED #######
-[zookeeper:children]
-#control
-monitoring
-#########################

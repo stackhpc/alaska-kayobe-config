@@ -8,7 +8,7 @@
 #kolla_bifrost_source_url:
 
 # Version (branch, tag, etc.) of Bifrost source code repository.
-kolla_bifrost_source_version: 5.1.4
+kolla_bifrost_source_version: 6.0.2
 
 ###############################################################################
 # Diskimage-builder configuration.
