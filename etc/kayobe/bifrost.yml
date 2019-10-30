@@ -5,10 +5,10 @@
 # Bifrost installation.
 
 # URL of Bifrost source code repository.
-kolla_bifrost_source_url: https://github.com/stackhpc/bifrost.git
+#kolla_bifrost_source_url:
 
 # Version (branch, tag, etc.) of Bifrost source code repository.
-kolla_bifrost_source_version: refs/tags/stackhpc/5.0.1.2
+kolla_bifrost_source_version: 5.1.4
 
 ###############################################################################
 # Diskimage-builder configuration.
