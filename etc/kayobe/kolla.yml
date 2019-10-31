@@ -14,8 +14,8 @@
 kolla_source_url: https://github.com/stackhpc/kolla.git
 
 # Version (branch, tag, etc.) of Kolla source code repository if type is
-# 'source'.
-kolla_source_version: stackhpc/7.0.4.1
+# 'source'. Default is {{ openstack_branch }}.
+kolla_source_version: stackhpc/8.0.1.1
 
 # Path to virtualenv in which to install kolla.
 #kolla_venv:
@@ -36,8 +36,8 @@ kolla_source_version: stackhpc/7.0.4.1
 kolla_ansible_source_url: https://github.com/stackhpc/kolla-ansible.git
 
 # Version (branch, tag, etc.) of Kolla Ansible source code repository if type
-# is 'source'.
-kolla_ansible_source_version: stackhpc/7.1.2.2
+# is 'source'. Default is {{ openstack_branch }}.
+kolla_ansible_source_version: stackhpc/8.0.1.2
 
 # Path to virtualenv in which to install kolla-ansible.
 #kolla_ansible_venv:
@@ -73,7 +73,8 @@ kolla_docker_namespace: stackhpc
 #kolla_docker_registry_password:
 
 # Kolla OpenStack release version. This should be a Docker image tag.
-kolla_openstack_release: 7.0.4.1-1
+# Default is {{ openstack_release }}.
+kolla_openstack_release: 8.0.1.1-2
 
 # Dict mapping names of sources to their definitions for
 # kolla_install_type=source. See kolla.common.config for details.
@@ -95,21 +96,18 @@ kolla_build_blocks:
     # There is no RDO RPM for this ML2 driver and Kolla's plugin mechanism only
     # supports source builds. Install a locally modified version with a fix for
     # Dell switches until it is released.
-    RUN pip install git+https://github.com/stackhpc/networking-generic-switch@stackhpc/1.2.0.3
+    RUN pip install git+https://github.com/stackhpc/networking-generic-switch@stackhpc/1.3.1.1
     # Install networking-mlnx for InfiniBand support.
-    RUN pip install git+https://opendev.org/openstack/networking-mlnx@13.3.0
+    RUN pip install git+https://opendev.org/openstack/networking-mlnx@14.0.1
   ironic_inspector_footer: |
     # Install our custom inspector plugins.
     RUN pip install stackhpc-inspector-plugins==1.1.1
   magnum_api_footer: |
     # This branch fixes k8s FailedNodeAllocatableEnforcement warning
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/7.1.0.1
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/8.1.0.1
   magnum_conductor_footer: |
     # This branch fixes k8s FailedNodeAllocatableEnforcement warning
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/7.1.0.1
-  nova_compute_ironic_footer: |
-    # Fix teardown with cleaning enabled: https://bugs.launchpad.net/nova/+bug/1815799
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/nova@stackhpc/18.2.3.1
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/8.1.0.1
   sahara_api_footer: |
     # Bring in hack to the vanilla plugin
     RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/7.0.2.1
@@ -117,16 +115,20 @@ kolla_build_blocks:
     # Bring in hack to the vanilla plugin
     RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/7.0.2.1
   monasca_api_footer: |
-    # NOTE(wszumski): Rocky backport of: https://review.opendev.org/#/c/670318/
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/monasca-api.git@stackhpc/2.7.0.5
+    # NOTE(brtknr): Support time range in dimension queries (stein backport):
+    # https://review.opendev.org/#/c/670318/
+    # Support database per tenant (stein backport)
+    # https://review.opendev.org/#/c/674478/
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/monasca-api.git@stackhpc/3.0.0.3
   monasca_persister_footer: |
-    # NOTE(wszumski): Rocky backport of: https://review.opendev.org/#/c/674484/
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/monasca-persister.git@stackhpc/1.12.0.4
+    # NOTE(brtknr): Implement separate db per tenancy (stein backport):
+    # https://review.opendev.org/#/c/674484/
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/monasca-persister.git@stackhpc/1.14.0.2
   monasca_grafana_footer: |
     # Install plugin for Gantt charts
     RUN grafana-cli plugins install natel-discrete-panel
     RUN grafana-cli plugins install vonage-status-panel
-    # NOTE(brtknr): Install upstream patch currently under review:
+    # NOTE(brtknr): Support time range in dimension queries (stein backport):
     # https://review.opendev.org/#/c/670316/
     RUN grafana-cli plugins remove monasca-datasource \
         && curl -sSL -o /tmp/monasca-grafana-datasource.tgz https://github.com/stackhpc/monasca-grafana-datasource/archive/stackhpc/1.3.0.tar.gz \
@@ -138,9 +140,7 @@ kolla_build_blocks:
     # TODO(dszumski): When the following are merged, we can create a new
     # release, bump the release version in Kolla and remove this footer.
     # https://review.opendev.org/#/c/519630/
-    # https://review.opendev.org/#/c/656780/
-    # https://review.opendev.org/#/c/656783/
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/monasca-notification@stackhpc/1.14.1.1
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/monasca-notification@stackhpc/1.17.0.1
 
 # Dict mapping image customization variable names to their values.
 # Each variable takes the form:
@@ -261,6 +261,9 @@ kolla_enable_barbican: True
 #kolla_enable_ceph_mds:
 #kolla_enable_ceph_nfs:
 #kolla_enable_ceph_rgw:
+# The chrony container is disabled by default because we enable an NTP daemon
+# on the host. Setting this to true will disable NTP on the host.
+#kolla_enable_chrony:
 #kolla_enable_cinder:
 #kolla_enable_cinder_backend_hnas_iscsi:
 #kolla_enable_cinder_backend_hnas_nfs:
@@ -288,6 +291,7 @@ kolla_enable_ironic_ipxe: True
 #kolla_enable_iscsid:
 #kolla_enable_kafka:
 #kolla_enable_karbor:
+#kolla_enable_keystone:
 #kolla_enable_kibana:
 #kolla_enable_kuryr:
 #kolla_enable_magnum:
@@ -321,6 +325,7 @@ kolla_enable_nova_serialconsole_proxy: true
 #kolla_enable_octavia:
 #kolla_enable_osprofiler:
 #kolla_enable_panko:
+#kolla_enable_prometheus:
 #kolla_enable_qdrouterd:
 #kolla_enable_rally:
 #kolla_enable_sahara:
