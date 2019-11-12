@@ -104,10 +104,10 @@ kolla_build_blocks:
     RUN pip install stackhpc-inspector-plugins==1.1.1
   magnum_api_footer: |
     # This branch fixes k8s FailedNodeAllocatableEnforcement warning
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/8.1.0.1
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/8.2.0.1
   magnum_conductor_footer: |
     # This branch fixes k8s FailedNodeAllocatableEnforcement warning
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/8.1.0.1
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/8.2.0.1
   sahara_api_footer: |
     # Bring in hack to the vanilla plugin
     RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/7.0.2.1
