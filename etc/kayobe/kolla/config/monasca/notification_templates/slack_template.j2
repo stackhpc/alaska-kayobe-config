@@ -1,1 +1,1 @@
-{% set url = "http://" + ilab_vip_address + ":3000/plugins/monasca-app/page/alarms" %}{% raw %}{{ alarm_name }} - State: {{ state }}.{% endraw %} {{ url }}
+{% raw %}{% set url = "http://{% endraw %}{{ ilab_vip_address }}{% raw %}:3000/plugins/monasca-app/page/alarms" %}{{ alarm_name }} - State: {{ state }}.{% if metrics[0].dimensions.hostname is defined %}{% set hosts = metrics|map(attribute='dimensions.hostname')|unique|list %} Hosts: {{ hosts|join(', ') }} {{ url }}?dimensions=hostname:{{ hosts|join('|') }} {% else %} {{ url }}{% endif %}{% endraw %}
