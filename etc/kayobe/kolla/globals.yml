@@ -57,7 +57,7 @@ mariadb_tag: 8.0.1.1-1
 memcached_tag: 8.0.1.1-1
 monasca_tag: 8.0.1.1-1
 monasca_api_tag: 8.0.1.1-1
-monasca_grafana_tag: 8.0.1.1-1
+monasca_grafana_tag: 8.0.1.3-1
 monasca_log_api_tag: 8.0.1.1-1
 monasca_notification_tag: 8.0.1.1-1
 monasca_persister_tag: 8.0.1.2-1
