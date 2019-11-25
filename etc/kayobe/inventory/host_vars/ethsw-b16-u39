@@ -32,15 +32,81 @@ switch_interface_config:
   Gi1/0/2:
     description: gpu-b16-u2-idrac
     config: "{{ switch_interface_config_bmc }}"
-  Gi1/0/19:
-    description: sv-b16-u19-idrac
+  Gi1/0/3:
+    description: sv-b16-u3-idrac
     config: "{{ switch_interface_config_bmc }}"
-  Gi1/0/23:
-    description: sv-b16-u23-idrac
+  Gi1/0/4:
+    description: sv-b16-u4-idrac
     config: "{{ switch_interface_config_bmc }}"
-  Gi1/0/26:
-    description: sv-b16-u23
+  Gi1/0/5:
+    description: sv-b16-u5-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/6:
+    description: sv-b16-u6-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/7:
+    description: sv-b16-u7-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/8:
+    description: sv-b16-u8-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/9:
+    description: sv-b16-u9-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/10:
+    description: sv-b16-u10-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/11:
+    description: sv-b16-u11-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/12:
+    description: sv-b16-u12-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/13:
+    description: sv-b16-u13-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/14:
+    description: sv-b16-u14-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/15:
+    description: sv-b16-u15-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/16:
+    description: sv-b16-u16-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/17:
+    description: sv-b16-u17-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/18:
+    description: sv-b16-u18-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/20:
+    description: sv-b16-u20-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/21:
+    description: sv-b16-u21-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/22:
+    description: sv-b16-u22-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/24:
+    description: sv-b16-u21
     config: "{{ switch_interface_config_controller }}"
+  Gi1/0/25:
+    description: sv-b16-u22
+    config: "{{ switch_interface_config_controller }}"
+  Gi1/0/27:
+    description: sv-b16-u25-26-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/28:
+    description: sv-b16-u27-28-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/29:
+    description: sv-b16-u29-30-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/30:
+    description: sv-b16-u31-32-idrac
+    config: "{{ switch_interface_config_bmc }}"
   Gi1/0/32:
     description: ethsw-b16-u40-41-mgt
     config: "{{ switch_interface_config_switch_mgmt }}"
@@ -50,6 +116,9 @@ switch_interface_config:
   Gi1/0/34:
     description: ibsw-b16-u35-mgt
     config: "{{ switch_interface_config_switch_mgmt }}"
+  Gi1/0/35:
+    description: sv-b16-u33-34-idrac
+    config: "{{ switch_interface_config_bmc }}"
   # Trunk link to other management network switch (Te1/0/1).
   Te1/0/2:
     description: ethsw-b17-u39-trunk

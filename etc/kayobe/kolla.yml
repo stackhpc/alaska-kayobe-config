@@ -104,10 +104,10 @@ kolla_build_blocks:
     RUN pip install stackhpc-inspector-plugins==1.1.1
   magnum_api_footer: |
     # This branch fixes k8s FailedNodeAllocatableEnforcement warning
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/8.1.0.1
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/8.2.0.1
   magnum_conductor_footer: |
     # This branch fixes k8s FailedNodeAllocatableEnforcement warning
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/8.1.0.1
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/8.2.0.1
   sahara_api_footer: |
     # Bring in hack to the vanilla plugin
     RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/7.0.2.1
@@ -123,7 +123,7 @@ kolla_build_blocks:
   monasca_persister_footer: |
     # NOTE(brtknr): Implement separate db per tenancy (stein backport):
     # https://review.opendev.org/#/c/674484/
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/monasca-persister.git@stackhpc/1.14.0.2
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/monasca-persister.git@stein-retention-fix
   monasca_grafana_footer: |
     # Install plugin for Gantt charts
     RUN grafana-cli plugins install natel-discrete-panel
@@ -150,10 +150,6 @@ kolla_build_blocks:
 # remove. The value should be a list.
 #kolla_build_customizations:
 kolla_build_customizations:
-  # Required for Keystone federation via EGI Check-in, and any other IdPs
-  # that support the OpenID Connect protocol
-  keystone_base_packages_append:
-    - 'mod_auth_openidc'
   influxdb_packages_override:
     - 'influxdb-1.7.6'
   ironic_inspector_packages_append:
@@ -200,19 +196,6 @@ kolla_overcloud_inventory_custom_components: "{{ lookup('template', kayobe_confi
 # * vars: A dict mapping variable names to values for hosts in this
 #         kolla-ansible group.
 #kolla_overcloud_inventory_top_level_group_map:
-kolla_overcloud_inventory_top_level_group_map:
-  control:
-    groups:
-      - controllers
-  network:
-    groups:
-      - network
-  compute:
-    groups:
-      - compute
-  monitoring:
-    groups:
-      - controllers
 
 # List of names of top level kolla-ansible groups. Any of these groups which
 # have no hosts mapped to them will be provided with an empty group definition.

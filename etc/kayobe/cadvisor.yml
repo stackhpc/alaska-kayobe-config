@@ -1,10 +1,9 @@
 ---
 ###############################################################################
-# OpenSM Infiniband subnet manager configuration.
+# cAdvisor configuration.
 
-# Whether OpenSM is enabled.
-#opensm_enabled:
-opensm_enabled: True
+# Whether cAdvisor is enabled.
+#cadvisor_enabled:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

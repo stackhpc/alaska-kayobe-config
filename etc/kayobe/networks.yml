@@ -83,15 +83,15 @@ inspection_net_name: 'alaska_prv'
 # iLab network IP information.
 ilab_cidr: 10.60.0.0/16
 # Pool for use by kayobe.
-ilab_allocation_pool_start: 10.60.253.129
-ilab_allocation_pool_end: 10.60.253.134
+ilab_allocation_pool_start: 10.60.253.2
+ilab_allocation_pool_end: 10.60.253.9
 # Pool for use by neutron.
-ilab_neutron_allocation_pool_start: 10.60.253.135
-ilab_neutron_allocation_pool_end: 10.60.253.191
+ilab_neutron_allocation_pool_start: 10.60.253.10
+ilab_neutron_allocation_pool_end: 10.60.253.127
 ilab_gateway: 10.60.255.1
 ilab_vlan: 60
 # VIP address for external API endpoints.
-ilab_vip_address: 10.60.253.128
+ilab_vip_address: 10.60.253.1
 ilab_mtu: 1500
 ilab_physical_network: "{{ alaska_cp_physical_network }}"
 ilab_routes:
@@ -102,15 +102,15 @@ ilab_routes:
 # Power and management network IP information.
 alaska_mgmt_cidr: 10.45.0.0/16
 # Pool for use by kayobe.
-alaska_mgmt_allocation_pool_start: 10.45.253.103
-alaska_mgmt_allocation_pool_end: 10.45.253.103
+alaska_mgmt_allocation_pool_start: 10.45.253.101
+alaska_mgmt_allocation_pool_end: 10.45.253.101
 alaska_mgmt_vlan: 45
 
 # Control plane provisioning network IP information.
 alaska_ctl_cidr: 10.41.0.0/16
 # Pool for use by kayobe.
-alaska_ctl_allocation_pool_start: 10.41.253.103
-alaska_ctl_allocation_pool_end: 10.41.253.103
+alaska_ctl_allocation_pool_start: 10.41.253.101
+alaska_ctl_allocation_pool_end: 10.41.253.101
 # Pool for use by bifrost's dnsmasq service during hardware inspection.
 alaska_ctl_inspection_allocation_pool_start: 10.41.253.110
 alaska_ctl_inspection_allocation_pool_end: 10.41.253.120
@@ -127,7 +127,7 @@ alaska_prv_inspection_allocation_pool_end: 192.168.7.127
 # Pool for use by neutron during baremetal provisioning.
 alaska_prv_neutron_allocation_pool_start: 192.168.7.128
 alaska_prv_neutron_allocation_pool_end: 192.168.7.254
-alaska_prv_vlan: 8
+alaska_prv_vlan: 7
 # VIP address for internal API endpoints.
 alaska_prv_vip_address: 192.168.7.1
 alaska_prv_mtu: 1500

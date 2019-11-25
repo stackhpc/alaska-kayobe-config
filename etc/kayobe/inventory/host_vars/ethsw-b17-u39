@@ -26,8 +26,35 @@ switch_config: "{{ switch_config_all }}"
 # dicts. Each dict contains a description item and a 'config' item which should
 # contain a list of per-interface configuration.
 switch_interface_config:
-  Gi1/0/10:
-    description: sv-b17-u36-idrac
+  Gi1/0/1:
+    description: sv-b17-u27-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/2:
+    description: sv-b17-u28-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/3:
+    description: sv-b17-u29-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/4:
+    description: sv-b17-u30-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/5:
+    description: sv-b17-u31-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/6:
+    description: sv-b17-u32-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/7:
+    description: sv-b17-u33-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/8:
+    description: sv-b17-u34-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/9:
+    description: sv-b17-u35-idrac
+    config: "{{ switch_interface_config_bmc }}"
+  Gi1/0/11:
+    description: sv-b17-u37-idrac
     config: "{{ switch_interface_config_bmc }}"
   Gi1/0/12:
     description: ethsw-b17-u42-mgt
