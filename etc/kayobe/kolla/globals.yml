@@ -52,7 +52,7 @@ kibana_tag: 8.0.1.1-1
 kolla_toolbox_tag: 8.0.1.1-1
 logstash_tag: 8.0.1.1-1
 magnum_tag: 8.0.1.2-1
-manila_tag: 8.0.1.1-1
+manila_tag: 7.0.4.1-1
 mariadb_tag: 8.0.1.1-1
 memcached_tag: 8.0.1.1-1
 monasca_tag: 8.0.1.1-1
