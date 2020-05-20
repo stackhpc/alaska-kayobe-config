@@ -15,7 +15,7 @@ kolla_source_url: https://github.com/stackhpc/kolla.git
 
 # Version (branch, tag, etc.) of Kolla source code repository if type is
 # 'source'. Default is {{ openstack_branch }}.
-kolla_source_version: stackhpc/8.0.1.3
+kolla_source_version: stackhpc/8.0.2.1
 
 # Path to virtualenv in which to install kolla.
 #kolla_venv:
@@ -37,7 +37,7 @@ kolla_ansible_source_url: https://github.com/stackhpc/kolla-ansible.git
 
 # Version (branch, tag, etc.) of Kolla Ansible source code repository if type
 # is 'source'. Default is {{ openstack_branch }}.
-kolla_ansible_source_version: stackhpc/8.0.1.2
+kolla_ansible_source_version: stackhpc/8.1.0.1
 
 # Path to virtualenv in which to install kolla-ansible.
 #kolla_ansible_venv:
@@ -74,7 +74,7 @@ kolla_docker_namespace: stackhpc
 
 # Kolla OpenStack release version. This should be a Docker image tag.
 # Default is {{ openstack_release }}.
-kolla_openstack_release: 8.0.1.3-1
+kolla_openstack_release: 8.0.2.1-1
 
 # Dict mapping names of sources to their definitions for
 # kolla_install_type=source. See kolla.common.config for details.
@@ -96,18 +96,16 @@ kolla_build_blocks:
     # There is no RDO RPM for this ML2 driver and Kolla's plugin mechanism only
     # supports source builds. Install a locally modified version with a fix for
     # Dell switches until it is released.
-    RUN pip install git+https://github.com/stackhpc/networking-generic-switch@stackhpc/1.3.1.1
+    RUN pip install git+https://github.com/stackhpc/networking-generic-switch@stackhpc/1.3.1.2
     # Install networking-mlnx for InfiniBand support.
-    RUN pip install git+https://opendev.org/openstack/networking-mlnx@14.0.1
+    RUN pip install git+https://opendev.org/x/networking-mlnx@14.0.1
   ironic_inspector_footer: |
     # Install our custom inspector plugins.
     RUN pip install stackhpc-inspector-plugins==1.1.1
   magnum_api_footer: |
-    # This branch fixes k8s FailedNodeAllocatableEnforcement warning
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/8.1.0.1
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/8.2.0.5
   magnum_conductor_footer: |
-    # This branch fixes k8s FailedNodeAllocatableEnforcement warning
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/8.1.0.1
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/8.2.0.5
   sahara_api_footer: |
     # Bring in hack to the vanilla plugin
     RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/7.0.2.1
@@ -123,7 +121,7 @@ kolla_build_blocks:
   monasca_persister_footer: |
     # NOTE(brtknr): Implement separate db per tenancy (stein backport):
     # https://review.opendev.org/#/c/674484/
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/monasca-persister.git@stackhpc/1.14.0.2
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/monasca-persister.git@stackhpc/1.14.0.3
   monasca_grafana_footer: |
     # Install plugin for Gantt charts
     RUN grafana-cli plugins install natel-discrete-panel
