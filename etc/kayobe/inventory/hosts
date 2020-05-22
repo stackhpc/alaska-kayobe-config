@@ -33,7 +33,6 @@ sv-b17-u30 ipmi_address=10.45.253.36
 sv-b17-u31 ipmi_address=10.45.253.35
 sv-b17-u32 ipmi_address=10.45.253.34
 sv-b17-u33 ipmi_address=10.45.253.33
-sv-b17-u34 ipmi_address=10.45.253.32
 sv-b17-u35 ipmi_address=10.45.253.31
 # sv-b17-u36 is in use by the alt-1 partition.
 #sv-b17-u36 ipmi_address=10.45.253.30
@@ -55,7 +54,6 @@ sv-b16-u13 ipmi_address=10.45.253.16
 sv-b16-u14 ipmi_address=10.45.253.15
 sv-b16-u15 ipmi_address=10.45.253.14
 sv-b16-u16 ipmi_address=10.45.253.13
-sv-b16-u17 ipmi_address=10.45.253.12
 sv-b16-u18 ipmi_address=10.45.253.11
 # sv-b16-u19 is in use by the alt-1 partition.
 #sv-b16-u19 ipmi_address=10.45.253.10
