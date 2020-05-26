@@ -5,7 +5,7 @@
 # User with which to access the computes via SSH during bootstrap, in order
 # to setup the Kayobe user account.
 #compute_bootstrap_user:
-compute_bootstrap_user: root
+compute_bootstrap_user: centos
 
 ###############################################################################
 # Network interface attachments.
