@@ -109,6 +109,11 @@ switch_interface_config:
     description: provisioning
     config:
       - "no shutdown"
+  vlan 41:
+    description: overcloud provisioning
+    config:
+      - "no shutdown"
+      - "untagged Te 1/2/3"
   # This switch does routing between VLAN 4 and VLAN 60
   vlan 60:
     description: ilab
