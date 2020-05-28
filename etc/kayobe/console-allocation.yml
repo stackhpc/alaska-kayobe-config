@@ -8,7 +8,6 @@ serial_console_allocations:
   sv-b16-u14: 30014
   sv-b16-u15: 30015
   sv-b16-u16: 30016
-  sv-b16-u17: 30017
   sv-b16-u18: 30023
   sv-b16-u20: 30001
   sv-b16-u25-26: 30024
@@ -30,6 +29,5 @@ serial_console_allocations:
   sv-b17-u31: 30031
   sv-b17-u32: 30030
   sv-b17-u33: 30029
-  sv-b17-u34: 30028
   sv-b17-u35: 30027
   sv-b17-u37: 30026

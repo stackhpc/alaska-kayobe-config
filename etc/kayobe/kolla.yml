@@ -296,7 +296,7 @@ kolla_enable_murano: false
 #kolla_enable_neutron_fwaas:
 #kolla_enable_neutron_lbaas:
 kolla_enable_neutron_lbaas: true
-#kolla_enable_neutron_provider_networks:
+kolla_enable_neutron_provider_networks: true
 #kolla_enable_neutron_qos:
 #kolla_enable_neutron_segments:
 #kolla_enable_neutron_sriov:
