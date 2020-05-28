@@ -38,6 +38,7 @@ ipa_build_dib_elements_extra:
   - "stackhpc-ipa-hardware-managers"
   - "devuser"
   - "disable-selinux"
+  - "stable-interface-names"
 
 # List of Diskimage Builder (DIB) elements to use when building IPA images.
 #ipa_build_dib_elements:
@@ -136,7 +137,14 @@ ipa_collectors_extra:
 #ipa_kernel_options_default:
 
 # List of additional kernel parameters for Ironic python agent.
-#ipa_kernel_options_extra:
+ipa_kernel_options_extra:
+  # If biosdevname is installed (it is by default), on DELL systems this
+  # will be used for consistent network interface naming. This results in
+  # interface names such as em1 which do no match the configured introspection
+  # rules.
+  - biosdevname=0
+  # With the default timeout of 30s we often miss LLDP frames.
+  - ipa-lldp-timeout=120
 
 # List of kernel parameters for Ironic python agent.
 #ipa_kernel_options:
