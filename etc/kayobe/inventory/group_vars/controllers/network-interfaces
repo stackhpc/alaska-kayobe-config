@@ -14,6 +14,9 @@ alaska_mgmt_interface: "eno3.{{ alaska_mgmt_vlan }}"
 # Provisioning network interface.
 alaska_prv_interface: "{{ alaska_cp_interface }}.{{ alaska_prv_vlan }}"
 
+# Provisioning network interface.
+alaska_octavia_interface: "{{ alaska_cp_interface }}.{{ alaska_octavia_vlan }}"
+
 # Control and provisioning network tagged interface.
 alaska_cp_interface: breno1
 

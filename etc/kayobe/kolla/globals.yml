@@ -65,6 +65,7 @@ monasca_persister_tag: 8.0.2.1-1
 monasca_thresh_tag: 8.0.2.1-1
 neutron_tag: 8.0.2.1-1
 nova_tag: 8.0.2.1-1
+octavia_tag: 8.0.2.1-1
 openvswitch_tag: 8.0.2.1-1
 placement_tag: 8.0.2.1-1
 rabbitmq_tag: 8.0.2.1-1
