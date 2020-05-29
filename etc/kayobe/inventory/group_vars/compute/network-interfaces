@@ -3,31 +3,21 @@
 # Network interface definitions for the compute group.
 
 # iLab external network interface.
-ilab_interface: "{{ alaska_cp_interface }}.{{ ilab_vlan }}"
+ilab_interface: brem1
 
-# Control plane provisioning network interface.
-alaska_ctl_interface: eno3
-
-# Power and management network interface.
-alaska_mgmt_interface: "eno3.{{ alaska_mgmt_vlan }}"
+# ilab tagged bridge ports.
+ilab_bridge_ports:
+  - em1
 
 # Provisioning network interface.
-alaska_prv_interface: "{{ alaska_cp_interface }}.{{ alaska_prv_vlan }}"
-
-# Control and provisioning network tagged interface.
-alaska_cp_interface: breno1
-
-# Control and provisioning network tagged bridge ports.
-alaska_cp_bridge_ports:
-  - eno1
+alaska_prv_interface: "{{ ilab_interface }}.{{ alaska_prv_vlan }}"
 
 # Bulk data network interface.
-# brenp3s0f1 results in veth pair names that are too long, so using brhte here.
 alaska_bdn_interface: brhte
 
 # Bulk data network bridge ports.
 alaska_bdn_bridge_ports:
-  - enp3s0f1
+  - p3p2
 
 # Overcloud provisioning network IP information.
 # provision_oc_net_interface:
