@@ -36,6 +36,9 @@ ipa_build_dib_elements_extra:
   # Add StackHPC's custom IPA hardware managers. Currently this includes:
   # * BIOS version verification
   - "stackhpc-ipa-hardware-managers"
+  - "devuser"
+  - "disable-selinux"
+  - "stable-interface-names"
 
 # List of Diskimage Builder (DIB) elements to use when building IPA images.
 #ipa_build_dib_elements:
@@ -51,7 +54,12 @@ ipa_build_dib_env_extra:
   # uninstall a distuils installed package. Previous versions would remove the
   # metadata only -  leaving the code intact, see: https://bugs.launchpad.net/diskimage-builder/+bug/1768135
   DIB_INSTALLTYPE_pip_and_virtualenv: package
-
+  # The latest release of hardware is py3 only and uses ipaddress. Since we are
+  # using Py2 in Train we need to pin this.
+  DIB_IPA_HARDWARE_VERSION: "0.23.0"
+  DIB_DEV_USER_PASSWORD: "{{ secrets_overcloud_devuser_password }}"
+  DIB_DEV_USER_PWDLESS_SUDO: "yes"
+  DIB_DEV_USER_SHELL: "/usr/bin/bash"
 
 # Dictionary of environment variables to provide to Diskimage Builder (DIB)
 # during IPA image build.
@@ -129,7 +137,14 @@ ipa_collectors_extra:
 #ipa_kernel_options_default:
 
 # List of additional kernel parameters for Ironic python agent.
-#ipa_kernel_options_extra:
+ipa_kernel_options_extra:
+  # If biosdevname is installed (it is by default), on DELL systems this
+  # will be used for consistent network interface naming. This results in
+  # interface names such as em1 which do no match the configured introspection
+  # rules.
+  - biosdevname=0
+  # With the default timeout of 30s we often miss LLDP frames.
+  - ipa-lldp-timeout=120
 
 # List of kernel parameters for Ironic python agent.
 #ipa_kernel_options:
