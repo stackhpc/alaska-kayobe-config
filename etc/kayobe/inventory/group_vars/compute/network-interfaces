@@ -2,15 +2,18 @@
 ###############################################################################
 # Network interface definitions for the compute group.
 
-# iLab external network interface.
-ilab_interface: brem1
+# Bridge for the 10G physical network
+alaska_10G_interface: brem1
 
-# ilab tagged bridge ports.
-ilab_bridge_ports:
+# Bridge port for the 10G physical network
+alaska_10G_bridge_ports:
   - em1
 
+# Ilab tagged interface
+ilab_interface: "{{ alaska_10G_interface }}.{{ ilab_vlan }}"
+
 # Provisioning network interface.
-alaska_prv_interface: "{{ ilab_interface }}.{{ alaska_prv_vlan }}"
+alaska_prv_interface: "{{ alaska_10G_interface }}.{{ alaska_prv_vlan }}"
 
 # Bulk data network interface.
 alaska_bdn_interface: brhte

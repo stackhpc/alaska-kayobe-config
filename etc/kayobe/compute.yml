@@ -17,7 +17,8 @@ compute_bootstrap_user: centos
 #compute_default_network_interfaces:
 
 # List of extra networks to which compute nodes are attached.
-#compute_extra_network_interfaces:
+compute_extra_network_interfaces:
+  - alaska_10G
 
 ###############################################################################
 # Compute node BIOS configuration.
