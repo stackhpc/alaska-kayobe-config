@@ -294,8 +294,8 @@ kolla_enable_ironic_ipxe: True
 #kolla_enable_kuryr:
 #kolla_enable_magnum:
 kolla_enable_magnum: True
-kolla_enable_manila: true
-kolla_enable_manila_backend_cephfs_native: true
+#kolla_enable_manila:
+#kolla_enable_manila_backend_cephfs_native:
 #kolla_enable_manila_backend_generic:
 #kolla_enable_manila_backend_hnas:
 #kolla_enable_manila_backend_cephfs_native:
