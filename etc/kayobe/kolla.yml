@@ -206,7 +206,7 @@ kolla_overcloud_inventory_top_level_group_map:
       - network
   compute:
     groups:
-      - compute
+      - controllers
   monitoring:
     groups:
       - controllers
@@ -313,8 +313,7 @@ kolla_enable_murano: false
 #kolla_enable_neutron_dvr:
 #kolla_enable_neutron_fwaas:
 #kolla_enable_neutron_lbaas:
-kolla_enable_neutron_lbaas: true
-#kolla_enable_neutron_provider_networks:
+kolla_enable_neutron_provider_networks: true
 #kolla_enable_neutron_qos:
 #kolla_enable_neutron_segments:
 #kolla_enable_neutron_sriov:
@@ -322,6 +321,7 @@ kolla_enable_neutron_lbaas: true
 #kolla_enable_nova_serialconsole_proxy:
 kolla_enable_nova_serialconsole_proxy: true
 #kolla_enable_octavia:
+kolla_enable_octavia: true
 #kolla_enable_osprofiler:
 #kolla_enable_panko:
 #kolla_enable_prometheus:
