@@ -15,7 +15,7 @@ kolla_source_url: https://github.com/stackhpc/kolla.git
 
 # Version (branch, tag, etc.) of Kolla source code repository if type is
 # 'source'. Default is {{ openstack_branch }}.
-kolla_source_version: stackhpc/9.0.1.2
+kolla_source_version: stackhpc/9.1.0.1
 
 # Path to virtualenv in which to install kolla.
 #kolla_venv:
@@ -84,7 +84,7 @@ kolla_docker_namespace: stackhpc
 
 # Kolla OpenStack release version. This should be a Docker image tag.
 # Default is {{ openstack_release }}.
-kolla_openstack_release: 9.0.1.2-1
+kolla_openstack_release: 9.1.0.1-1
 
 # Dict mapping names of sources to their definitions for
 # kolla_install_type=source. See kolla.common.config for details.
@@ -106,25 +106,25 @@ kolla_build_blocks:
     # There is no RDO RPM for this ML2 driver and Kolla's plugin mechanism only
     # supports source builds. Install a locally modified version with a fix for
     # Dell switches until it is released.
-    RUN pip install git+https://github.com/stackhpc/networking-generic-switch@stackhpc/2.1.0.1
+    RUN pip install git+https://github.com/stackhpc/networking-generic-switch@stackhpc/2.1.0.1 -c https://releases.openstack.org/constraints/upper/train
     # Install networking-mlnx for InfiniBand support.
-    RUN pip install git+https://opendev.org/x/networking-mlnx@15.0.2
+    RUN pip install git+https://opendev.org/x/networking-mlnx@15.0.2 -c https://releases.openstack.org/constraints/upper/train
   ironic_inspector_footer: |
     # Install our custom inspector plugins.
-    RUN pip install stackhpc-inspector-plugins==1.1.2
+    RUN pip install git+https://github.com/stackhpc/stackhpc-inspector-plugins@1.1.2 -c https://releases.openstack.org/constraints/upper/train
   sahara_api_footer: |
     # Bring in hack to the vanilla plugin
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/7.0.2.1
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/7.0.2.1 -c https://releases.openstack.org/constraints/upper/train
   sahara_engine_footer: |
     # Bring in hack to the vanilla plugin
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/7.0.2.1
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/7.0.2.1 -c https://releases.openstack.org/constraints/upper/train
   magnum_api_footer: |
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/9.3.0.1
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/9.3.0.1 -c https://releases.openstack.org/constraints/upper/train
   magnum_conductor_footer: |
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/9.3.0.1
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/9.3.0.1 -c https://releases.openstack.org/constraints/upper/train
   monasca_api_footer: |
     # NOTE(wszumski): Support batching metrics when writing to Kafka, see: https://review.opendev.org/#/c/667931/
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/monasca-api.git@stackhpc/3.1.0.1
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/monasca-api.git@stackhpc/3.1.0.1 -c https://releases.openstack.org/constraints/upper/train
   monasca_persister_footer: |
     # NOTE: We are carrying the following patches:
     #   - Support default_retention_hours for influxdb
@@ -133,7 +133,7 @@ kolla_build_blocks:
     #     https://review.opendev.org/#/c/712937/
     #   - Move data_points to repository class
     #     https://review.opendev.org/#/c/712952/
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/monasca-persister.git@stackhpc/1.14.0.3
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/monasca-persister.git@stackhpc/1.14.0.3 -c https://releases.openstack.org/constraints/upper/train
   monasca_grafana_footer: |
     # Install plugin for Gantt charts
     RUN grafana-cli plugins install natel-discrete-panel
