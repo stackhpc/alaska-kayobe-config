@@ -75,3 +75,6 @@ rabbitmq_tag: 9.0.1.2-1
 sahara_tag: 5.0.3.3-1
 storm_tag: 9.0.1.2-1
 zookeeper_tag: 9.0.1.2-1
+tgtd_tag: 9.0.1.2-1
+
+enable_tgtd: true
