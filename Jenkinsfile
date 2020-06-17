@@ -4,7 +4,7 @@ pipeline {
     parameters {
         credentials credentialType: 'com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey', defaultValue: 'kayobe-ssh-private-key', description: 'Kayobe SSH Key', name: 'KAYOBE_SSH_CREDS', required: true
         credentials credentialType: 'org.jenkinsci.plugins.plaincredentials.impl.StringCredentialsImpl', defaultValue: 'kayobe-vault-password', description: 'Kayobe Ansible Vault Password', name: 'KAYOBE_VAULT_PASSWORD', required: true
-        string defaultValue: 'http://localhost:4000/', description: 'Docker Registry to push images to', name: 'DOCKER_REGISTRY', trim: true
+        string defaultValue: 'http://localhost:5000/', description: 'Docker Registry to push images to', name: 'DOCKER_REGISTRY', trim: true
         string description: 'Command to run in docker container', name: 'COMMAND', trim: false
         credentials credentialType: 'org.jenkinsci.plugins.plaincredentials.impl.FileCredentialsImpl', description: 'Kayobe SSH Config file', name: 'KAYOBE_SSH_CONFIG', required: false
     }
