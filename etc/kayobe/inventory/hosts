@@ -6,7 +6,7 @@ localhost ansible_connection=local
 [seed-hypervisor]
 # add a seed hypervisor node here if required. this host will run a seed node
 # virtual machine.
-localhost ansible_connection=local
+alaska-seed-hypervisor ansible_connection=local
 
 [seed]
 # This host will provide the Bifrost undercloud.

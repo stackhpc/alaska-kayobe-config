@@ -2,13 +2,21 @@ alaska_ctl_ips:
   alaska-seed: 10.41.253.100
   sv-b16-u21: 10.41.253.101
   sv-b16-u22: 10.41.253.102
+  alaska-seed-hypervisor: 10.41.210.1
 alaska_mgmt_ips:
   alaska-seed: 10.45.253.100
   sv-b16-u21: 10.45.253.101
   sv-b16-u22: 10.45.253.103
+  alaska-seed-hypervisor: 10.45.210.1
 alaska_prv_ips:
   sv-b16-u21: 192.168.7.2
   sv-b16-u22: 192.168.7.3
+  openstack-hypervisor-2: 192.168.7.4
+  openstack-hypervisor-1: 192.168.7.5
+alaska_octavia_ips:
+  sv-b16-u21: 10.48.253.1
 ilab_ips:
   sv-b16-u21: 10.60.253.2
   sv-b16-u22: 10.60.253.3
+  openstack-hypervisor-2: 10.60.253.100
+  openstack-hypervisor-1: 10.60.253.109

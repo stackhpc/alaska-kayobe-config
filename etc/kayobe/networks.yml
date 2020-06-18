@@ -31,6 +31,9 @@ provision_wl_net_name: 'alaska_prv'
 #internal_net_name:
 internal_net_name: 'alaska_prv'
 
+# Name of the network for octavia
+octavia_net_name: 'alaska_octavia'
+
 # List of names of networks used to provide external network access via
 # Neutron.
 # Deprecated name: external_net_name
@@ -132,6 +135,14 @@ alaska_prv_vlan: 7
 alaska_prv_vip_address: 192.168.7.1
 alaska_prv_mtu: 1500
 alaska_prv_physical_network: "{{ alaska_cp_physical_network }}"
+
+# Octavia Load Balancer network IP information
+alaska_octavia_vlan: 48
+alaska_octavia_cidr: 10.48.0.0/16
+alaska_octavia_allocation_pool_start: 10.48.253.2
+alaska_octavia_allocation_pool_end: 10.48.253.254
+alaska_octavia_physical_network: "{{ alaska_cp_physical_network }}"
+alaska_octavia_mtu: 1500
 
 # Physical network name for the control & provisioning network.
 alaska_cp_physical_network: physnet1

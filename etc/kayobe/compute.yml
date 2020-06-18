@@ -5,6 +5,7 @@
 # User with which to access the computes via SSH during bootstrap, in order
 # to setup the Kayobe user account.
 #compute_bootstrap_user:
+compute_bootstrap_user: centos
 
 ###############################################################################
 # Network interface attachments.
@@ -16,7 +17,8 @@
 #compute_default_network_interfaces:
 
 # List of extra networks to which compute nodes are attached.
-#compute_extra_network_interfaces:
+compute_extra_network_interfaces:
+  - alaska_10G
 
 ###############################################################################
 # Compute node BIOS configuration.
@@ -28,6 +30,11 @@
 # Dict of default compute BIOS options. Format is same as that used by
 # stackhpc.drac role.
 #compute_bios_config_default:
+compute_bios_config_default:
+  # Use the performance-optimized system profile.
+  SysProfile: 'PerfOptimized'
+  # Disable HyperThreading.
+  LogicalProc: 'Disabled'
 
 # Dict of additional compute BIOS options. Format is same as that used by
 # stackhpc.drac role.
@@ -43,6 +50,16 @@
 # List of default compute RAID volumes. Format is same as that used by
 # stackhpc.drac role.
 #compute_raid_config_default:
+compute_raid_config_default:
+ - name: Root
+   raid_level: "1+0"
+   span_length: 2
+   span_depth: 2
+   pdisks:
+     - "Disk.Bay.0:Enclosure.Internal.0-1:RAID.Integrated.1-1"
+     - "Disk.Bay.1:Enclosure.Internal.0-1:RAID.Integrated.1-1"
+     - "Disk.Bay.2:Enclosure.Internal.0-1:RAID.Integrated.1-1"
+     - "Disk.Bay.3:Enclosure.Internal.0-1:RAID.Integrated.1-1"
 
 # List of additional compute RAID volumes. Format is same as that used by
 # stackhpc.drac role.
@@ -59,7 +76,7 @@
 
 # List of compute volume groups. See mrlesmithjr.manage-lvm role for
 # format.
-#compute_lvm_groups:
+compute_lvm_groups: []
 
 # Default list of compute volume groups. See mrlesmithjr.manage-lvm role for
 # format.

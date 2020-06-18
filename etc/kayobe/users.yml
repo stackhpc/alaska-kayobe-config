@@ -11,7 +11,8 @@ users_default:
   ssh_key:
   # Authorise all users' SSH keys for the stack user. This allows them to
   # operate kayobe.
-  - "{{ lookup('file', kayobe_config_path ~ '/ssh-keys/id_rsa_bharat.pub') }}"
+  - "{{ lookup('file', kayobe_config_path ~ '/ssh-keys/id_rsa_wendy.pub') }}"
+  - "{{ lookup('file', kayobe_config_path ~ '/ssh-keys/id_ed25519_bharat.pub') }}"
   - "{{ lookup('file', kayobe_config_path ~ '/ssh-keys/id_rsa_isaac.pub') }}"
 
 - username: kolla
@@ -20,15 +21,8 @@ users_default:
   ssh_key:
   # Authorise all users' SSH keys for the kolla user. This allows them to
   # operate kolla.
-  - "{{ lookup('file', kayobe_config_path ~ '/ssh-keys/id_rsa_bharat.pub') }}"
-  - "{{ lookup('file', kayobe_config_path ~ '/ssh-keys/id_rsa_isaac.pub') }}"
-
-- username: isaac
-  name: Isaac Prior
-  groups:
-    - wheel
-  append: True
-  ssh_key:
+  - "{{ lookup('file', kayobe_config_path ~ '/ssh-keys/id_rsa_wendy.pub') }}"
+  - "{{ lookup('file', kayobe_config_path ~ '/ssh-keys/id_ed25519_bharat.pub') }}"
   - "{{ lookup('file', kayobe_config_path ~ '/ssh-keys/id_rsa_isaac.pub') }}"
 
 ###############################################################################

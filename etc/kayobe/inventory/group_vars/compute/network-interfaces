@@ -2,6 +2,26 @@
 ###############################################################################
 # Network interface definitions for the compute group.
 
+# Bridge for the 10G physical network
+alaska_10G_interface: brem1
+
+# Bridge port for the 10G physical network
+alaska_10G_bridge_ports:
+  - em1
+
+# Ilab tagged interface
+ilab_interface: "{{ alaska_10G_interface }}.{{ ilab_vlan }}"
+
+# Provisioning network interface.
+alaska_prv_interface: "{{ alaska_10G_interface }}.{{ alaska_prv_vlan }}"
+
+# Bulk data network interface.
+alaska_bdn_interface: brhte
+
+# Bulk data network bridge ports.
+alaska_bdn_bridge_ports:
+  - p3p2
+
 # Overcloud provisioning network IP information.
 # provision_oc_net_interface:
 # provision_oc_net_bridge_ports:
