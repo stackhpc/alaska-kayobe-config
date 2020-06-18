@@ -1,15 +1,3 @@
-String imageName() {
-    def project = currentBuild.rawBuild.project
-
-    // for multibranch pipelines
-    if (project.parent instanceof WorkflowMultiBranchProject) {
-        return "${project.parent.displayName} (${project.displayName})"
-    } else {
-        // for all other projects
-        return project.displayName
-    }
-}
-
 pipeline {
     options { disableConcurrentBuilds() }
     agent { label 'docker' }
@@ -22,7 +10,7 @@ pipeline {
     }
     environment {
         REGISTRY = "${params.DOCKER_REGISTRY}"
-        KAYOBE_IMAGE = "${imageName()}:${env.GIT_COMMIT}"
+        KAYOBE_IMAGE = "kayobe-config:${env.GIT_COMMIT}"
     }
 
     stages {
