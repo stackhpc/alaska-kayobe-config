@@ -21,6 +21,7 @@ RUN chmod +x /bin/entrypoint.sh
 
 WORKDIR /stack
 USER stack
+ENV USER=stack
 
 ENV SRC_PATH=/stack/src
 ENV VENVS_PATH=/stack/venvs
