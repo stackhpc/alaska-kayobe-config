@@ -1,0 +1,10 @@
+---
+- name: configure sr-iov
+  # Note: this should be compute in production
+  hosts: controllers
+  tasks:
+    - include_role:
+        name: stackhpc.sriov
+  handlers:
+    - name: reboot
+      include_tasks: tasks/reboot.yml
