@@ -64,7 +64,7 @@ monasca_log_api_tag: 9.0.1.2-1
 monasca_notification_tag: 9.0.1.2-1
 monasca_persister_tag: 9.0.1.2-1
 monasca_thresh_tag: 9.0.1.2-1
-neutron_tag: 9.0.1.2-2
+neutron_tag: 9.1.0.1-1
 nova_tag: 9.0.1.2-1
 octavia_tag: 9.0.1.2-1
 openvswitch_tag: 9.0.1.2-1
@@ -78,3 +78,9 @@ zookeeper_tag: 9.0.1.2-1
 tgtd_tag: 9.0.1.2-1
 
 enable_tgtd: true
+
+# Physnet to device mappings for SR-IOV, used for the pci
+# passthrough whitelist and sriov-agent configs
+sriov_physnet_mappings:
+   eno1: physnet2
+   enp3s0f1: physnet3

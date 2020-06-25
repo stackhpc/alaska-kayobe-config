@@ -316,7 +316,7 @@ kolla_enable_murano: false
 kolla_enable_neutron_provider_networks: true
 #kolla_enable_neutron_qos:
 #kolla_enable_neutron_segments:
-#kolla_enable_neutron_sriov:
+kolla_enable_neutron_sriov: true
 #kolla_enable_neutron_vpnaas:
 #kolla_enable_nova_serialconsole_proxy:
 kolla_enable_nova_serialconsole_proxy: true
