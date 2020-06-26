@@ -1,7 +1,6 @@
 ---
 - name: configure sr-iov
-  # Note: this should be compute in production
-  hosts: controllers
+  hosts: compute
   tasks:
     - include_role:
         name: stackhpc.sriov
