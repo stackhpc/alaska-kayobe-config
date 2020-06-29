@@ -119,9 +119,11 @@ kolla_build_blocks:
     # Bring in hack to the vanilla plugin
     RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/7.0.2.1 -c https://releases.openstack.org/constraints/upper/train
   magnum_api_footer: |
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/9.3.0.1 -c https://releases.openstack.org/constraints/upper/train
+    # Tip of stable/ussuri with extra features backported from master
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/10.0.0.1 -c https://releases.openstack.org/constraints/upper/ussuri
   magnum_conductor_footer: |
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/9.3.0.1 -c https://releases.openstack.org/constraints/upper/train
+    # Tip of stable/ussuri with extra features backported from master
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/10.0.0.1 -c https://releases.openstack.org/constraints/upper/ussuri
   monasca_api_footer: |
     # NOTE(wszumski): Support batching metrics when writing to Kafka, see: https://review.opendev.org/#/c/667931/
     RUN pip install -U --no-deps git+https://github.com/stackhpc/monasca-api.git@stackhpc/3.1.0.1 -c https://releases.openstack.org/constraints/upper/train
