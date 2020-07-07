@@ -82,5 +82,6 @@ enable_tgtd: true
 # Physnet to device mappings for SR-IOV, used for the pci
 # passthrough whitelist and sriov-agent configs
 sriov_physnet_mappings:
-   eno1: physnet2
-   enp3s0f1: physnet3
+   eno1: physnet1
+   enp3s0f1: physnet2
+   ib0: physnet3

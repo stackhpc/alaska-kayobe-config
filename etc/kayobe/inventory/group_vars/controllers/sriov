@@ -2,8 +2,11 @@
 
 # Enable SR-IOV on these devices
 sriov_devices:
-  # Infiniband
+  # BDN
   - name: enp3s0f1
+  # LLN
+  - name: ib0
+  # control plane/ provisioning
   - name: eno1
     numvfs: 63
   - name: eno2
