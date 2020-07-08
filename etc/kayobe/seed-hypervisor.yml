@@ -50,6 +50,12 @@ seed_hypervisor_lvm_groups:
         filesystem: ext4
         mount: true
         mntp: /opt3
+      - lvname: docker
+        size: 100g
+        create: true
+        filesystem: ext4
+        mount: true
+        mntp: /var/lib/docker
 
 # Suggested list of seed hypervisor volume groups for libvirt. Not used by
 # default.
