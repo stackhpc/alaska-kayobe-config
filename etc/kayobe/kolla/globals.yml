@@ -33,6 +33,8 @@ monasca_grafana_admin_username: "grafana-admin"
 
 # Use Curator to manage log file retention
 enable_elasticsearch_curator: True
+elasticsearch_curator_soft_retention_period_days: 120
+elasticsearch_curator_hard_retention_period_days: 365
 
 # Opt into ELK 6 upgrade.
 # NOTE(dszumski): This can be removed in Ussuri.
