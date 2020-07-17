@@ -1,2 +1,6 @@
 ---
   - stackhpc.monasca_default_alarms
+  - src: https://github.com/stackhpc/ansible-role-grubcmdline
+    name: stackhpc.grubcmdline
+  - src: https://github.com/stackhpc/ansible-role-sriov
+    name: stackhpc.sriov

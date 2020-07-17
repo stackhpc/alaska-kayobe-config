@@ -1,0 +1,26 @@
+# https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/performance_tuning_guide/sect-red_hat_enterprise_linux-performance_tuning_guide-memory-configuring-huge-pages
+
+- name: Tune overcloud hosts
+  hosts: overcloud
+  gather_facts: false
+  tasks:
+    - name: Include hugepage role
+      import_role:
+        name: hugepages
+      when: hugepages_1G_pages is defined
+      tags: hugepages
+
+    - name: Set isolated cpus
+      import_role:
+        name: stackhpc.grubcmdline
+      vars:
+        kernel_cmdline:
+          - isolcpus={{ isolated_cpus }}
+        kernel_cmdline_remove:
+          - isolcpus
+      when: isolated_cpus is defined
+      tags: cpu-isolation
+  handlers:
+    - name: reboot
+      debug:
+        msg: "Please reboot {{ inventory_hostname }}"
