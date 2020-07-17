@@ -31,12 +31,21 @@ monasca_grafana_server_port: "3000"
 monasca_control_plane_project: "monasca"
 monasca_grafana_admin_username: "grafana-admin"
 
+# Use Curator to manage log file retention
+enable_elasticsearch_curator: True
+
+# Opt into ELK 6 upgrade.
+# NOTE(dszumski): This can be removed in Ussuri.
+monasca_logstash_use_v6: True
+elasticsearch_use_v6: True
+kibana_use_v6: True
+
 # Container image tags.
 # These should be allowed to change independently, as services are updated.
 
 barbican_tag: 9.0.1.2-1
 cron_tag: 9.0.1.2-1
-elasticsearch_tag: 9.0.1.2-1
+elasticsearch_tag: 9.1.1.0-0
 fluentd_tag: 9.0.1.2-1
 glance_tag: 9.0.1.2-1
 haproxy_tag: 9.0.1.2-1
@@ -48,9 +57,8 @@ iscsid_tag: 9.0.1.2-1
 kafka_tag: 9.0.1.2-1
 keepalived_tag: 9.0.1.2-1
 keystone_tag: 9.0.1.2-1
-kibana_tag: 9.0.1.2-1
+kibana_tag: 9.1.1.0-0
 kolla_toolbox_tag: 9.0.1.2-1
-logstash_tag: 9.0.1.2-1
 magnum_tag: 9.1.0.1-1
 manila_tag: 9.0.1.2-1
 mariadb_tag: 9.0.1.2-1
@@ -60,9 +68,10 @@ monasca_tag: 9.0.1.2-1
 monasca_api_tag: 9.0.1.2-1
 monasca_grafana_tag: 9.0.1.2-1
 monasca_log_api_tag: 9.0.1.2-1
+monasca_logstash_tag: 9.1.1.0-0
 monasca_notification_tag: 9.0.1.2-1
 monasca_persister_tag: 9.0.1.2-1
-monasca_thresh_tag: 9.0.1.2-1
+monasca_thresh_tag: 9.1.1.0-0
 neutron_tag: 9.0.1.2-2
 nova_tag: 9.0.1.2-1
 octavia_tag: 9.0.1.2-1
@@ -72,7 +81,7 @@ rabbitmq_tag: 9.0.1.2-1
 # Use the pike release of Sahara, since our changes have not been ported to
 # later releases.
 sahara_tag: 5.0.3.3-1
-storm_tag: 9.0.1.2-1
+storm_tag: 9.1.1.0-0
 zookeeper_tag: 9.0.1.2-1
 tgtd_tag: 9.0.1.2-1
 
