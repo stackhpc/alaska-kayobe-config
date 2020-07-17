@@ -85,3 +85,10 @@ sriov_physnet_mappings:
    eno1: physnet1
    enp3s0f1: physnet2
    ib0: physnet3
+
+# These are all on numa node 0. PCPU 0 is reserved for the hypervisor.
+# cat /sys/devices/system/node/node0/cpulist
+nova_cpu_dedicated_set: 2,4,6,8,10,12,14,16,18,20,22
+
+# PCPUs from node1. PCPU 1 is reserved for the hypervisor.
+nova_cpu_shared_set: 3,5,7,9,11,13,15,17,19,21,23
