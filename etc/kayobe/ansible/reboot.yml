@@ -1,0 +1,5 @@
+---
+- name: reboot hosts
+  hosts: "{{ hostlist | default('overcloud') }}"
+  tasks:
+    - include_tasks: tasks/reboot.yml

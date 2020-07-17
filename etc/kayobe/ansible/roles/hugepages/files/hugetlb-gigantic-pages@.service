@@ -1,0 +1,15 @@
+[Unit]
+Description=HugeTLB Gigantic Pages Reservation
+DefaultDependencies=no
+Before=dev-hugepages.mount
+ConditionPathExists=/sys/devices/system/node
+ConditionKernelCommandLine=hugepagesz=1G
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+Environment="SCRIPT_ARGS=%I"
+ExecStart=/usr/lib/systemd/hugetlb-reserve-pages.sh $SCRIPT_ARGS
+
+[Install]
+WantedBy=sysinit.target
