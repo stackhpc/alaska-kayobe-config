@@ -108,5 +108,5 @@ docker_custom_config: >-
 # Physnet to device mappings for SR-IOV, used for the pci
 # passthrough whitelist and sriov-agent configs
 sriov_physnet_mappings:
-   em1: physnet2
-   p3p2: physnet3
+   em1: physnet1
+   p3p2: physnet2
