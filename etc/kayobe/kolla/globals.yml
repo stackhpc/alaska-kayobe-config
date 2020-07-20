@@ -81,6 +81,7 @@ enable_tgtd: true
 # Workaround for docker storage driver being set globally: https://storyboard.openstack.org/#!/story/2007834
 # This is needed in production only.
 docker_storage_driver: '{% raw %}{{ "overlay2" if inventory_hostname in groups["compute"] else "devicemapper" }}{% endraw %}'
+docker_dm_device: "{{ docker_storage_volume_group | replace('-', '--') }}-{{ docker_storage_volume_thinpool | replace('-', '--') }}"
 docker_custom_config: >-
   {
   {%- if docker_registry_mirrors | length > 0 %}
@@ -98,7 +99,7 @@ docker_custom_config: >-
   {% endif %}
     "storage-opts": [
   {% raw %}{% if docker_storage_driver == 'devicemapper' %}
-      "dm.thinpooldev=/dev/mapper/{{ docker_storage_volume_group | replace('-', '--') }}-{{ docker_storage_volume_thinpool | replace('-', '--') }}",
+      "dm.thinpooldev=/dev/mapper/{{ docker_dm_device }}",
       "dm.use_deferred_removal=true",
       "dm.use_deferred_deletion=true"
   {% endif %}{% endraw %}
