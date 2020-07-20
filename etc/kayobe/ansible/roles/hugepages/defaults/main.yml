@@ -1,0 +1,7 @@
+---
+
+# Maps numa node to number of pages e.g:
+# hugepages_1G_counts:
+#   node0: 2
+#   node1: 3
+hugepages_1G_pages: {}

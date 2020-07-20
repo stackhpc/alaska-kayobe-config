@@ -1,0 +1,9 @@
+---
+
+hugepages_1G_pages:
+  node0: 120
+  node1: 120
+
+# PCPU 0,1 are reserved for the hypervisor.
+# cat /sys/devices/system/node/node0/cpulist
+isolated_cpus: 3-31

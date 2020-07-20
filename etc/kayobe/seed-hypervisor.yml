@@ -22,7 +22,15 @@
 # Seed hypervisor node software RAID configuration.
 
 # List of software RAID arrays. See mrlesmithjr.mdadm role for format.
-#seed_hypervisor_mdadm_arrays:
+seed_hypervisor_mdadm_arrays:
+  - name: 'md0'
+    devices:
+      - '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:0:4:0'
+      - '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:0:5:0'
+      - '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:0:6:0'
+      - '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:0:7:0'
+    level: '5'
+    state: 'present'
 
 ###############################################################################
 # Seed hypervisor node LVM configuration.
@@ -30,7 +38,24 @@
 # List of seed hypervisor volume groups. See mrlesmithjr.manage-lvm role for
 # format. Set to "{{ seed_hypervisor_lvm_groups_with_data }}" to create a
 # volume group for libvirt storage.
-#seed_hypervisor_lvm_groups:
+seed_hypervisor_lvm_groups:
+  - vgname: thebigone
+    disks:
+      - /dev/md0
+    create: true
+    lvnames:
+      - lvname: opt3
+        size: 372g
+        create: true
+        filesystem: ext4
+        mount: true
+        mntp: /opt3
+      - lvname: docker
+        size: 100g
+        create: true
+        filesystem: ext4
+        mount: true
+        mntp: /var/lib/docker
 
 # Suggested list of seed hypervisor volume groups for libvirt. Not used by
 # default.
