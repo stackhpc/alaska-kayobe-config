@@ -1,0 +1,12 @@
+---
+
+compute_raid_config_default:
+ - name: Root
+   raid_level: "1+0"
+   span_length: 2
+   span_depth: 2
+   pdisks:
+     - "Disk.Bay.0:Enclosure.Internal.0-1:RAID.Integrated.1-1"
+     - "Disk.Bay.1:Enclosure.Internal.0-1:RAID.Integrated.1-1"
+     - "Disk.Bay.2:Enclosure.Internal.0-1:RAID.Integrated.1-1"
+     - "Disk.Bay.3:Enclosure.Internal.0-1:RAID.Integrated.1-1"
