@@ -1,8 +1,9 @@
 ---
 
+# NOTE: from experiments with larger numbers 59 seems to be the max we can obtain
 hugepages_1G_pages:
-  node0: 120
-  node1: 120
+  node0: 59
+  node1: 59
 
 # PCPU 0,1 are reserved for the hypervisor.
 # cat /sys/devices/system/node/node0/cpulist
