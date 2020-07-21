@@ -1,9 +1,11 @@
 ---
 
-# NOTE: from experiments with larger numbers 59 seems to be the max we can obtain
+# NOTE: from experiments with larger numbers 59 seems to be the max we can obtain.
+# We could probably give over slightly more RAM to the virtual machines, but err
+# on the side of caution.
 hugepages_1G_pages:
-  node0: 59
-  node1: 59
+  node0: 50
+  node1: 50
 
 # PCPU 0,1 are reserved for the hypervisor.
 # cat /sys/devices/system/node/node0/cpulist
