@@ -4,7 +4,6 @@
 sriov_devices:
   # Infiniband
   - name: p3p2
-  - name: em1
-    numvfs: 63
-  - name: em2
-    numvfs: 63
+    numvfs: 8
+  - name: ib0
+    numvfs: 8

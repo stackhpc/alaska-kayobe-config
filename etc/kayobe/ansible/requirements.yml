@@ -4,3 +4,5 @@
     name: stackhpc.grubcmdline
   - src: https://github.com/stackhpc/ansible-role-sriov
     name: stackhpc.sriov
+  - src: https://github.com/stackhpc/ansible-role-ofed
+    name: stackhpc.ofed
