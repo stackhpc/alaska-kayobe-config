@@ -5,6 +5,7 @@
     kernel_cmdline:
       - default_hugepagesz=1G
       - hugepagesz=1G
+      - transparent_hugepage=never
     kernel_cmdline_remove:
       - hugepage
   include_role:
