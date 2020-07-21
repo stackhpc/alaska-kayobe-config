@@ -1,0 +1,8 @@
+---
+
+hugepages_1G_pages:
+  node0: 120
+
+# These are all on numa node 0. PCPU 0 is reserved for the hypervisor.
+# cat /sys/devices/system/node/node0/cpulist
+isolated_cpus: 2,4,6,8,10,12,14,16,18,20,22

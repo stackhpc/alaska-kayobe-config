@@ -13,6 +13,7 @@ users_default:
   # operate kayobe.
   - "{{ lookup('file', kayobe_config_path ~ '/ssh-keys/id_rsa_bharat.pub') }}"
   - "{{ lookup('file', kayobe_config_path ~ '/ssh-keys/id_rsa_isaac.pub') }}"
+  - "{{ lookup('file', kayobe_config_path ~ '/ssh-keys/id_rsa_bartosz.pub') }}"
 
 - username: kolla
   name: Kolla deployment user
@@ -22,6 +23,7 @@ users_default:
   # operate kolla.
   - "{{ lookup('file', kayobe_config_path ~ '/ssh-keys/id_rsa_bharat.pub') }}"
   - "{{ lookup('file', kayobe_config_path ~ '/ssh-keys/id_rsa_isaac.pub') }}"
+  - "{{ lookup('file', kayobe_config_path ~ '/ssh-keys/id_rsa_bartosz.pub') }}"
 
 - username: isaac
   name: Isaac Prior
