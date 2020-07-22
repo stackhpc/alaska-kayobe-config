@@ -6,6 +6,9 @@
 #opensm_enabled:
 opensm_enabled: True
 
+# Source: https://github.com/stackhpc/docker-opensm/blob/master/src/Dockerfile
+opensm_image_full: stackhpc/opensm:mlnx_ofed_linux_5.0-2.1.8.0-centos7.7
+
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes
