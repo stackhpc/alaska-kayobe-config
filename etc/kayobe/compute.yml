@@ -50,16 +50,6 @@ compute_bios_config_default:
 # List of default compute RAID volumes. Format is same as that used by
 # stackhpc.drac role.
 #compute_raid_config_default:
-compute_raid_config_default:
- - name: Root
-   raid_level: "1+0"
-   span_length: 2
-   span_depth: 2
-   pdisks:
-     - "Disk.Bay.0:Enclosure.Internal.0-1:RAID.Integrated.1-1"
-     - "Disk.Bay.1:Enclosure.Internal.0-1:RAID.Integrated.1-1"
-     - "Disk.Bay.2:Enclosure.Internal.0-1:RAID.Integrated.1-1"
-     - "Disk.Bay.3:Enclosure.Internal.0-1:RAID.Integrated.1-1"
 
 # List of additional compute RAID volumes. Format is same as that used by
 # stackhpc.drac role.

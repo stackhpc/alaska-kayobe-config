@@ -1,0 +1,9 @@
+---
+- name: configure sr-iov
+  hosts: compute
+  tasks:
+    - include_role:
+        name: stackhpc.sriov
+  handlers:
+    - name: reboot
+      include_tasks: tasks/reboot.yml

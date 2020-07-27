@@ -1,0 +1,5 @@
+---
+
+# 0,1 are reserved for the hypervisor
+# cat /sys/devices/system/node/node0/cpulist
+nova_cpu_dedicated_set: 2-31

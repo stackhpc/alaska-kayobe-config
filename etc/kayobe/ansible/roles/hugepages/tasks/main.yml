@@ -1,0 +1,39 @@
+---
+
+- name: Include grubcmdline
+  vars:
+    kernel_cmdline:
+      - default_hugepagesz=1G
+      - hugepagesz=1G
+      - transparent_hugepage=never
+    kernel_cmdline_remove:
+      - hugepage
+  include_role:
+    name: stackhpc.grubcmdline
+
+- name: Copy reserve pages script
+  copy:
+    src: hugetlb-reserve-pages.sh
+    dest: /usr/lib/systemd/hugetlb-reserve-pages.sh
+    mode: "0755"
+    owner: root
+    group: root
+  become: true
+
+- name: Copy reserve pages service file
+  copy:
+    src: hugetlb-gigantic-pages@.service
+    dest: /usr/lib/systemd/system/hugetlb-gigantic-pages@.service
+    mode: "0644"
+    owner: root
+    group: root
+  become: true
+
+- name: Enable huge page service
+  systemd:
+    daemon_reload: true
+    enabled: true
+    name: hugetlb-gigantic-pages@{{ item.key }} {{ item.value }}.service
+  notify: reboot
+  with_dict: "{{ hugepages_1G_pages }}"
+  become: true

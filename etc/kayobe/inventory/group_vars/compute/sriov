@@ -1,0 +1,10 @@
+---
+
+# Enable SR-IOV on these devices
+sriov_devices:
+  # Infiniband
+  - name: p3p2
+  - name: em1
+    numvfs: 63
+  - name: em2
+    numvfs: 63
