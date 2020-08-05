@@ -48,7 +48,8 @@ kibana_use_v6: True
 barbican_tag: 9.0.1.2-1
 cron_tag: 9.0.1.2-1
 elasticsearch_tag: 9.1.1.0-0
-fluentd_tag: 9.0.1.2-1
+elasticsearch_curator_tag: 9.1.1.0-0
+fluentd_tag: 9.2.0.2-1
 glance_tag: 9.0.1.2-1
 haproxy_tag: 9.0.1.2-1
 heat_tag: 9.0.1.2-1
