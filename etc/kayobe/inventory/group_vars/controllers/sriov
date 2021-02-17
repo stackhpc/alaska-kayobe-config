@@ -4,10 +4,7 @@
 sriov_devices:
   # BDN
   - name: enp3s0f1
+    numvfs: 8
   # LLN
   - name: ib0
-  # control plane/ provisioning
-  - name: eno1
-    numvfs: 63
-  - name: eno2
-    numvfs: 63
+    numvfs: 8

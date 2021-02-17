@@ -41,7 +41,7 @@ kolla_ansible_source_url: https://github.com/stackhpc/kolla-ansible.git
 
 # Version (branch, tag, etc.) of Kolla Ansible source code repository if type
 # is 'source'. Default is {{ openstack_branch }}.
-kolla_ansible_source_version: stackhpc/9.1.1.0
+kolla_ansible_source_version: stackhpc/9.2.0.4
 
 # Path to virtualenv in which to install kolla-ansible. Default is
 # $KOLLA_VENV_PATH or $PWD/venvs/kolla-ansible if $KOLLA_VENV_PATH is not set.
@@ -107,8 +107,6 @@ kolla_build_blocks:
     # supports source builds. Install a locally modified version with a fix for
     # Dell switches until it is released.
     RUN pip install git+https://github.com/stackhpc/networking-generic-switch@stackhpc/2.1.0.1 -c https://releases.openstack.org/constraints/upper/train
-    # Install networking-mlnx for InfiniBand support.
-    RUN pip install git+https://opendev.org/x/networking-mlnx@15.0.2 -c https://releases.openstack.org/constraints/upper/train
   ironic_inspector_footer: |
     # Install our custom inspector plugins.
     RUN pip install git+https://github.com/stackhpc/stackhpc-inspector-plugins@1.1.2 -c https://releases.openstack.org/constraints/upper/train
@@ -161,12 +159,17 @@ kolla_build_customizations:
   magnum_base_packages_append:
     # Allow custom packages to be installed via pip.
     - 'python-pip'
+  nova_compute_packages_append:
+    # Allow custom packages to be installed via pip.
+    # Required to support ebrctl
+    - 'python2-networking-mlnx'
   nova_compute_ironic_packages_append:
     # Allow custom packages to be installed via pip.
     - 'python-pip'
   neutron_server_packages_append:
     # Allow custom packages to be installed via pip.
     - 'python-pip'
+    - 'python2-networking-mlnx'
   sahara_base_packages_append:
     # Allow custom packages to be installed via pip.
     - 'python-pip'
@@ -319,6 +322,7 @@ kolla_enable_neutron_provider_networks: true
 #kolla_enable_neutron_qos:
 #kolla_enable_neutron_segments:
 kolla_enable_neutron_sriov: true
+kolla_enable_neutron_mlnx: true
 #kolla_enable_neutron_vpnaas:
 #kolla_enable_nova_serialconsole_proxy:
 kolla_enable_nova_serialconsole_proxy: true

@@ -10,6 +10,7 @@ kolla_neutron_ml2_mechanism_drivers:
   # network. The driver has been modified to avoid synchronising state to an
   # SDN controller.
   - mlnx_sdn_assist
+  - mlnx_infiniband
   - openvswitch
   - genericswitch
   - sriovnicswitch
