@@ -15,7 +15,7 @@ kolla_source_url: https://github.com/stackhpc/kolla.git
 
 # Version (branch, tag, etc.) of Kolla source code repository if type is
 # 'source'. Default is {{ openstack_branch }}.
-kolla_source_version: stackhpc/9.2.0.2
+kolla_source_version: stackhpc/9.3.1.1
 
 # Path to virtualenv in which to install kolla.
 #kolla_venv:
@@ -84,7 +84,7 @@ kolla_docker_namespace: stackhpc
 
 # Kolla OpenStack release version. This should be a Docker image tag.
 # Default is {{ openstack_release }}.
-kolla_openstack_release: 9.2.0.2-1
+kolla_openstack_release: 9.3.1.1-0
 
 # Dict mapping names of sources to their definitions for
 # kolla_install_type=source. See kolla.common.config for details.
@@ -120,10 +120,10 @@ kolla_build_blocks:
     RUN pip install -U --no-deps git+https://github.com/stackhpc/sahara.git@stackhpc/7.0.2.1 -c https://releases.openstack.org/constraints/upper/train
   magnum_api_footer: |
     # Tip of stable/ussuri with extra features backported from master
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/10.0.0.1 -c https://releases.openstack.org/constraints/upper/ussuri
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@ussuri-extra-network -c https://releases.openstack.org/constraints/upper/ussuri
   magnum_conductor_footer: |
     # Tip of stable/ussuri with extra features backported from master
-    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@stackhpc/10.0.0.1 -c https://releases.openstack.org/constraints/upper/ussuri
+    RUN pip install -U --no-deps git+https://github.com/stackhpc/magnum@ussuri-extra-network -c https://releases.openstack.org/constraints/upper/ussuri
   monasca_api_footer: |
     # NOTE(wszumski): Support batching metrics when writing to Kafka, see: https://review.opendev.org/#/c/667931/
     RUN pip install -U --no-deps git+https://github.com/stackhpc/monasca-api.git@stackhpc/3.1.0.1 -c https://releases.openstack.org/constraints/upper/train

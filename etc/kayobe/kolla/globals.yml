@@ -62,7 +62,7 @@ keepalived_tag: 9.0.1.2-1
 keystone_tag: 9.0.1.2-1
 kibana_tag: 9.1.1.0-0
 kolla_toolbox_tag: 9.0.1.2-1
-magnum_tag: 9.1.0.1-1
+magnum_tag: 9.3.1.1-0
 manila_tag: 9.0.1.2-1
 mariadb_tag: 9.0.1.2-1
 mariabackup_tag: 9.0.1.2-1
