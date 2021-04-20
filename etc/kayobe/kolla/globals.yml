@@ -76,7 +76,9 @@ monasca_notification_tag: 9.0.1.2-1
 monasca_persister_tag: 9.0.1.2-1
 monasca_thresh_tag: 9.1.1.0-0
 neutron_tag: 9.1.0.1-1
+neutron_mlnx_agent_tag: 9.2.0.1-3
 nova_tag: 9.0.1.2-1
+nova_compute_tag: 9.1.0.1-2
 octavia_tag: 9.0.1.2-1
 openvswitch_tag: 9.0.1.2-1
 placement_tag: 9.0.1.2-1
@@ -120,6 +122,10 @@ docker_custom_config: >-
 
 # Physnet to device mappings for SR-IOV, used for the pci
 # passthrough whitelist and sriov-agent configs
-sriov_physnet_mappings:
-   em1: physnet1
-   p3p2: physnet2
+neutron_sriov_physnet_mappings:
+  physnet1: em1
+  physnet2: p3p2
+  physnet3: ib0
+
+neutron_mlnx_physnet_mappings:
+  physnet3: ib0
