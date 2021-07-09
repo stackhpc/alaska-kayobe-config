@@ -143,6 +143,18 @@ inspector_rules_extra:
     - action: "set-attribute"
       path: "extra/system_vendor/bios_version"
       value: "2.6.0"
+  - description: "Set the expected firmware version for Mellanox ConnectX-4"
+    conditions:
+    - field: "data://inventory.interfaces[*].product"
+      op: "matches"
+      value: "^(0x1013)$"
+    - field: "data://inventory.interfaces[*].vendor"
+      op: "matches"
+      value: "^(0x15B3)$"
+    actions:
+      - action: "extend-attribute"
+      - path: "extra/nic_firmware"
+      - value: '[{"vendor_id": "15B3", "device_id": "1013", "firmware_version": "12.20.1010"}]'
 
 # List of all ironic inspector rules.
 #inspector_rules:
